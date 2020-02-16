@@ -1,0 +1,27 @@
+spring:
+  profiles:
+    active: ${APP_ENV:local}
+  data:
+  cache:
+    jcache:
+      config: classpath:ehcache.xml
+
+info:
+  app:
+    git-repo: https://github.com/mrazjava/booklink
+    description: "@project.description@"
+
+management:
+  info:
+    git:
+      mode: full
+  health:
+      enabled: false
+  endpoint:
+    metrics:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: info,health,loggers
+

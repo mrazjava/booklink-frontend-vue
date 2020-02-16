@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    <logger name="ch.qos.logback" level="warn" />
+    <logger name="org.springframework " level="info" />
+    <logger name="org.apache " level="info" />
+
+    <springProfile name="local">
+        <conversionRule conversionWord="clr"
+                        converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+        <appender name="Console-Appender" class="ch.qos.logback.core.ConsoleAppender">
+            <layout>
+                <pattern>
+                    %clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr([%level]) %clr(%logger{70}
+                    [%X{SOA_CALL_ID}][%X{context-id}] [%M:%line]){cyan} - %m%n
+                </pattern>
+            </layout>
+        </appender>
+    </springProfile>
+
+    <springProfile name="pre,live">
+        <root level="info">
+            <appender-ref ref="Console-Appender"/>
+        </root>
+    </springProfile>
+
+</configuration>
