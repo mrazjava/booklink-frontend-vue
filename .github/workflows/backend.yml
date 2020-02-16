@@ -19,4 +19,5 @@ jobs:
       with:
         java-version: 11
     - name: Maven Build
+      working-directory: booklink-backend
       run: mvn -B clean package --file pom.xml
