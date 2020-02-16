@@ -4,3 +4,4 @@ Stack
 - Java 11
 - Spring Boot
 - REST / Swagger
+- MySql
