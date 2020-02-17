@@ -14,13 +14,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/cache@v1
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
     - name: Use JDK 11
       uses: actions/setup-java@v1
       with:
         java-version: 11
-    - name: Build and Test
+    - name: Maven Package
       working-directory: booklink-backend
-      run: mvn -B clean verify --file pom.xml
+      run: mvn -B clean package --file pom.xml
     - name: Upload Maven build artifact
       uses: actions/upload-artifact@v1
       with:
@@ -40,9 +46,7 @@ jobs:
         env:
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          ls -l
           mkdir -p target
           mv ../artifact/booklink-backend.jar target/
-          ls -l target/
           docker build -t "$GITHUB_REPOSITORY:$IMAGE_TAG" .
         working-directory: booklink-backend
