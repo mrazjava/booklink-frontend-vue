@@ -1,5 +1,7 @@
 FROM adoptopenjdk:11-jre-hotspot
 
+VOLUME /tmp
+
 ENV USER booklink-be
 RUN useradd -m ${USER}
 
