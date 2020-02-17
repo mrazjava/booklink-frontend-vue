@@ -41,6 +41,6 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           mkdir -p target
-          mv artifact/booklink-backend.jar target/
+          mv ../artifact/booklink-backend.jar target/
           docker build -t "$GITHUB_REPOSITORY:$IMAGE_TAG" .
         working-directory: booklink-backend
