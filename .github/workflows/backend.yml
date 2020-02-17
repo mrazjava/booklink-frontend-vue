@@ -38,7 +38,6 @@ jobs:
           name: artifact
           path: booklink-backend/target/booklink-backend.jar
       - name: Build Docker Image
-        working-directory: booklink-backend
         env:
           IMAGE_TAG: ${{ github.sha }}
         run: |
