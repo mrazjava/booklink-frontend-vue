@@ -21,12 +21,13 @@ jobs:
     - name: Maven Build
       working-directory: booklink-backend
       run: mvn -B clean package --file pom.xml
-  build:
+  dockerize:
     needs: test-package
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Build Docker image
+        working-directory: booklink-backend
         env:
           IMAGE_TAG: ${{ github.sha }}
         run: |
