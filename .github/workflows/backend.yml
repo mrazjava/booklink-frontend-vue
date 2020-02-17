@@ -36,7 +36,6 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: artifact
-          path: booklink-backend/target/booklink-backend.jar
       - name: Build Docker Image
         env:
           IMAGE_TAG: ${{ github.sha }}
