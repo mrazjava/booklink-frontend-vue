@@ -28,7 +28,7 @@ jobs:
         path: target/booklink-backend*.jar
   dockerize:
     runs-on: ubuntu-latest
-    needs: test-package
+    needs: build
     name: Build Docker image and deploy
     steps:
       - uses: actions/checkout@v2
