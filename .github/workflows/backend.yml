@@ -1,4 +1,4 @@
-name: Backend CI
+name: Backend-CI
 
 on:
   push:
@@ -10,14 +10,24 @@ on:
       - 'booklink-backend/*'
 
 jobs:
-  build:
+  test-package:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Set up JDK 11
+    - name: Use JDK 11
       uses: actions/setup-java@v1
       with:
         java-version: 11
     - name: Maven Build
       working-directory: booklink-backend
       run: mvn -B clean package --file pom.xml
+  build:
+    needs: test-package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Build Docker image
+        env:
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -t "$GITHUB_REPOSITORY:$IMAGE_TAG" .

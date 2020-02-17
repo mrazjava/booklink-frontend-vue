@@ -1,68 +1,8 @@
 version: '3.3'
 services:
-  cca-demo:
-    image: docker.jamba.net/core/billing/customer-care/cca-demo:develop_59692
+  backend:
+    build: booklink-backend
     ports:
-    - "8091:8080"
+    - "8080:8080"
     environment:
-      CCA_NOTIFY_BACKEND: "true"
-      MONGO_HOST: mongo
-      KAFKA_BOOTSTRAP_SERVERS: kafka:9093
-  mongo:
-    image: mongo:3.6
-    ports:
-    - "27017:27017"
-    environment:
-      MONGO_INITDB_DATABASE: customer_care
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: pass1234
-    volumes:
-    - ./scripts/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
-    - mongo-data:/data/db
-  redis:
-    image: redis:5-alpine
-    ports:
-    - "6379:6379"
-  zookeeper:
-    image: bitnami/zookeeper
-    ports:
-    - '2181:2181'
-    expose:
-      - "2181"
-    environment:
-      ALLOW_ANONYMOUS_LOGIN: "yes"
-  kafka:
-    image: bitnami/kafka
-    depends_on:
-      - zookeeper
-    ports:
-    - "9092:9092"
-#    - "29092:29092"
-    expose:
-    - "9093"
-    environment:
-      ALLOW_PLAINTEXT_LISTENER: "yes"
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:9093,OUTSIDE://localhost:9092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
-      KAFKA_LISTENERS: INSIDE://0.0.0.0:9093,OUTSIDE://0.0.0.0:9092
-      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
-  prometheus-local:
-    image: prom/prometheus
-    ports:
-    - "9090:9090"
-    volumes:
-    - ./scripts/prometheus.yml:/etc/prometheus/prometheus.yml
-  grafana:
-    image: grafana/grafana
-    ports:
-    - "3000:3000"
-    volumes:
-      - ./scripts/grafana/grafana-datasource.yml:/etc/grafana/provisioning/datasources/prometheus.yml
-      - ./scripts/grafana/grafana-dashboard-provider.yml:/etc/grafana/provisioning/dashboards/provider.yml
-      - ./scripts/grafana/dashboards:/var/lib/grafana/dashboards/
-    environment:
-      GF_SECURITY_ADMIN_USER: admin
-      GF_SECURITY_ADMIN_PASSWORD: pass
-volumes:
-  mongo-data:
+      APP_ENV: local
