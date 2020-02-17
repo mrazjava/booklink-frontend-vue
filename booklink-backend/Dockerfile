@@ -8,7 +8,7 @@ RUN useradd -m ${USER}
 RUN mkdir /opt/app
 WORKDIR /opt/app
 
-COPY target/booklink-backend-*.jar /opt/app/booklink-backend.jar
+COPY target/booklink-backend.jar /opt/app/
 
 USER ${USER}
 ENTRYPOINT ["java", "-cp", "/opt/app/booklink-backend.jar"]
