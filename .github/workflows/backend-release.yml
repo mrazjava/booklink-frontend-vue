@@ -12,7 +12,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Maven Build
+    name: Maven Master Build
     steps:
     - uses: actions/checkout@v2
     - uses: actions/cache@v1
@@ -35,7 +35,7 @@ jobs:
         path: booklink-backend/target/booklink-backend.jar
   publish:
     runs-on: ubuntu-latest
-    name: Dockerize and Publish
+    name: Prepare Docker Image
     needs: build
     steps:
       - uses: actions/checkout@v2
@@ -83,7 +83,7 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           # Push image to ECR so that it can be deployed to ECS.
-          docker tag booklink/booklink_backend:latest $IMAGE_TAG
+          docker tag booklink_backend:latest $IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
       - name: Fill in the new image ID in the Amazon ECS task definition
