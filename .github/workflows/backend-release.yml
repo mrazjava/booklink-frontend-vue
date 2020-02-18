@@ -8,10 +8,6 @@ on:
       - v1
     paths:
       - 'booklink-backend/*'
-    env:
-      DOCKER_HOST: docker.pkg.github.com
-      BOOKLINK_IMG: $DOCKER_HOST/mrazjava/booklink/booklink_backend
-      BOOKLINK_IMG_TAG: ${{ github.sha }}
 
 jobs:
   build:
@@ -48,6 +44,10 @@ jobs:
         with:
           name: artifact
       - name: Build Docker Image
+        env:
+          DOCKER_HOST: docker.pkg.github.com
+          BOOKLINK_IMG: $DOCKER_HOST/mrazjava/booklink/booklink_backend
+          BOOKLINK_IMG_TAG: ${{ github.sha }}
         working-directory: booklink-backend
         run: |
           mkdir -p target
