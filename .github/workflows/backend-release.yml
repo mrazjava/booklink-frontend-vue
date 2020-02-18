@@ -69,7 +69,11 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
-      - name: Push docker image to Amazon ECR
+      - name: Pull prepared image
+        id: pull-image-from-github
+          docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
+          docker pull docker.pkg.github.com/mrazjava/booklink/booklink_backend:latest
+      - name: Push image to Amazon ECR
         id: push-image-to-aws
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
@@ -77,9 +81,7 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           # Push image to ECR so that it can be deployed to ECS.
-          docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
-          docker pull docker.pkg.github.com/mrazjava/booklink/booklink_backend:latest
-          docker tag $IMAGE_TAG booklink/booklink_backend:latest
+          docker tag booklink/booklink_backend:latest $IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
       - name: Fill in the new image ID in the Amazon ECS task definition
