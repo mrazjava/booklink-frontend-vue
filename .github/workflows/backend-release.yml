@@ -1,4 +1,4 @@
-name: Backend-release-CI
+name: backend-release
 #-$(echo `date '+%Y%m%d%H%M%S'`)
 on:
   push:
