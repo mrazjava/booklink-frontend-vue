@@ -1,2 +1,2 @@
 # Booklink
-![Backend-CI](https://github.com/mrazjava/booklink/workflows/Backend-CI/badge.svg?branch=master)
+![Backend-release-CI](https://github.com/mrazjava/booklink/workflows/Backend-release-CI/badge.svg?branch=master)
