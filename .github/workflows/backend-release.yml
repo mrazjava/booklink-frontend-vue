@@ -78,7 +78,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: booklink
-          IMAGE_TAG: booklink-be-master-${{ github.event.comment.created_at }}
+          IMAGE_TAG: booklink-be-master-$(echo `date '+%Y%m%d%H%M%S'`)
           #IMAGE_TAG: ${{ github.sha }}
         run: |
           # Push image to ECR so that it can be deployed to ECS.
