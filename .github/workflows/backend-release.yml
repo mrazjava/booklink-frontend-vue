@@ -82,6 +82,6 @@ jobs:
           IMG_NAME: backend-master
         run: |
           # Push image to ECR so that it can be deployed to ECS.
-          docker tag docker.pkg.github.com/mrazjava/booklink/$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:$IMG_NAME
+          docker tag docker.pkg.github.com/mrazjava/booklink/$IMG_NAME $ECR_REGISTRY/$ECR_REPOSITORY:$IMG_NAME
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMG_NAME
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMG_NAME"
