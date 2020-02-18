@@ -49,6 +49,7 @@ jobs:
         run: |
           mkdir -p target
           mv ../artifact/booklink-backend.jar target/
+          docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
           docker build -t docker.pkg.github.com/mrazjava/booklink/booklink_backend:latest .
           #docker build -t "$GITHUB_REPOSITORY:$IMAGE_TAG" .
         working-directory: booklink-backend
