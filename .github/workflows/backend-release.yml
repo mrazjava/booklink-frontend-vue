@@ -71,6 +71,8 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
       - name: Pull prepared image
         id: pull-image-from-github
+        run: |
+          # pull image we just built from github packages
           docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
           docker pull docker.pkg.github.com/mrazjava/booklink/booklink_backend:latest
       - name: Push image to Amazon ECR
