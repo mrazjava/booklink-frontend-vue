@@ -44,16 +44,12 @@ jobs:
         with:
           name: artifact
       - name: Build Docker Image
-        env:
-          DOCKER_HOST: docker.pkg.github.com
-          BOOKLINK_IMG: docker.pkg.github.com/mrazjava/booklink/booklink_backend
-          BOOKLINK_IMG_TAG: ${{ github.sha }}
         working-directory: booklink-backend
         run: |
           mkdir -p target
           mv ../artifact/booklink-backend.jar target/
-          docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} $DOCKER_HOST
-          docker build -t $BOOKLINK_IMG .
+          docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
+          docker build -t docker.pkg.github.com/mrazjava/booklink/booklink_backend .
       - name: Publish Image to Github Packages
         run: |
           docker push $BOOKLINK_IMG
@@ -75,18 +71,19 @@ jobs:
         id: pull-image-from-github
         run: |
           # pull image we just built from github packages
-          docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} $DOCKER_HOST
-          docker pull $BOOKLINK_IMG
+          docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
+          docker pull docker.pkg.github.com/mrazjava/booklink/booklink_backend
       - name: Push image to Amazon ECR
         id: push-image-to-aws
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: booklink
+          IMAGE_TAG: ${{ github.sha }}
         run: |
           # Push image to ECR so that it can be deployed to ECS.
-          docker tag $BOOKLINK_IMG $BOOKLINK_IMG_TAG
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$BOOKLINK_IMG_TAG
-          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$BOOKLINK_IMG_TAG"
+          docker tag $IMAGE_TAG docker.pkg.github.com/mrazjava/booklink/booklink_backend
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
