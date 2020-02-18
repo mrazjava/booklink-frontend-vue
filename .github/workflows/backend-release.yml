@@ -78,7 +78,8 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: booklink
-          IMAGE_TAG: ${{ github.sha }}
+          IMAGE_TAG: booklink-be-master-${{ github.event.comment.created_at }}
+          #IMAGE_TAG: ${{ github.sha }}
         run: |
           # Push image to ECR so that it can be deployed to ECS.
           docker tag docker.pkg.github.com/mrazjava/booklink/booklink_backend $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
