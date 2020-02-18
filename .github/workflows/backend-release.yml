@@ -46,7 +46,7 @@ jobs:
       - name: Build Docker Image
         working-directory: booklink-backend
         env:
-          IMAGE_TAG: backend-master-$(echo `date '+%Y%m%d%H%M%S'`)
+          IMAGE_TAG: backend-master #-$(echo `date '+%Y%m%d%H%M%S'`)
         run: |
           mkdir -p target
           mv ../artifact/booklink-backend.jar target/
