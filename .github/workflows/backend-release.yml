@@ -74,7 +74,7 @@ jobs:
         run: |
           # pull image we just built from github packages
           docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
-          docker pull docker.pkg.github.com/mrazjava/booklink/booklink_backend
+          docker pull docker.pkg.github.com/mrazjava/booklink/$IMAGE_TAG
       - name: Push image to Amazon ECR
         id: push-image-to-aws
         env:
@@ -83,6 +83,6 @@ jobs:
           #IMAGE_TAG: ${{ github.sha }}
         run: |
           # Push image to ECR so that it can be deployed to ECS.
-          docker tag docker.pkg.github.com/mrazjava/booklink/booklink_backend $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker tag docker.pkg.github.com/mrazjava/booklink/$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
