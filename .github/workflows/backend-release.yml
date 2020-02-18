@@ -10,8 +10,6 @@ on:
       - 'booklink-backend/*'
 
 jobs:
-  env:
-    DOCKER_IMAGE: backend-master
   build:
     runs-on: ubuntu-latest
     name: Maven Master Build
@@ -52,10 +50,10 @@ jobs:
           mkdir -p target
           mv ../artifact/booklink-backend.jar target/
           docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
-          docker build -t docker.pkg.github.com/mrazjava/booklink/${{ env.DOCKER_IMAGE }} .
+          docker build -t docker.pkg.github.com/mrazjava/booklink/backend-master .
       - name: Publish Image to Github Packages
         run: |
-          docker push docker.pkg.github.com/mrazjava/booklink/${{ env.DOCKER_IMAGE }}
+          docker push docker.pkg.github.com/mrazjava/booklink/backend-master
   deploy:
     runs-on: ubuntu-latest
     needs: publish
@@ -75,15 +73,15 @@ jobs:
         run: |
           # pull image we just built from github packages
           docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
-          docker pull docker.pkg.github.com/mrazjava/booklink/${{ steps.dockerize.env.IMAGE_TAG }}
+          docker pull docker.pkg.github.com/mrazjava/booklink/backend-master
       - name: Push image to Amazon ECR
         id: push-image-to-aws
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: booklink
-          #IMAGE_TAG: ${{ github.sha }}
+          IMG_NAME: backend-master
         run: |
           # Push image to ECR so that it can be deployed to ECS.
-          docker tag docker.pkg.github.com/mrazjava/booklink/$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:${{ steps.dockerize.env.IMAGE_TAG }}
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{ steps.dockerize.env.IMAGE_TAG }}
-          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:${{ steps.dockerize.env.IMAGE_TAG }}"
+          docker tag docker.pkg.github.com/mrazjava/booklink/$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:$IMG_NAME
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMG_NAME
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMG_NAME"
