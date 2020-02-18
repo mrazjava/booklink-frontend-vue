@@ -45,14 +45,16 @@ jobs:
           name: artifact
       - name: Build Docker Image
         working-directory: booklink-backend
+        env:
+          IMAGE_TAG: backend-master-$(echo `date '+%Y%m%d%H%M%S'`)
         run: |
           mkdir -p target
           mv ../artifact/booklink-backend.jar target/
           docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
-          docker build -t docker.pkg.github.com/mrazjava/booklink/booklink_backend .
+          docker build -t docker.pkg.github.com/mrazjava/booklink/$IMAGE_TAG .
       - name: Publish Image to Github Packages
         run: |
-          docker push docker.pkg.github.com/mrazjava/booklink/booklink_backend
+          docker push docker.pkg.github.com/mrazjava/booklink/backend-master
   deploy:
     runs-on: ubuntu-latest
     needs: publish
@@ -78,7 +80,6 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: booklink
-          IMAGE_TAG: booklink-be-master-$(echo `date '+%Y%m%d%H%M%S'`)
           #IMAGE_TAG: ${{ github.sha }}
         run: |
           # Push image to ECR so that it can be deployed to ECS.
