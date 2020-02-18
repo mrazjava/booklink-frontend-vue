@@ -46,7 +46,7 @@ jobs:
       - name: Build Docker Image
         env:
           DOCKER_HOST: docker.pkg.github.com
-          BOOKLINK_IMG: ${{ $DOCKER_HOST }}/mrazjava/booklink/booklink_backend
+          BOOKLINK_IMG: docker.pkg.github.com/mrazjava/booklink/booklink_backend
           BOOKLINK_IMG_TAG: ${{ github.sha }}
         working-directory: booklink-backend
         run: |
