@@ -13,7 +13,7 @@ Merge to `master` triggers release CI pipeline which:
 
 * builds application from master sources
 * builds latest release docker image(s) based on source tree which triggered commit (eg: `booklink-backend`, `booklink-web`)
-* pushes latest release docker image to [github](docker.pkg.github.com/mrazjava/booklink) (`web-master`,`backend-master`)
+* pushes latest release docker image to [github packages](https://github.com/mrazjava/booklink/packages) (`web-master`,`backend-master`)
 * pushes latest release docker image to AWS ECR (`latest` tag of the above)
 
 `master` version of `booklink/docker-compose.yml` (project root) bootstraps app from release ready images (`-master:latest`). As such, image changes to this file from `develop` branch should not be merged.
