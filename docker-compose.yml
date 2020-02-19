@@ -1,7 +1,10 @@
+# Bootstraps entire app, frontend, backend and supporting artifacts (persistence, etc)
+# from images built for a production release
+#
 version: '3.3'
 services:
   backend:
-    build: booklink-backend
+    image: docker.pkg.github.com/mrazjava/booklink/backend-master:latest
     ports:
     - "8080:8080"
     environment:
