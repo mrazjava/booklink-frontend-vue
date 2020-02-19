@@ -2,7 +2,7 @@
 ![backend-master](https://github.com/mrazjava/booklink/workflows/backend-release/badge.svg?branch=master)
 
 ## Branching / CI Pipeline
-Work is done on a `feature-*` branch. Push to feature triggers build with unit tests. Feature is merged 
+Work is done on a `feature/*` branch. Push to feature triggers build with unit tests. Feature is merged 
 to `develop`. Merge to develop triggers a full test suite (unit/integration) and builds a snapshot docker 
 image pushed to github packages. Release is made by merging `develop` into `master`.
 
