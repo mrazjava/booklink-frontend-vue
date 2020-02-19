@@ -16,4 +16,14 @@ Merge to `master` triggers release CI pipeline which:
 * pushes latest release docker image to [github packages](https://github.com/mrazjava/booklink/packages) (`web-master`,`backend-master`)
 * pushes latest release docker image to AWS ECR (`latest` tag of the above)
 
-`master` version of `booklink/docker-compose.yml` (project root) bootstraps app from release ready images (`-master:latest`). As such, image changes to this file from `develop` branch should not be merged.
+`master` version of `booklink/docker-compose.yml` (project root) bootstraps app from release ready images (`-master:latest`). 
+As such, image changes to this file from `develop` branch should not be merged.
+
+## docker-compose
+Composition of docker images is used as a convenience feature to quickly and easily run (or try out) the 
+application from a local environment. No need to compile sources or setup anything. From the project root 
+directory simply run:
+```
+docker-compose up
+```
+Backend will be available on port `8080`.
