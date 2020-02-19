@@ -13,5 +13,5 @@ Merge to master triggers release CI pipeline which:
 
 * builds application from master sources
 * builds latest release docker image
-* pushes latest release docker image to github
-* pushes latest release docker image to AWS ECR
+* pushes latest release docker image to github (`frontend-master`,`backend-master`)
+* pushes latest release docker image to AWS ECR (`latest` tag of the above)
