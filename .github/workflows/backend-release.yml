@@ -16,9 +16,9 @@ jobs:
     steps:
       - name: Test
         run: |
-          echo $GITHUB_WORKSPACE
           pwd
-          ls -l ../
+          ls -l ../.aws/
+          ls -l ../*
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
