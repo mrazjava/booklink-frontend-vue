@@ -22,6 +22,9 @@ jobs:
           aws-region: eu-central-1
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        run: |
+          pwd
+          ls -l
         with:
           task-definition: ../.aws/backend-task-definition.json
           cluster: booklink-ec2lx-cluster
