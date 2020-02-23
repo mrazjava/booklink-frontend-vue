@@ -84,3 +84,9 @@ jobs:
           docker tag docker.pkg.github.com/mrazjava/booklink/backend-master $ECR_REGISTRY/$ECR_REPOSITORY:latest
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:latest"
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: .aws/backend-task-definition.json
+          cluster: booklink-ec2lx-cluster
+          wait-for-service-stability: true
