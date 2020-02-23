@@ -23,6 +23,6 @@ jobs:
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: ${{ github.workspace }}/.aws/backend-task-definition.json
+          task-definition: ../.aws/backend-task-definition.json
           cluster: booklink-ec2lx-cluster
           wait-for-service-stability: true
