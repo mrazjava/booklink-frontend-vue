@@ -14,11 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy to AWS
     steps:
-      - name: Test
-        run: |
-          pwd
-          ls -l ../.aws/
-          ls -l ../*
+      - uses: actions/checkout@v1
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v1
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -28,6 +26,6 @@ jobs:
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: ../.aws/backend-task-definition.json
+          task-definition: /.aws/backend-task-definition.json
           cluster: booklink-ec2lx-cluster
           wait-for-service-stability: true
