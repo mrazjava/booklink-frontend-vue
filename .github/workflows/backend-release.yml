@@ -24,7 +24,7 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: .aws/backend-task-definition.json
+          task-definition: ../.aws/backend-task-definition.json
           container-name: booklink-backend-contr
           image: 703057871606.dkr.ecr.eu-central-1.amazonaws.com/booklink-backend:latest
       - name: Deploy Amazon ECS task definition
