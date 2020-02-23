@@ -85,9 +85,8 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:latest"
       - name: Deploy Amazon ECS task definition
-        working-directory: booklink/.aws
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
-          task-definition: backend-task-definition.json
+          task-definition: ../.aws/backend-task-definition.json
           cluster: booklink-ec2lx-cluster
           wait-for-service-stability: true
