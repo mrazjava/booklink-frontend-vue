@@ -37,6 +37,7 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: booklink-backend-svc
           cluster: booklink-ec2lx-cluster
           wait-for-service-stability: true
 
