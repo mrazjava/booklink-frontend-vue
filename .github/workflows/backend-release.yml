@@ -33,8 +33,6 @@ jobs:
           task-definition: .aws/backend-task-definition.json
           container-name: booklink-backend-contr
           image: 703057871606.dkr.ecr.eu-central-1.amazonaws.com/booklink-backend:latest
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v1
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
