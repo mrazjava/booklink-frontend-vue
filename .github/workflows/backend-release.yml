@@ -40,6 +40,8 @@ jobs:
           service: booklink-backend-svc
           cluster: booklink-ec2lx-cluster
           wait-for-service-stability: true
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v1
 
 # enable ssh session to debug actions runner
 # https://github.com/marketplace/actions/debugging-with-tmate
