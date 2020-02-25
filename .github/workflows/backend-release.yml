@@ -8,8 +8,6 @@ on:
       - v1
     paths:
       - 'booklink-backend/*'
-#  GITHUB_WORKSPACE
-# https://aws.amazon.com/blogs/containers/create-a-ci-cd-pipeline-for-amazon-ecs-with-github-actions-and-aws-codebuild-tests/
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -34,77 +32,3 @@ jobs:
         with:
           name: artifact
           path: booklink-backend/target/booklink-backend.jar
-  publish:
-    runs-on: ubuntu-latest
-    name: Prepare Docker Image
-    needs: build
-    steps:
-      - uses: actions/checkout@v2
-      - name: Download Maven build artifact
-        uses: actions/download-artifact@v1
-        with:
-          name: artifact
-      - name: Build Docker Image
-        id: dockerize
-        working-directory: booklink-backend
-        run: |
-          mkdir -p target
-          mv ../artifact/booklink-backend.jar target/
-          docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
-          docker build -t docker.pkg.github.com/mrazjava/booklink/backend-master .
-      - name: Publish Image to Github Packages
-        run: |
-          docker push docker.pkg.github.com/mrazjava/booklink/backend-master
-  deploy:
-    runs-on: ubuntu-latest
-    name: Deploy to AWS
-    needs: publish
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-central-1
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
-      - name: Pull prepared image
-        id: pull-image-from-github
-        run: |
-          # pull image we just built from github packages
-          docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
-          docker pull docker.pkg.github.com/mrazjava/booklink/backend-master
-      - name: Push image to Amazon ECR
-        id: push-image-to-aws
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: booklink-backend
-        run: |
-          # Push image to ECR so that it can be deployed to ECS.
-          docker tag docker.pkg.github.com/mrazjava/booklink/backend-master $ECR_REGISTRY/$ECR_REPOSITORY:latest
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
-          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:latest"
-      - name: Fill in the new image ID in the Amazon ECS task definition
-        id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@v1
-        with:
-          task-definition: .aws/backend-task-definition.json
-          container-name: booklink-backend-contr
-          image: ${{ steps.push-image-to-aws.outputs.image }}
-      - name: Deploy Amazon ECS task definition
-        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-        with:
-          task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: booklink-backend-svc
-          cluster: booklink-ec2lx-cluster
-          wait-for-service-stability: true
-
-# enable ssh session to debug actions runner
-# https://github.com/marketplace/actions/debugging-with-tmate
-#    steps:
-#      - uses: actions/checkout@v1
-#      - name: Setup tmate session
-#        uses: mxschmitt/action-tmate@v1
