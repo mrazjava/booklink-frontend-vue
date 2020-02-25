@@ -11,6 +11,50 @@ on:
 #  GITHUB_WORKSPACE
 # https://aws.amazon.com/blogs/containers/create-a-ci-cd-pipeline-for-amazon-ecs-with-github-actions-and-aws-codebuild-tests/
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Maven Master Build
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v1
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Use JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Maven Package
+        working-directory: booklink-backend
+        run: mvn -B clean package --file pom.xml
+      - name: Upload Maven build artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: artifact
+          path: booklink-backend/target/booklink-backend.jar
+  publish:
+    runs-on: ubuntu-latest
+    name: Prepare Docker Image
+    needs: build
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download Maven build artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: artifact
+      - name: Build Docker Image
+        id: dockerize
+        working-directory: booklink-backend
+        run: |
+          mkdir -p target
+          mv ../artifact/booklink-backend.jar target/
+          docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
+          docker build -t docker.pkg.github.com/mrazjava/booklink/backend-master .
+      - name: Publish Image to Github Packages
+        run: |
+          docker push docker.pkg.github.com/mrazjava/booklink/backend-master
   deploy:
     runs-on: ubuntu-latest
     name: Deploy to AWS
@@ -26,19 +70,29 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
-      - name: Construct Image Name
-        id: image-name
+      - name: Pull prepared image
+        id: pull-image-from-github
+        run: |
+          # pull image we just built from github packages
+          docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
+          docker pull docker.pkg.github.com/mrazjava/booklink/backend-master
+      - name: Push image to Amazon ECR
+        id: push-image-to-aws
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: booklink-backend
         run: |
-          echo "::set-output name=image::$ECR_REGISTRY/booklink-backend:latest"
+          # Push image to ECR so that it can be deployed to ECS.
+          docker tag docker.pkg.github.com/mrazjava/booklink/backend-master $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:latest"
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: .aws/backend-task-definition.json
           container-name: booklink-backend-contr
-          image: ${{ steps.image-name.outputs.image }}
+          image: ${{ steps.push-image-to-aws.outputs.image }}
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
