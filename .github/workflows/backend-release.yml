@@ -12,7 +12,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Deploy to AWS
-    needs: publish
+    #needs: publish
     steps:
       - name: Pull img from Github Packages
         id: pull-image-from-github
