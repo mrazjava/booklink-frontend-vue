@@ -13,23 +13,23 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy to AWS #     needs: publish
     steps:
-      - name: Checkout pipeline commit
-        uses: actions/checkout@v2
       - name: Pull latest image from Github Packages
         id: pull-image-from-github
         run: |
           # pull image we just built from github packages
           docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
           docker pull docker.pkg.github.com/mrazjava/booklink/backend-master
+      - name: Checkout pipeline commit
+        uses: actions/checkout@v2
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v1.1.2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-central-1
       - name: Login to Amazon ECR
         id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
+        uses: aws-actions/amazon-ecr-login@v1.0.3
       - name: Push image to Amazon ECR
         id: push-image-to-aws
         env:
@@ -42,13 +42,13 @@ jobs:
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:latest"
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@v1.2.0
+        uses: aws-actions/amazon-ecs-render-task-definition@v1.0.2
         with:
           task-definition: .aws/backend-task-definition.json
           container-name: booklink-backend-contr
           image: ${{ steps.push-image-to-aws.outputs.image }}
       - name: Deploy Amazon ECS task definition
-        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1.0.3
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: booklink-backend-svc
