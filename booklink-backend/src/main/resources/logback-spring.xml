@@ -8,7 +8,7 @@
     <springProfile name="local">
         <conversionRule conversionWord="clr"
                         converterClass="org.springframework.boot.logging.logback.ColorConverter" />
-        <appender name="Console-Appender" class="ch.qos.logback.core.ConsoleAppender">
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
             <layout>
                 <pattern>
                     %clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr([%level]) %clr(%logger{70}
@@ -20,7 +20,13 @@
 
     <springProfile name="pre,live">
         <root level="info">
-            <appender-ref ref="Console-Appender"/>
+            <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+                <layout class="ch.qos.logback.classic.PatternLayout">
+                    <Pattern>
+                        %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n
+                    </Pattern>
+                </layout>
+            </appender>
         </root>
     </springProfile>
 
