@@ -48,9 +48,8 @@ jobs:
           task-definition: .aws/backend-task-definition.json
           container-name: booklink-backend-contr
           image: ${{ steps.push-image-to-aws.outputs.image }}
-          tags:
-            foo: bar
-            pico: nano
+          tags[0]: foo=bar
+          tags[1]: pico=nano
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
