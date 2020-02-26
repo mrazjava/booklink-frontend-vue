@@ -55,7 +55,8 @@ jobs:
           docker push docker.pkg.github.com/mrazjava/booklink/backend-master
   deploy:
     runs-on: ubuntu-latest
-    name: Deploy to AWS #     needs: publish
+    name: Deploy to AWS
+    needs: publish
     steps:
       - name: Pull latest image from Github Packages
         id: pull-image-from-github
