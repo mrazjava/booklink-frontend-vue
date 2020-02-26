@@ -9,10 +9,54 @@ on:
     paths:
       - 'booklink-backend/*'
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Maven Master Build
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v1
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Use JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Maven Package
+        working-directory: booklink-backend
+        run: mvn -B clean package --file pom.xml
+      - name: Upload Maven build artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: artifact
+          path: booklink-backend/target/booklink-backend.jar
+  publish:
+    runs-on: ubuntu-latest
+    name: Prepare Docker Image
+    needs: build
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download Maven build artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: artifact
+      - name: Build Docker Image
+        id: dockerize
+        working-directory: booklink-backend
+        run: |
+          mkdir -p target
+          mv ../artifact/booklink-backend.jar target/
+          docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
+          docker build -t docker.pkg.github.com/mrazjava/booklink/backend-master .
+      - name: Push img to Github Packages
+        run: |
+          docker push docker.pkg.github.com/mrazjava/booklink/backend-master
   deploy:
     runs-on: ubuntu-latest
     name: Deploy to AWS
-    #needs: publish
+    needs: publish
     steps:
       - name: Pull img from Github Packages
         id: pull-image-from-github
