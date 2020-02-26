@@ -53,7 +53,7 @@ jobs:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: booklink-backend-svc
           cluster: booklink-ec2lx-cluster
-          wait-for-service-stability: true
+          wait-for-service-stability: false
 
 # enable ssh session to debug actions runner
 # https://github.com/marketplace/actions/debugging-with-tmate
