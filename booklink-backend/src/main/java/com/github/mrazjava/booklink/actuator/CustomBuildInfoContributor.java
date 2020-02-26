@@ -1,5 +1,6 @@
 package com.github.mrazjava.booklink.actuator;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.info.BuildInfoContributor;
 import org.springframework.boot.actuate.info.Info;
 import org.springframework.boot.info.BuildProperties;
@@ -22,6 +23,9 @@ public class CustomBuildInfoContributor extends BuildInfoContributor {
     private static final String KEY_ARTIFACT = "artifact";
     private static final String KEY_GROUP = "group";
     private static final String KEY_VERSION = "version";
+
+    @Value("${spring.profiles.active}")
+    private String runningEnvironment;
 
     public CustomBuildInfoContributor(BuildProperties buildProperties) {
         super(buildProperties);
@@ -46,6 +50,7 @@ public class CustomBuildInfoContributor extends BuildInfoContributor {
 
         replaceValue(content, "time", dateFormat.format(Date.from(buildProps.getTime())));
         content.put("maven", maven);
+        content.put("environment", runningEnvironment);
         content.remove("name");
         content.remove(KEY_ARTIFACT);
         content.remove(KEY_GROUP);
