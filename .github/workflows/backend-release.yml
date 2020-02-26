@@ -43,13 +43,11 @@ jobs:
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:latest"
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        uses: aws-actions/amazon-ecs-render-task-definition@v1.2.0
         with:
           task-definition: .aws/backend-task-definition.json
           container-name: booklink-backend-contr
           image: ${{ steps.push-image-to-aws.outputs.image }}
-          tags[0]: foo=bar
-          tags[1]: pico=nano
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
