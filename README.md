@@ -3,9 +3,9 @@
 
 ## Environments
 
-* live (AWS): TODO
-* staging (AWS): [backend-actuator](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/actuator/info), [backend-swagger](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/swagger-ui.html)
-* local (dev): see [docker-compose](https://github.com/mrazjava/booklink#docker-compose) section below
+* `live` (aws): TODO
+* `staging` (aws): [backend-actuator](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/actuator/info), [backend-swagger](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/swagger-ui.html)
+* `dev` (local): see [docker-compose](https://github.com/mrazjava/booklink#docker-compose) section below
 
 ## docker-compose<sup>1</sup>
 Composition of docker images is used as a convenience feature to quickly and easily run (or try out) the 
