@@ -5,8 +5,11 @@
 
 * `live` (aws): TODO - not setup yet
 * `staging` (aws): [backend-actuator](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/actuator/info), [backend-swagger](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/swagger-ui.html)
-* `testing` (local): see [docker-compose](https://github.com/mrazjava/booklink#docker-compose) section below
+   - stage all coding changes, QA, pre-release (same remote environment as live)
+* `playground` (local): see [docker-compose](https://github.com/mrazjava/booklink#docker-compose) section below
+   - safe environment for experimentation, offline demo, etc
 * `development` (local): see quick start
+   - programming of new features, bug fixing
 
 ## docker-compose<sup>1</sup>
 Composition of docker images is used as a convenience feature to quickly and easily run (or try out) the 
