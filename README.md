@@ -5,7 +5,7 @@
 
 * `live`: aws
    - not setup yet
-   - manual deploy (off approved pre-release docker image)
+   - manual deploy (from pre-release tested AWS ECR docker image)
 * `pre`: aws
    - [backend-actuator](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/actuator/info), [backend-swagger](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/swagger-ui.html)
    - candidate release, QA testing
