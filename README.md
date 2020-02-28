@@ -25,14 +25,19 @@ directory simply run:
 ```
 docker-compose up
 ```
-Docker will pull the latest image from github and run it on your machine. Backend will be available on port `8080`.
+Docker will pull the latest candidate release image from github and run it on your machine. Backend will be available on port `8080`.
+
+To try the latest stable (staging) tell docker-compose to run off a staging configuration:
+```
+docker-compose -f docker-compose-develop.yml up
+```
 
 <sup>1</sup> | Requires docker installation. On Ubuntu for instance, this can be done with `sudo apt install docker.io`
 
 ## Branching / CI Pipeline
 Work is done on a `feature/*` branch. Push to feature triggers build with unit tests. Feature is merged 
 to `develop`. Merge to develop triggers a full test suite (unit/integration) and builds a snapshot docker 
-image pushed to github packages. Release is made by merging `develop` into `master`.
+image pushed to github [packages](https://github.com/mrazjava/booklink/packages). Release is made by merging `develop` into `master`.
 
 * Direct commits to `develop` should be avoided.
 * Direct commits to `master` should never happen except for hotfixes. If hotfix is applied to master, it is immediately backported to develop.
