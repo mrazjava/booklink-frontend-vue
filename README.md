@@ -3,13 +3,12 @@
 
 ## Environments
 
-* `live`: AWS 
-   - TODO - not setup yet
-* `pre`: AWS
-   - [backend-actuator](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/actuator/info), [backend-swagger]
+* `live`: aws
+   - not setup yet
+* `pre`: aws
+   - [backend-actuator](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/actuator/info), [backend-swagger](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/swagger-ui.html)
    - candidate release, QA testing
-(http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/swagger-ui.html)
-* `playground`: LOCAL (docker)
+* `playground`: local (docker)
    - see [docker-compose](https://github.com/mrazjava/booklink#docker-compose) section below
    - safe environment for experimentation, offline demo, staging, built off stable branch
 * `development`: local (maven)
