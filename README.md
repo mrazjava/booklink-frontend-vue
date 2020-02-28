@@ -5,12 +5,15 @@
 
 * `live`: aws
    - not setup yet
+   - manual deploy (off approved pre-release docker image)
 * `pre`: aws
    - [backend-actuator](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/actuator/info), [backend-swagger](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/swagger-ui.html)
    - candidate release, QA testing
+   - automated (ci) deploy triggered by push/merge to `master`
 * `playground`: local (docker)
    - see [docker-compose](https://github.com/mrazjava/booklink#docker-compose) section below
    - safe environment for experimentation, offline demo, staging, built off stable branch
+   - runs off github docker image built by ci pipeline triggered off push/merge to `develop`
 * `development`: local (maven)
    - programming of new features, bug fixing, depending on branch may be unstable
    - see quick start
