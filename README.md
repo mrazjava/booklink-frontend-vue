@@ -9,7 +9,7 @@
 * `pre`: aws
    - [backend-actuator](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/actuator/info), [backend-swagger](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/swagger-ui.html)
    - candidate release, QA testing
-   - automated (ci) deploy triggered by push/merge to `master`
+   - automated (github action [ci](https://github.com/mrazjava/booklink/blob/master/.github/workflows/backend-release.yml)) deploy triggered by push/merge to `master`
 * `playground`: local (docker)
    - see [docker-compose](https://github.com/mrazjava/booklink#docker-compose) section below
    - safe environment for experimentation, offline demo, staging, built off stable branch
