@@ -27,7 +27,7 @@ docker-compose up
 ```
 Docker will pull the latest candidate release image from github and run it on your machine. Backend will be available on port `8080`.
 
-To try the latest stable (staging) tell docker-compose to run off a staging configuration:
+Candidate release image should be solid, well tested, and the same as what runs in the AWS cloud. However, it may not have the latest features. To try the latest stable version, tell docker-compose to run off a staging configuration:
 ```
 docker-compose -f docker-compose-develop.yml up
 ```
