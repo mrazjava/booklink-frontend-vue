@@ -32,7 +32,7 @@ Candidate release image should be solid, well tested, and the same as what runs 
 docker-compose -f docker-compose-develop.yml up
 ```
 
-<sup>1</sup> | Requires [docker](https://docs.docker.com/install/) + [docker-compose](https://docs.docker.com/compose/install/) installation. On Ubuntu, this can be done with `sudo apt install docker-compose` - installs docker-compose and since docker is a dependency, install `docker.io` (automatically) as well.
+<sup>1</sup> | Requires [docker](https://docs.docker.com/install/) + [docker-compose](https://docs.docker.com/compose/install/) installation. On Ubuntu for example, this can be done with `sudo apt install docker-compose`, which installs docker-compose directly, and docker (`docker.io` package) indirectly since compose depends on docker.
 
 ## Branching / CI Pipeline
 Work is done on a `feature/*` branch. Push to feature triggers build with unit tests. Feature is merged 
