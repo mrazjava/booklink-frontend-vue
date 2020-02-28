@@ -15,8 +15,8 @@
    - safe environment for experimentation, offline demo, staging, built off stable branch
    - runs off github docker image built by ci pipeline triggered off push/merge to `develop`
 * `development`: local (maven)
-   - programming of new features, bug fixing, depending on branch may be unstable
    - see quick start
+   - programming of new features, bug fixing, depending on branch may be unstable
 
 ## docker-compose<sup>1</sup>
 Composition of docker images is used as a convenience feature to quickly and easily run (or try out) the 
