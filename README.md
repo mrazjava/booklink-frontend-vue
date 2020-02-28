@@ -7,7 +7,7 @@
    - not setup yet
    - manual deploy (from pre-release tested AWS ECR docker image)
 * `pre`: aws
-   - [backend-actuator](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/actuator/info), [backend-swagger](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/swagger-ui.html)
+   - [backend-master:latest](https://github.com/mrazjava/booklink/packages/130548?version=latest) in EC2 as T2.micro: [backend-actuator](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/actuator/info), [backend-swagger](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/swagger-ui.html)
    - candidate release, QA testing
    - automated (github action [ci](https://github.com/mrazjava/booklink/blob/master/.github/workflows/backend-release.yml)) deploy triggered by push/merge to `master`
 * `playground`: local (docker)
