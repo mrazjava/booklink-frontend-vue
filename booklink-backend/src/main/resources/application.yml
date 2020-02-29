@@ -9,7 +9,6 @@ info:
   app:
     git-repo: https://github.com/mrazjava/booklink
     description: "@project.description@"
-
 management:
   info:
     git:
@@ -23,4 +22,6 @@ management:
     web:
       exposure:
         include: info,health,loggers
-
+booklink:
+  security:
+    cors-allow-origins: ${CORS_ALLOW_ORIGINS:}

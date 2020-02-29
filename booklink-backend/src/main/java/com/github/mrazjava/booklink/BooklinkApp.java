@@ -1,7 +1,9 @@
 package com.github.mrazjava.booklink;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.io.ClassPathResource;
@@ -15,7 +17,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         "com.github.mrazjava.booklink"
 })
 @EnableSwagger2
-@EnableGlobalMethodSecurity(jsr250Enabled = true)
 public class BooklinkApp {
 
     public static void main(String[] args) {
