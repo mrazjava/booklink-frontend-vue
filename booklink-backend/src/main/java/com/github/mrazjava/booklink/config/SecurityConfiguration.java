@@ -14,6 +14,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.inject.Inject;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,7 +23,7 @@ import java.util.List;
 @Configuration
 @ConfigurationProperties(prefix = "booklink.security")
 @EnableWebSecurity
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter implements AllowedCorsEntries {
 
     @Inject
     private Logger log;
@@ -50,6 +51,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/rest/**", configuration);
         return source;
+    }
+
+    @Override
+    public List<String> getAllowedEntries() {
+        return Collections.unmodifiableList(corsAllowOrigins);
     }
 
     void setCorsAllowOrigins(List<String> corsAllowOrigins) {
