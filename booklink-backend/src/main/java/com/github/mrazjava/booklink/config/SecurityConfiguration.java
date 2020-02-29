@@ -18,6 +18,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * Configuration of Spring security.
+ *
  * @since 0.1.0
  */
 @Configuration
@@ -33,13 +35,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-                .cors().and()
+                .cors()
+                .and()
                 .httpBasic().disable()
                 .csrf().disable()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
+    /**
+     * Restrict access to only known clients such as the frontend.
+     */
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
 
@@ -47,7 +53,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
 
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(corsAllowOrigins);
-        configuration.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "DELETE"));
+        configuration.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "PATCH", "DELETE"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/rest/**", configuration);
         return source;
