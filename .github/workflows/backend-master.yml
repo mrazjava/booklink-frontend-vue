@@ -1,4 +1,4 @@
-name: backend-release
+name: backend-master
 #-$(echo `date '+%Y%m%d%H%M%S'`)
 on:
   push:
@@ -89,7 +89,7 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1.0.2
         with:
-          task-definition: .aws/backend-task-definition.json
+          task-definition: .aws/backend-pre.json
           container-name: booklink-backend-contr
           image: ${{ steps.push-image-to-aws.outputs.image }}
       - name: Deploy Amazon ECS task definition
