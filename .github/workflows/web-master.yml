@@ -13,29 +13,19 @@ jobs:
     name: build and publish
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: npm install
-        uses: actions/npm@master
+      - uses: actions/checkout@v2
+      - name: Building Frontend
+        uses: actions/setup-node@v1
         with:
-          args: install
-      - name: check syntax
-        uses: actions/npm@master
-        with:
-          args: run lint
-      - name: build application
-        uses: actions/npm@master
-        with:
-          args: run build
-      - name: build frontend docker img
-        uses: actions/docker/cli@master
-        with:
-          args: build -t docker.pkg.github.com/mrazjava/booklink/web-master .
-      - name: log into github packages
-        uses: actions/docker/login@master
-        env:
-          DOCKER_USERNAME: mrazjava
-          DOCKER_PASSWORD: ${{ secrets.GITHUB_PACKAGES }}
-      - name: push img to github packages
-        uses: actions/docker/cli@master
-        with:
-          args: push docker.pkg.github.com/mrazjava/booklink/web-master
+          node-version: '10.x'
+        run: |
+          npm install
+          yarn lint
+          yarn build
+      - name: Preparing Docker Image
+        run: |
+          docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
+          docker build -t docker.pkg.github.com/mrazjava/booklink/web-master .
+      - name: Pushing image to Github Packages
+        run: |
+          docker push docker.pkg.github.com/mrazjava/booklink/backend-master
