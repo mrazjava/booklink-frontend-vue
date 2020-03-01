@@ -10,29 +10,46 @@
    - [backend-master:latest](https://github.com/mrazjava/booklink/packages/130548?version=latest) in EC2 as T2.micro: [backend-actuator](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/actuator/info), [backend-swagger](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/swagger-ui.html)
    - candidate release, QA testing
    - automated (github action [ci](https://github.com/mrazjava/booklink/blob/master/.github/workflows/backend-release.yml)) deploy triggered by push/merge to `master`
-* `playground`: local (docker)
-   - see [docker-compose](https://github.com/mrazjava/booklink#docker-compose) section below
+* `playground`: local (docker-compose)
+   - run `master.sh` (release candidate) or `develop.sh` (staging)
    - safe environment for experimentation, offline demo, staging, built off stable branch
    - runs off github docker image built by ci pipeline triggered off push/merge to `develop`
 * `development`: local (maven)
    - see quick start
    - programming of new features, bug fixing, depending on branch may be unstable
 
+## Playground Scripts
+The fastest way to try booklink locally is to run one of the playground scripts:
+```
+# candidate release: runs off of latest master branch docker images (github packages)
+chmod +x master.sh && ./master.sh
+```
+- or -
+```
+# staging release: runs off of latest develop branch docker images (github packages)
+chmod +x develop.sh && ./develop.sh
+```
+These scripts are provided for convenience. They accomplish the same thing as `docker-compose` below.
+
 ## docker-compose<sup>1</sup>
 Composition of docker images is used as a convenience feature to quickly and easily run (or try out) the 
 application from a local environment. No need to compile sources or setup anything. From the project root 
 directory simply run:
 ```
-docker-compose pull [backend|frontend]
-docker-compose up
+docker-compose [-f docker-compose-develop.yml] up
 ```
-Docker will pull the latest candidate release image from github and run it on your machine. Backend will be available on port `8080`.
+Docker will pull the latest candidate release image from github and run it on your machine. Backend will be available 
+on port `8080`. Frontend will run on port `8090`.
 
-Candidate release image should be solid, well tested, and the same as what runs in the AWS cloud. However, it may not have the latest features. To try the latest stable version, tell docker-compose to run off a staging configuration:
-```
-docker-compose -f docker-compose-develop.yml up
-```
+Candidate release image should be solid, well tested, and the same as what runs in the AWS cloud. However, it may not 
+have the latest features. To try the latest stable version, tell docker-compose to run off a staging configuration 
+(the optional `docker-compose-develop.yml` file).
 
+Compose does not pull latest images once cached. To make sure compose always runs off of the latest image, tell it to 
+`pull` first before going `up`:
+```
+docker-compose [-f docker-compose-develop.yml] pull [backend|frontend]
+```
 <sup>1</sup> | Requires [docker](https://docs.docker.com/install/) + [docker-compose](https://docs.docker.com/compose/install/) installation. On Ubuntu for example, this can be done with `sudo apt install docker-compose`, which installs docker-compose directly, and docker (`docker.io` package) indirectly since compose depends on docker.
 
 ## Branching / CI Pipeline
