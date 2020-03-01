@@ -14,10 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Building Frontend
+      - name: Setting up Node build
         uses: actions/setup-node@v1
         with:
           node-version: '10.x'
+      - name: Building Frontend
         run: |
           npm install
           yarn lint
