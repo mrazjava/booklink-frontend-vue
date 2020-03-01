@@ -10,12 +10,10 @@
    - [backend-master:latest](https://github.com/mrazjava/booklink/packages/130548?version=latest) in EC2 as T2.micro: [backend-actuator](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/actuator/info), [backend-swagger](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/swagger-ui.html)
    - candidate release, QA testing
    - automated (github action [ci](https://github.com/mrazjava/booklink/blob/master/.github/workflows/backend-release.yml)) deploy triggered by push/merge to `master`
-* `playground`: local (docker-compose)
-   - see [Playground Scripts](https://github.com/mrazjava/booklink#playground-scripts)
+* `playground`: local, scripted docker-compose
    - safe environment for experimentation, offline demo
-   - can run either latest release candidate (`master`) or latest staged release (`develop`) 
+   - can run either a stable release or staged release candidate
 * `development`: local (maven)
-   - see quick start
    - programming of new features, bug fixing, depending on branch may be unstable
 
 ## Playground Scripts
