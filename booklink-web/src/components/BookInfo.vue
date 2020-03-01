@@ -1,5 +1,6 @@
 <template>
   <div id="book-info">
+    [{{ backendUrl }}] | [{{ dockeroo }}]
     <div class="count" v-bind:class="{'count-p': isPositive(), 'count-n': !isPositive()}">
       {{ count }}
     </div>
@@ -12,13 +13,19 @@
 <script>
   export default {
     name: 'book-info',
+    data() {
+      return {
+        backendUrl: process.env.VUE_APP_BACKEND_URL,
+        dockeroo: process.env.BACKEND_API_URL,
+      };
+    },
     props: {
       count: Number
     },
     methods: {
-    isPositive() {
-      return this.count>0;
-    }
+      isPositive() {
+        return this.count>0;
+      }
     }
   }
 </script>

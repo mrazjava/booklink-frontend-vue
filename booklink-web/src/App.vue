@@ -26,8 +26,9 @@
     },
     methods: {
       async getCountTest() {
+        console.log(process.env.VUE_APP_BACKEND_URL)
         try {
-          const response = await fetch('http://localhost:8080/rest/v1/book/count-all')
+          const response = await fetch(process.env.VUE_APP_BACKEND_URL + '/rest/v1/book/count-all')
           const data = await response.json()
           this.countik = data
         } catch (error) {

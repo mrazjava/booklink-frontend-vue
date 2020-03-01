@@ -1,0 +1,41 @@
+name: web-master
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - v1
+    paths:
+      - 'booklink-web/**'
+jobs:
+  build-and-publish:
+    name: build and publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: npm install
+        uses: actions/npm@master
+        with:
+          args: install
+      - name: check syntax
+        uses: actions/npm@master
+        with:
+          args: run lint
+      - name: build application
+        uses: actions/npm@master
+        with:
+          args: run build
+      - name: build frontend docker img
+        uses: actions/docker/cli@master
+        with:
+          args: build -t docker.pkg.github.com/mrazjava/booklink/web-master .
+      - name: log into github packages
+        uses: actions/docker/login@master
+        env:
+          DOCKER_USERNAME: mrazjava
+          DOCKER_PASSWORD: ${{ secrets.GITHUB_PACKAGES }}
+      - name: push img to github packages
+        uses: actions/docker/cli@master
+        with:
+          args: push docker.pkg.github.com/mrazjava/booklink/web-master
