@@ -31,4 +31,4 @@ jobs:
           docker build -t docker.pkg.github.com/mrazjava/booklink/web-master .
       - name: Pushing image to Github Packages
         run: |
-          docker push docker.pkg.github.com/mrazjava/booklink/backend-master
+          docker push docker.pkg.github.com/mrazjava/booklink/web-master
