@@ -25,6 +25,7 @@ jobs:
           yarn lint
           yarn build
       - name: Preparing Docker Image
+        working-directory: booklink-web
         run: |
           docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
           docker build -t docker.pkg.github.com/mrazjava/booklink/web-master .

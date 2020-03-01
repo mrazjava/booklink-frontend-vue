@@ -23,6 +23,7 @@ Composition of docker images is used as a convenience feature to quickly and eas
 application from a local environment. No need to compile sources or setup anything. From the project root 
 directory simply run:
 ```
+docker-compose pull [backend|frontend]
 docker-compose up
 ```
 Docker will pull the latest candidate release image from github and run it on your machine. Backend will be available on port `8080`.
