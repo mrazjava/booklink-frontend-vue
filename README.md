@@ -11,9 +11,9 @@
    - candidate release, QA testing
    - automated (github action [ci](https://github.com/mrazjava/booklink/blob/master/.github/workflows/backend-release.yml)) deploy triggered by push/merge to `master`
 * `playground`: local (docker-compose)
-   - run `master.sh` (release candidate) or `develop.sh` (staging)
-   - safe environment for experimentation, offline demo, staging, built off stable branch
-   - runs off github docker image built by ci pipeline triggered off push/merge to `develop`
+   - see [Playground Scripts](https://github.com/mrazjava/booklink#playground-scripts)
+   - safe environment for experimentation, offline demo
+   - can run either latest release candidate (`master`) or latest staged release (`develop`) 
 * `development`: local (maven)
    - see quick start
    - programming of new features, bug fixing, depending on branch may be unstable
@@ -24,7 +24,7 @@ The fastest way to try booklink locally is to run one of the playground scripts:
 # candidate release: runs off of latest master branch docker images (github packages)
 chmod +x master.sh && ./master.sh
 ```
-- or -
+or:
 ```
 # staging release: runs off of latest develop branch docker images (github packages)
 chmod +x develop.sh && ./develop.sh
