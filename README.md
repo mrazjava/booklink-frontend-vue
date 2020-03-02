@@ -6,8 +6,8 @@
 * `live`: aws
    - not setup yet
    - manual deploy (from pre-release tested AWS ECR docker image)
-* `pre`: aws
-   - [backend-master:latest](https://github.com/mrazjava/booklink/packages/130548?version=latest) in EC2 as T2.micro: [backend-actuator](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/actuator/info), [backend-swagger](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/swagger-ui.html)
+* `pre`: aws, hosted in EC2 as T2.micro
+   - [backend-master:latest](https://github.com/mrazjava/booklink/packages/130548?version=latest) running as: [backend](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/actuator/info)
    - candidate release, QA testing
    - automated (github action [ci](https://github.com/mrazjava/booklink/blob/master/.github/workflows/backend-release.yml)) deploy triggered by push/merge to `master`
 * `playground`: local, scripted docker-compose
@@ -20,14 +20,11 @@
 The fastest way to try booklink locally is to run one of the playground scripts:
 ```
 # candidate release: runs off of latest master branch docker images (github packages)
-chmod +x master.sh && ./master.sh
+./master.sh
+# or
+./develop.sh
 ```
-or:
-```
-# staging release: runs off of latest develop branch docker images (github packages)
-chmod +x develop.sh && ./develop.sh
-```
-These scripts are provided for convenience. They accomplish the same thing as `docker-compose` below.
+These scripts are provided for convenience wrapper for manual invocation of `docker-compose` below.
 
 ## docker-compose<sup>1</sup>
 Composition of docker images is used as a convenience feature to quickly and easily run (or try out) the 
