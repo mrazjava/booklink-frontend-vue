@@ -7,6 +7,7 @@ spring:
       config: classpath:ehcache.xml
 info:
   app:
+    home-page: ${APP_BASE_URL:http://localhost:8080}/swagger-ui.html
     git-repo: https://github.com/mrazjava/booklink
     description: "@project.description@"
 management:

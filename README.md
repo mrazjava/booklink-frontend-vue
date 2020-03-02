@@ -26,7 +26,7 @@ The fastest way to try booklink locally is to run one of the playground scripts:
 # or
 ./develop.sh
 ```
-These scripts are provided for convenience wrapper for manual invocation of `docker-compose` below.
+These scripts are quick wrappers of what otherwise would have been manual invocation of `docker-compose` below.
 
 ## docker-compose<sup>1</sup>
 Composition of docker images is used as a convenience feature to quickly and easily run (or try out) the 
