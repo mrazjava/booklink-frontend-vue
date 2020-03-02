@@ -16,7 +16,7 @@
    - local machine, scripted docker-compose
    - requires: git, docker, docker-compose
    - safe environment for experimentation, offline demo
-   - can run either a stable release or staged release candidate
+   - can run either a stable release or staged snapshot
 * `development`
    - local machine development environment w/ Maven, Git, Docker, IDE, etc.
    - requires: git, maven, jdk 11, docker, docker-compose
