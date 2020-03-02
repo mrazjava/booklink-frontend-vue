@@ -10,7 +10,7 @@ on:
       - 'booklink-web/**'
 jobs:
   build-and-publish:
-    name: build and publish
+    name: Build and Publish
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

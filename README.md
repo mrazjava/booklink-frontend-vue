@@ -7,7 +7,8 @@
    - not setup yet
    - manual deploy (from pre-release tested AWS ECR docker image)
 * `pre`: aws [T2.micro](https://aws.amazon.com/ec2/instance-types/t2/)
-   - [backend-master:latest](https://github.com/mrazjava/booklink/packages/130548?version=latest) running as: [backend](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com:8888/actuator/info)
+   - [web-master:latest](https://github.com/mrazjava/booklink/packages/141719?version=latest) running as [frontend](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/)
+   - [backend-master:latest](https://github.com/mrazjava/booklink/packages/130548?version=latest) running as [backend](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com:8888/actuator/info)
    - candidate release, QA testing
    - automated (github action [ci](https://github.com/mrazjava/booklink/blob/master/.github/workflows/backend-release.yml)) deploy triggered by push/merge to `master`
 * `playground`: local, scripted docker-compose
