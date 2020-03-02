@@ -3,19 +3,22 @@
 
 ## Environments
 
-* `live`: aws
-   - not setup yet
+* `live`
+   - AWS, not setup yet
    - manual deploy (from pre-release tested AWS ECR docker image)
-* `pre`: aws [T2.micro](https://aws.amazon.com/ec2/instance-types/t2/)
-   - docker image [web-master](https://github.com/mrazjava/booklink/packages/141719?version=latest) deployed as [frontend](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/) in [pre-release](https://github.com/mrazjava/booklink/blob/master/.aws/web-pre.json)
+* `pre`
+   - hosted on AWS free tier [T2.micro](https://aws.amazon.com/ec2/instance-types/t2/)
+   - docker image [web-master](https://github.com/mrazjava/booklink/packages/141719?version=latest) deployed as [frontend](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/) in AWS [pre-release](https://github.com/mrazjava/booklink/blob/master/.aws/web-pre.json)
    - [backend-master](https://github.com/mrazjava/booklink/packages/130548?version=latest) running as [backend](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com:8888/actuator/info) in [pre-release](https://github.com/mrazjava/booklink/blob/master/.aws/backend-pre.json)
    - candidate release, QA testing
    - automated (github action [ci](https://github.com/mrazjava/booklink/blob/master/.github/workflows/backend-release.yml)) deploy triggered by push/merge to `master`
-* `playground`: local, scripted docker-compose
+* `playground`
+   - local machine, scripted docker-compose
    - requires: git, docker, docker-compose
    - safe environment for experimentation, offline demo
    - can run either a stable release or staged release candidate
-* `development`: local (maven)
+* `development`
+   - local machine development environment w/ Maven, Git, Docker, IDE, etc.
    - requires: git, maven, jdk 11, docker, docker-compose
    - programming of new features, bug fixing, depending on branch may be unstable
 
