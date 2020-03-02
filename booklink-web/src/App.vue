@@ -1,6 +1,10 @@
 <template>
   <div id="app" class="small-container">
     <h1>Booklink</h1>
+    <pre style="white-space:pre-line;margin-bottom:-5px;text-align:left;">
+        Environment: [{{ RUNNING_ENV }}]
+        Backend URL: [<a :href="BACKEND_HOST">{{ BACKEND_HOST }}</a>"]
+    </pre>
     <hr/>
     <book-info :count="countik" />
     <hr/>
@@ -9,6 +13,7 @@
 </template>
 
 <script>
+  import Configuration from '@/util/configuration'
   import BookInfo from '@/components/BookInfo.vue'
 
   export default {
@@ -18,6 +23,8 @@
     },
     data() {
       return {
+        RUNNING_ENV: Configuration.value('runningEnv'),
+        BACKEND_HOST: Configuration.value('backendHost'),
         countik: 0
       }
     },
