@@ -7,7 +7,7 @@
    - AWS, not setup yet
    - manual deploy (from pre-release tested AWS ECR docker image)
 * `pre`
-   - hosted candidate releases (pre-release), hosted on AWS free tier [T2.micro](https://aws.amazon.com/ec2/instance-types/t2/)
+   - stable candidate releases (pre-release), hosted on AWS free tier [T2.micro](https://aws.amazon.com/ec2/instance-types/t2/)
    - docker image [web-master](https://github.com/mrazjava/booklink/packages/141719?version=latest) deployed via [task-definition](https://github.com/mrazjava/booklink/blob/master/.aws/web-pre.json) as [frontend](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/)
    - docker image [backend-master](https://github.com/mrazjava/booklink/packages/130548?version=latest) deployed via [task-definition](https://github.com/mrazjava/booklink/blob/master/.aws/backend-pre.json) as [backend](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com:8888/actuator/info)
    - candidate release, QA testing
