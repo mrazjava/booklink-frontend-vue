@@ -48,11 +48,16 @@ jobs:
         run: |
           mkdir -p target
           mv ../artifact/booklink-backend.jar target/
-          docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
           docker build -t docker.pkg.github.com/mrazjava/booklink/backend-master .
-      - name: Push img to Github Packages
+          docker tag docker.pkg.github.com/mrazjava/booklink/backend-master docker.io/mrazjava/booklink/backend-master
+      - name: Push image to Github Packages
         run: |
+          docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
           docker push docker.pkg.github.com/mrazjava/booklink/backend-master
+      - name: Push image to dockerhub
+        run: |
+          docker login -u ${{ secrets.DOCKERHUB_LOGIN }} -p ${{ secrets.DOCKERHUB_PASSWORD }} docker.pkg.github.com
+          docker push docker.io/mrazjava/booklink/backend-master
   deploy:
     runs-on: ubuntu-latest
     name: Deploy to AWS
