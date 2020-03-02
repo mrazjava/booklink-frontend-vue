@@ -1,14 +1,11 @@
 <template>
   <div id="app" class="small-container">
     <h1>Booklink</h1>
-    <pre style="white-space:pre-line;margin-bottom:-5px;text-align:left;">
-        Environment: [{{ RUNNING_ENV }}]
-        Backend URL: [<a :href="BACKEND_HOST">{{ BACKEND_HOST }}</a>"]
-    </pre>
+    <div class="poc">proof of concept</div>
     <hr/>
     <book-info :count="countik" />
     <hr/>
-    <div style="text-align:right;">Proof of concept.</div>
+    <div class="env">ENVIRONMENT: {{xEnv}}</div>
   </div>
 </template>
 
@@ -23,8 +20,8 @@
     },
     data() {
       return {
-        RUNNING_ENV: Configuration.value('runningEnv'),
-        BACKEND_HOST: Configuration.value('backendHost'),
+        xHost: Configuration.value('BACKEND_HOST'),
+        xEnv: Configuration.value('RUNNING_ENV'),
         countik: 0
       }
     },
@@ -33,9 +30,9 @@
     },
     methods: {
       async getCountTest() {
-        console.log(process.env.VUE_APP_BACKEND_URL)
+        console.log(this.xHost)
         try {
-          const response = await fetch(process.env.VUE_APP_BACKEND_URL + '/rest/v1/book/count-all')
+          const response = await fetch(this.xHost + '/rest/v1/book/count-all')
           const data = await response.json()
           this.countik = data
         } catch (error) {
@@ -54,5 +51,17 @@
   .small-container {
     max-width: 680px;
     text-align: center;
+    margin-top: 100px;
+  }
+  .poc {
+    text-align:right;
+    font-size:0.8em;
+    font-style:italic;
+  }
+  .env {
+    float:left;
+    font-family:courier;
+    font-size:0.8em;
+    margin-top: 20px;
   }
 </style>

@@ -4,16 +4,20 @@
       {{ count }}
     </div>
     <div class="footnote">
-      Refresh page to get a new count. Count is fetched from booklink-backend over rest
+      Refresh page to get a new count. Count is fetched from the <a :href="xHost+'/actuator/info'">backend</a> over
+      <a :href="xHost+'/swagger-ui.html'">REST</a>.
     </div>
   </div>
 </template>
 
 <script>
+  import Configuration from '@/util/configuration'
+
   export default {
     name: 'book-info',
     data() {
       return {
+         xHost: Configuration.value('BACKEND_HOST'),
       };
     },
     props: {
@@ -35,8 +39,8 @@
     margin: 0 0.5rem 0 0;
   }
   .footnote {
-    font-style: italic;
-    font-size: 0.8em;
+    color: grey;
+    font-size: 1em;
   }
   .count {
     font-size: 2.5em;

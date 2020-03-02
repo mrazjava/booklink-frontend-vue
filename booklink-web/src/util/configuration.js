@@ -4,8 +4,8 @@ dotenv.config()
 export default class Configuration {
   static get CONFIG () {
     return {
-      runningEnv: '$VUE_APP_ENV',
-      backendHost: '$VUE_APP_BACKEND_HOST'
+      RUNNING_ENV: '$VUE_APP_ENV',
+      BACKEND_HOST: '$VUE_APP_BACKEND_HOST'
     }
   }
 
