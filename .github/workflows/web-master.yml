@@ -27,8 +27,13 @@ jobs:
       - name: Preparing Docker Image
         working-directory: booklink-web
         run: |
-          docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
           docker build -t docker.pkg.github.com/mrazjava/booklink/web-master .
+          docker tag docker.pkg.github.com/mrazjava/booklink/web-master docker.io/mrazjava/booklink-web-master
       - name: Pushing image to Github Packages
         run: |
+          docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
           docker push docker.pkg.github.com/mrazjava/booklink/web-master
+      - name: Push image to dockerhub
+        run: |
+          docker login -u ${{ secrets.DOCKERHUB_LOGIN }} -p ${{ secrets.DOCKERHUB_PASSWORD }} docker.io
+          docker push docker.io/mrazjava/booklink-web-master
