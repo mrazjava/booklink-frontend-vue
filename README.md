@@ -6,7 +6,7 @@
 * `live`: aws
    - not setup yet
    - manual deploy (from pre-release tested AWS ECR docker image)
-* `pre`: aws, hosted in EC2 as T2.micro
+* `pre`: aws, hosted in [EC2](https://aws.amazon.com/ec2/) as [T2.micro](https://aws.amazon.com/ec2/instance-types/t2/)
    - [backend-master:latest](https://github.com/mrazjava/booklink/packages/130548?version=latest) running as: [backend](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/actuator/info)
    - candidate release, QA testing
    - automated (github action [ci](https://github.com/mrazjava/booklink/blob/master/.github/workflows/backend-release.yml)) deploy triggered by push/merge to `master`
