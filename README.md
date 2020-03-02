@@ -6,20 +6,22 @@
 * `live`: aws
    - not setup yet
    - manual deploy (from pre-release tested AWS ECR docker image)
-* `pre`: aws, hosted in [EC2](https://aws.amazon.com/ec2/) as [T2.micro](https://aws.amazon.com/ec2/instance-types/t2/)
+* `pre`: aws [T2.micro](https://aws.amazon.com/ec2/instance-types/t2/)
    - [backend-master:latest](https://github.com/mrazjava/booklink/packages/130548?version=latest) running as: [backend](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/actuator/info)
    - candidate release, QA testing
    - automated (github action [ci](https://github.com/mrazjava/booklink/blob/master/.github/workflows/backend-release.yml)) deploy triggered by push/merge to `master`
 * `playground`: local, scripted docker-compose
+   - requires: git, docker, docker-compose
    - safe environment for experimentation, offline demo
    - can run either a stable release or staged release candidate
 * `development`: local (maven)
+   - requires: git, maven, jdk 11, docker, docker-compose
    - programming of new features, bug fixing, depending on branch may be unstable
 
 ## Playground Scripts
 The fastest way to try booklink locally is to run one of the playground scripts:
 ```
-# candidate release: runs off of latest master branch docker images (github packages)
+# candidate release: runs off of latest master branch images (hosted on dockerhub)
 ./master.sh
 # or
 ./develop.sh
@@ -45,7 +47,11 @@ Compose does not pull latest images once cached. To make sure compose always run
 ```
 docker-compose [-f docker-compose-develop.yml] pull [backend|frontend]
 ```
-<sup>1</sup> | Requires [docker](https://docs.docker.com/install/) + [docker-compose](https://docs.docker.com/compose/install/) installation. On Ubuntu for example, this can be done with `sudo apt install docker-compose`, which installs docker-compose directly, and docker (`docker.io` package) indirectly since compose depends on docker.
+<sup>1</sup> | Requires [docker](https://docs.docker.com/install/) + [docker-compose](https://docs.docker.com/compose/install/) 
+installation. On Ubuntu for example, this can be done with `sudo apt install docker-compose`, which installs 
+docker-compose directly, and docker (`docker.io` package) indirectly since compose depends on docker. To avoid running 
+docker as root, immediately after the installation, main user account should be added to `docker` group: 
+`sudo usermod -aG docker ${USER}`.
 
 ## Branching / CI Pipeline
 Work is done on a `feature/*` branch. Push to feature triggers build with unit tests. Feature is merged 
