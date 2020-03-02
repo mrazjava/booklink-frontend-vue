@@ -49,7 +49,7 @@ jobs:
           mkdir -p target
           mv ../artifact/booklink-backend.jar target/
           docker build -t docker.pkg.github.com/mrazjava/booklink/backend-master .
-          docker tag docker.pkg.github.com/mrazjava/booklink/backend-master docker.io/mrazjava/booklink-backend
+          docker tag docker.pkg.github.com/mrazjava/booklink/backend-master docker.io/mrazjava/booklink-backend:master_latest
       - name: Push image to Github Packages
         run: |
           docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
@@ -89,7 +89,7 @@ jobs:
           # Push image to ECR so that it can be deployed to ECS.
           docker tag docker.pkg.github.com/mrazjava/booklink/backend-master $ECR_REGISTRY/$ECR_REPOSITORY
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
-          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:latest"
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY"
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1.0.2
