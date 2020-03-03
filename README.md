@@ -51,7 +51,7 @@ compose to build your own image off sources of whatever branch you're on. To do 
 Compose does not pull latest images once cached. To make sure compose always runs off of the latest image, tell it to 
 `pull` first before going `up`:
 ```
-docker-compose [-f docker-compose-develop.yml] pull [backend|frontend]
+docker-compose [-f docker-compose-develop.yml] pull [backend | frontend]
 ```
 <sup>1</sup> | Requires [docker](https://docs.docker.com/install/) + [docker-compose](https://docs.docker.com/compose/install/) 
 installation. On Ubuntu for example, this can be done with `sudo apt install docker-compose`, which installs 
