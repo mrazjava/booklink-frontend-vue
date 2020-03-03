@@ -10,8 +10,9 @@
    - stable candidate releases (pre-release), hosted on AWS free tier [T2.micro](https://aws.amazon.com/ec2/instance-types/t2/)
    - docker image [web-master](https://github.com/mrazjava/booklink/packages/141719?version=latest) deployed via [task-definition](https://github.com/mrazjava/booklink/blob/master/.aws/web-pre.json) as [frontend](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com/)
    - docker image [backend-master](https://github.com/mrazjava/booklink/packages/130548?version=latest) deployed via [task-definition](https://github.com/mrazjava/booklink/blob/master/.aws/backend-pre.json) as [backend](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com:8888/actuator/info)
-   - candidate release, QA testing
-   - automated (github action [ci](https://github.com/mrazjava/booklink/blob/master/.github/workflows/backend-release.yml)) deploy triggered by push/merge to `master`
+   - QA testing, live demos
+   - backend deploy [triggered](https://github.com/mrazjava/booklink/blob/master/.github/workflows/backend-master.yml) automatically upon push/merge to [booklink-backend](https://github.com/mrazjava/booklink/tree/master/booklink-backend) @ `master`
+   - frontend deploy [triggered](https://github.com/mrazjava/booklink/blob/master/.github/workflows/web-master.yml) automatically upon push/merge to [booklink-web](https://github.com/mrazjava/booklink/tree/master/booklink-web) @ `master`
 * `playground`
    - local machine, scripted docker-compose
    - requires: git, docker, docker-compose
@@ -23,14 +24,11 @@
    - programming of new features, bug fixing, depending on branch may be unstable
 
 ## Playground Scripts
-The fastest way to try booklink locally is to run one of the playground scripts:
+The fastest way to try booklink locally is to run the playground script:
 ```
-# candidate release: runs off of latest master branch images (hosted on dockerhub)
-./master.sh
-# or
-./develop.sh
+./booklink.sh [master|develop|build]
 ```
-These scripts are quick wrappers of what otherwise would have been manual invocation of `docker-compose` below.
+This script is a wrapper of what otherwise would have been manual invocation of `docker-compose` below.
 
 ## docker-compose<sup>1</sup>
 Composition of docker images is used as a convenience feature to quickly and easily run (or try out) the 
