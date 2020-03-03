@@ -3,7 +3,8 @@
 #
 # NOTE: Since I host sources on github I would prefer to use github packages to host docker images, but as of
 # March 2, 2020 github still requires auth to pull from public repos. Screw that. For now, I mirror build to dockerhub.
-# details: https://github.community/t5/GitHub-Actions/docker-pull-from-public-GitHub-Package-Registry-fail-with-quot/m-p/34983#M2067
+#
+# https://github.community/t5/GitHub-Actions/docker-pull-from-public-GitHub-Package-Registry-fail-with-quot/m-p/34983#M2067
 #
 version: '3.3'
 services:
@@ -13,7 +14,7 @@ services:
     ports:
       - "8090:80"
     environment:
-      VUE_APP_BACKEND_URL: http://localhost:8080
+      VUE_APP_BACKEND_HOST: http://localhost:8080
       VUE_APP_ENV: local
   backend:
     #image: docker.pkg.github.com/mrazjava/booklink/backend-master:latest # see NOTE
