@@ -37,7 +37,7 @@ Composition of docker images is used as a convenience feature to quickly run (or
 case of booklink, mainly frontend and backend. No need to compile sources, manually build images or setup anything. 
 From the project root directory simply run:
 ```
-docker-compose [-f docker-compose-develop.yml|docker-compose-build.yml] up
+docker-compose [-f docker-compose-develop.yml | docker-compose-build.yml] up
 ```
 Depending on which compose file you run off of, Docker will pull the latest image from github (or build one from sources) 
 and run it on your machine. Backend will be available on port `8080`. Frontend will run on port `8090`.
