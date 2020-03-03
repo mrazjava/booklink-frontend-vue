@@ -1,6 +1,6 @@
 # Booklink
-![frontend-master](https://github.com/mrazjava/booklink/workflows/web-master/badge.svg?branch=master)
-![backend-master](https://github.com/mrazjava/booklink/workflows/backend-master/badge.svg?branch=master)
+[![frontend-master](https://github.com/mrazjava/booklink/workflows/web-master/badge.svg?branch=master)](https://github.com/mrazjava/booklink/actions?query=workflow%3Aweb-master)
+[![backend-master](https://github.com/mrazjava/booklink/workflows/backend-master/badge.svg?branch=master)](https://github.com/mrazjava/booklink/actions?query=workflow%3Abackend-master)
 
 ## Environments
 
