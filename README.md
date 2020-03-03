@@ -24,26 +24,29 @@
    - requires: git, maven, jdk 11, docker, docker-compose
    - programming of new features, bug fixing, depending on branch may be unstable
 
-## Playground Scripts
+## Playground Script
 The fastest way to try booklink locally is to run the playground script:
 ```
-./booklink.sh [master|develop|build]
+./booklink.sh [master|develop|build|-build|--build|help]
 ```
-This script is a wrapper of what otherwise would have been manual invocation of `docker-compose` below.
+This script is a wrapper of what otherwise would have been manual invocation of `docker-compose` below. If invoked with 
+`help` parameter it will explain the remaining options.
 
 ## docker-compose<sup>1</sup>
 Composition of docker images is used as a convenience feature to quickly and easily run (or try out) the 
 application from a local environment. No need to compile sources or setup anything. From the project root 
 directory simply run:
 ```
-docker-compose [-f docker-compose-develop.yml] up
+docker-compose [-f docker-compose-develop.yml|docker-compose-build.yml] up
 ```
-Docker will pull the latest candidate release image from github and run it on your machine. Backend will be available 
-on port `8080`. Frontend will run on port `8090`.
+Depending on which compose file you run off of, Docker will pull the latest image from github (or build one from sources) 
+and run it on your machine. Backend will be available on port `8080`. Frontend will run on port `8090`.
 
-Candidate release image should be solid, well tested, and the same as what runs in the AWS cloud. However, it may not 
-have the latest features. To try the latest stable version, tell docker-compose to run off a staging configuration 
-(the optional `docker-compose-develop.yml` file).
+Candidate release image is built off `master` branch. It should be solid, well tested, and is the same as what runs in the 
+AWS cloud. However, it may not have the latest features. To try the latest stable version, tell docker-compose to run off a 
+staging configuration built from `develop` branch (the optional `docker-compose-develop.yml` file). Finally, you can tell docker 
+compose to build your own image off sources of whatever branch you're on. To do that you tell compose to run off of 
+`docker-compose-build.yml` file.
 
 Compose does not pull latest images once cached. To make sure compose always runs off of the latest image, tell it to 
 `pull` first before going `up`:
