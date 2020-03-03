@@ -33,9 +33,9 @@ This script is a wrapper of what otherwise would have been manual invocation of 
 `help` parameter it will explain the remaining options.
 
 ## docker-compose<sup>1</sup>
-Composition of docker images is used as a convenience feature to quickly run (or try out) multiple docker images, in 
-case of booklink, mainly frontend and backend. No need to compile sources, manually build images or setup anything. 
-From the project root directory simply run:
+Composition is used as a convenience feature to quickly run (or try out) multiple docker images tuned for the desired 
+application instance. In case of booklink, mainly frontend and backend tuned for localhost. No need to compile sources, 
+manually build images or setup anything. From the project root directory simply run:
 ```
 docker-compose [-f docker-compose-develop.yml | docker-compose-build.yml] up
 ```
