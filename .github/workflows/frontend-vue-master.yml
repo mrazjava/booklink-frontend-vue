@@ -3,11 +3,11 @@ name: web-master
 on:
   push:
     branches:
-      - master
+      - develop # temporarily disable master
     tags:
       - v1
     paths:
-      - 'booklink-web/**'
+      - 'booklink-frontend-vue/**'
 jobs:
   build-and-publish:
     name: Build and Publish
@@ -19,24 +19,24 @@ jobs:
         with:
           node-version: '10.x'
       - name: Building Frontend
-        working-directory: booklink-web
+        working-directory: booklink-frontend-vue
         run: |
           npm install
           yarn lint
           yarn build
       - name: Preparing Docker Image
-        working-directory: booklink-web
+        working-directory: booklink-frontend-vue
         run: |
-          docker build -t docker.pkg.github.com/mrazjava/booklink/web-master .
-          docker tag docker.pkg.github.com/mrazjava/booklink/web-master docker.io/mrazjava/booklink-web-master
+#          docker build -t docker.pkg.github.com/mrazjava/booklink/frontend-vue-master .
+          docker tag docker.pkg.github.com/mrazjava/booklink/frontend-vue-master docker.io/mrazjava/frontend-vue-master
       - name: Pushing image to Github Packages
         run: |
           docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
-          docker push docker.pkg.github.com/mrazjava/booklink/web-master
+          docker push docker.pkg.github.com/mrazjava/booklink/frontend-vue-master
       - name: Push image to dockerhub
         run: |
           docker login -u ${{ secrets.DOCKERHUB_LOGIN }} -p ${{ secrets.DOCKERHUB_PASSWORD }} docker.io
-          docker push docker.io/mrazjava/booklink-web-master
+          docker push docker.io/mrazjava/booklink-frontend-vue-master
   deploy:
     runs-on: ubuntu-latest
     name: Deploy to AWS
@@ -47,7 +47,7 @@ jobs:
         run: |
           # pull image we just built from github packages
           docker login -u mrazjava -p ${{ secrets.GITHUB_PACKAGES }} docker.pkg.github.com
-          docker pull docker.pkg.github.com/mrazjava/booklink/web-master
+          docker pull docker.pkg.github.com/mrazjava/booklink/frontend-vue-master
       - name: Checkout pipeline commit
         uses: actions/checkout@v2
       - name: Configure AWS credentials
@@ -63,17 +63,17 @@ jobs:
         id: push-image-to-aws
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: booklink-web
+          ECR_REPOSITORY: booklink-frontend-vue
         run: |
           # Push image to ECR so that it can be deployed to ECS.
-          docker tag docker.pkg.github.com/mrazjava/booklink/web-master $ECR_REGISTRY/$ECR_REPOSITORY
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          docker tag docker.pkg.github.com/mrazjava/booklink/frontend-vue-master $ECR_REGISTRY/$ECR_REPOSITORY
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY"
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1.0.2
         with:
-          task-definition: .aws/web-pre.json
+          task-definition: .aws/frontend-vue-pre.json
           container-name: booklink-web-contr
           image: ${{ steps.push-image-to-aws.outputs.image }}
       - name: Deploy Amazon ECS task definition
