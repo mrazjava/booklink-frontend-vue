@@ -1,4 +1,0 @@
-booklink:
-  security:
-    cors-allow-origins:
-      - http://localhost:8090
