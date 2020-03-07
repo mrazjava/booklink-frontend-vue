@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="small-container">
     <h1>Booklink</h1>
-    <div class="poc">proof of concept</div>
+    <div class="poc">proof of concept (1)</div>
     <hr/>
     <book-info :count="countik" />
     <hr/>
