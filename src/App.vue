@@ -5,7 +5,7 @@
     <hr/>
     <book-info :count="countik" />
     <hr/>
-    <div class="env">ENVIRONMENT: {{xEnv}}</div>
+    <div class="footer env">VERSION: {{xVersion}}, ENVIRONMENT: {{xEnv}}, BRANCH: {{xBranch}}, HEAD: {{xCommit}}</div>
   </div>
 </template>
 
@@ -22,6 +22,9 @@
       return {
         xHost: Configuration.value('BACKEND_HOST'),
         xEnv: Configuration.value('RUNNING_ENV'),
+        xVersion: process.env.VUE_APP_VERSION,
+        xCommit: process.env.VUE_APP_GIT_SHORT_COMMIT_HASH,
+        xBranch: process.env.VUE_APP_GIT_BRANCH,
         countik: 0
       }
     },
@@ -58,10 +61,15 @@
     font-size:0.8em;
     font-style:italic;
   }
-  .env {
-    float:left;
+  .footer {
     font-family:courier;
     font-size:0.8em;
     margin-top: 20px;
+  }
+  .env {
+    float:left;
+  }
+  .git {
+    float:right;
   }
 </style>
