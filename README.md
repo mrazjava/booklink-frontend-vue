@@ -1,13 +1,14 @@
 [![pre-release](https://github.com/mrazjava/booklink-frontend-vue/workflows/pre-release/badge.svg?branch=master)](https://github.com/mrazjava/booklink-frontend-vue/actions?query=workflow%3Apre-release)
 # Web UI for Booklink
 
-Based on Vue.js
+Based on Vue.js. If you wish to try booklink locally without messing around with the sources, consider running sandbox 
+from the parent project.
 
 ## Quick Start
 Running frontend requires backend.
 ```
 docker-compose up # start backend and all the required dependencies
-yarn install
+yarn install # first time only
 yarn serve
 ```
 Backend will run on port `8080`. Frontend will run on port `8090`.
