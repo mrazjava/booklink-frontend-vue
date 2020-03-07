@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths-ignore:
-      - README
+      - README.md
       - .aws/README.md
       - docker-compose.yml
 
