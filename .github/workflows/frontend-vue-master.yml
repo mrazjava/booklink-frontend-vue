@@ -28,11 +28,12 @@ jobs:
           npm install
           yarn lint
           yarn build
+          tar -cvf dist.tar dist/
       - name: upload executable artifacts
         uses: actions/upload-artifact@v1
         with:
           name: build
-          path: dist
+          path: dist.tar
       - name: upload docker entrypoint artifact
         uses: actions/upload-artifact@v1
         with:
@@ -59,7 +60,7 @@ jobs:
           name: build
       - name: assemble docker image
         run: |
-          mv build/dist .
+          tar -xvf build/dist.tar -C .
           mv build/Dockerfile .
           mv build/entrypoint.sh .
           docker build -t $DOCKER_IMAGE .
