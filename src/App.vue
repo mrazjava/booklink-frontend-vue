@@ -3,7 +3,7 @@
     <h1>Booklink</h1>
     <div class="poc">proof of concept</div>
     <hr/>
-    <book-info :count="countik" />
+    <poc-count :count="pocCount" />
     <hr/>
     <div class="footer env">VERSION: {{xVersion}}, ENVIRONMENT: {{xEnv}}, BRANCH: {{xBranch}}, HEAD: {{xCommit}}</div>
   </div>
@@ -11,12 +11,12 @@
 
 <script>
   import Configuration from '@/util/configuration'
-  import BookInfo from '@/components/BookInfo.vue'
+  import PocCount from '@/components/ProofOfConcept.vue'
 
   export default {
     name: 'app',
     components: {
-      BookInfo,
+      PocCount,
     },
     data() {
       return {
@@ -25,19 +25,19 @@
         xVersion: process.env.VUE_APP_VERSION,
         xCommit: process.env.VUE_APP_GIT_SHORT_COMMIT_HASH,
         xBranch: process.env.VUE_APP_GIT_BRANCH,
-        countik: 0
+        pocCount: 0
       }
     },
     mounted() {
-      this.getCountTest()
+      this.getPocCount()
     },
     methods: {
-      async getCountTest() {
+      async getPocCount() {
         console.log(this.xHost)
         try {
-          const response = await fetch(this.xHost + '/rest/v1/book/count-all')
+          const response = await fetch(this.xHost + '/rest/v1/poc/random-count')
           const data = await response.json()
-          this.countik = data
+          this.pocCount = data
         } catch (error) {
           console.error(error)
         }

@@ -15,8 +15,12 @@ Backend will run on port `8080`. Frontend will run on port `8090`.
 ## Notes
 Info worthy enough to stick around here.
 ### yarn
-If there are problems executing quick start, try `yarn install` which will re-generate all detailed dependency info 
-off `package.json` and will create updated version of `yarn.lock`.
+Helpful yarn commands
+```
+yarn install         # creates yarn.lock by evaluating dependency specification off package.json
+yarn cache clean     # similar to mvn clean
+```
+
 ### Reporting GIT on vue
 Git info is fetched via `git-revision-webpack-plugin`:
 ```

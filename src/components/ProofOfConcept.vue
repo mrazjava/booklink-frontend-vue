@@ -1,5 +1,5 @@
 <template>
-  <div id="book-info">
+  <div id="poc-count">
     <div class="count" v-bind:class="{'count-p': isPositive(), 'count-n': !isPositive()}">
       {{ count }}
     </div>
@@ -14,7 +14,7 @@
   import Configuration from '@/util/configuration'
 
   export default {
-    name: 'book-info',
+    name: 'PocCount',
     data() {
       return {
          xHost: Configuration.value('BACKEND_HOST'),
