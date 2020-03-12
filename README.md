@@ -26,9 +26,12 @@ Git info is fetched via `git-revision-webpack-plugin`:
 ```
 yarn add --dev git-revision-webpack-plugin
 ``` 
-Configured in `vue.config.js`. To verify `HEAD` displayed in the running app against the actual git, from project 
-root run: `git rev-parse --short HEAD`.
-
+Configured in `vue.config.js`. To verify last commit hash displayed on the UI, from the project root check out the 
+release branch tag and run: 
+```
+git rev-parse --short HEAD
+```
+The values should match.
 
 ## Other
 ```
