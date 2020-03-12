@@ -47,7 +47,7 @@ jobs:
           path: .aws/pre-release.json
   publish:
     runs-on: ubuntu-latest
-    name: Package and Deploy
+    name: Package and Release
     needs: build
     steps:
       - name: download build artifacts
