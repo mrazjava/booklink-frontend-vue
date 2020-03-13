@@ -3,8 +3,7 @@
 [![snapshot](https://github.com/mrazjava/booklink-frontend-vue/workflows/snapshot/badge.svg?branch=develop)](https://github.com/mrazjava/booklink-frontend-vue/actions?query=workflow%3Asnapshot)
 # Web UI for Booklink
 
-Based on Vue.js. If you wish to try booklink locally without messing around with the sources, consider running sandbox 
-from the parent project.
+Based on Vue.js. If you wish to try booklink locally without messing around with the sources, consider running [sandbox](https://github.com/mrazjava/booklink#sandbox) from the top level project.
 
 ## Quick Start
 Running frontend requires backend.
