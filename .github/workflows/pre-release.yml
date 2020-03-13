@@ -65,7 +65,7 @@ jobs:
           name: ${{ env.ARTIFACT_DIR }}
       - name: assemble docker image
         run: |
-          tar -xvf build/dist.tar -C .
+          tar -xvf $ARTIFACT_DIR/dist.tar -C .
           mv $ARTIFACT_DIR/Dockerfile .
           mv $ARTIFACT_DIR/entrypoint.sh .
           docker build -t $DOCKER_IMAGE:$DOCKER_IMG_TAG .
