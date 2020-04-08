@@ -32,9 +32,6 @@
 </script>
 
 <style scoped>
-  #book-info {
-
-  }
   button {
     margin: 0 0.5rem 0 0;
   }
