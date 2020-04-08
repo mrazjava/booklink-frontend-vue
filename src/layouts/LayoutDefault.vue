@@ -6,7 +6,7 @@
       <router-link to="/about">About</router-link>
 
       <div class="LayoutDefault__user">
-        {{ user ? user.name : `Loading...` }}
+        {{ user ? user.name : `Simulating Login...` }}
       </div>
     </nav>
     <main class="LayoutDefault__main">
@@ -31,11 +31,10 @@ export default {
   data() {
     return {
       user: null,
-        xHost: Configuration.value('BACKEND_HOST'),
-        xEnv: Configuration.value('RUNNING_ENV'),
-        xVersion: process.env.VUE_APP_VERSION,
-        xCommit: process.env.VUE_APP_GIT_SHORT_COMMIT_HASH,
-        xBranch: process.env.VUE_APP_GIT_BRANCH,
+      xEnv: Configuration.value('RUNNING_ENV'),
+      xVersion: process.env.VUE_APP_VERSION,
+      xCommit: process.env.VUE_APP_GIT_SHORT_COMMIT_HASH,
+      xBranch: process.env.VUE_APP_GIT_BRANCH,
     };
   },
   created() {

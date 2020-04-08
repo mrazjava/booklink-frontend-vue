@@ -4,20 +4,20 @@
       {{ count }}
     </div>
     <div class="footnote">
-      Refresh page to get a new count. Count is fetched from the <a :href="xHost+'/actuator/info'">backend</a> over
-      <a :href="xHost+'/swagger-ui.html'">REST</a>.
+      Refresh page to get a new count. Count is fetched from the <a :href="backendHost+'/actuator/info'">backend</a> over
+      <a :href="backendHost+'/swagger-ui.html'">REST</a>.
     </div>
   </div>
 </template>
 
 <script>
-  import Configuration from '@/util/configuration'
+import Configuration from '@/util/configuration'
 
   export default {
     name: 'PocCount',
     data() {
       return {
-         xHost: Configuration.value('BACKEND_HOST'),
+        backendHost: Configuration.value('BACKEND_HOST'),
       };
     },
     props: {

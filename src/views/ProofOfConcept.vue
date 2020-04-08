@@ -9,6 +9,7 @@
 
 <script>
 import Layout from '@/layouts/Layout'
+import Configuration from '@/util/configuration'
 import PocCount from '@/components/PocCount'
 
   export default {
@@ -19,6 +20,7 @@ import PocCount from '@/components/PocCount'
     },
     data() {
       return {
+        xHost: Configuration.value('BACKEND_HOST'),
         pocCount: 0
       }
     },
@@ -27,7 +29,7 @@ import PocCount from '@/components/PocCount'
     },
     methods: {
       async getPocCount() {
-        console.log(this.xHost)
+        //console.log(this.xHost)
         try {
           const response = await fetch(this.xHost + '/rest/v1/poc/random-count')
           const data = await response.json()
