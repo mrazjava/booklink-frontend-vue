@@ -13,6 +13,19 @@ yarn serve
 ```
 Backend will run on port `8080`. Frontend will run on port `8090`.
 
+## Building Docker Image
+```
+yarn lint
+yarn build
+docker build -t mrazjava/booklink-frontend-vue:local .
+```
+
+## Sandbox
+You can run local docker image with [sandbox](https://github.com/mrazjava/booklink#sandbox):
+```
+./sandbox.sh local
+```
+
 ## Notes
 Info worthy enough to stick around here.
 ### yarn
