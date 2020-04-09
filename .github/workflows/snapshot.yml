@@ -7,7 +7,7 @@ on:
     paths:
       - 'src/**'
       - 'package.json'
-      - 'vue.config.js'
+      - '*.js'
       - 'Dockerfile'
       - '.github/workflows/snapshot.yml'
 
