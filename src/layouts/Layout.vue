@@ -1,22 +1,22 @@
 <template>
-  <div class="LayoutDefault">
-    <nav class="LayoutDefault__nav">
+  <div class="Layout">
+    <nav class="Layout__nav">
       <router-link to="/home">Home</router-link> |
       <router-link to="/proof-of-concept">P-O-C</router-link> |
       <router-link to="/about">About</router-link>
 
-      <div class="LayoutDefault__user">
+      <div class="Layout__user">
         {{ user ? user.name : `Simulating Login...` }}
       </div>
     </nav>
-    <main class="LayoutDefault__main">
-      <slot/>
+    <main class="Layout__main">
+      <router-view />
     </main>
-    <footer class="LayoutDefault__footer">
-    <div class="LayoutDefault__footer__dev">
+    <footer class="Layout__footer">
+    <div class="Layout__footer__dev">
         VERSION: {{xVersion}}, ENV: {{xEnv}}, BRANCH: {{xBranch}}, HEAD: {{xCommit}}
     </div>
-    <div class="LayoutDefault__footer__info">
+    <div class="Layout__footer__info">
       &copy; <a href="https://github.com/mrazjava/booklink">Booklink</a>
     </div>
     </footer>
@@ -27,7 +27,7 @@
 import Configuration from '@/util/configuration'
 
 export default {
-  name: `LayoutDefault`,
+  name: `Layout`,
   data() {
     return {
       user: null,
@@ -47,7 +47,7 @@ export default {
 </script>
 
 <style lang="scss">
-.LayoutDefault {
+.Layout {
   max-width: 42em;
   margin-right: auto;
   margin-left: auto;

@@ -29,5 +29,8 @@ export default {
   components: {
     Layout,
   },
+  mounted() {
+    console.log("mounted: #Home");
+  },
 };
 </script>
