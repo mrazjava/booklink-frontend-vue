@@ -12,7 +12,7 @@ import Layout from '@/layouts/Layout'
 import PocCount from '@/components/PocCount'
 
   export default {
-    name: 'app',
+    name: 'ProofOfConcept',
     components: {
       Layout,
       PocCount,
@@ -24,6 +24,7 @@ import PocCount from '@/components/PocCount'
     },
     methods: {
       updateCount(newValue) {
+        console.log("updateCount: " + newValue);
         this.pocCount = newValue;
       }
     }

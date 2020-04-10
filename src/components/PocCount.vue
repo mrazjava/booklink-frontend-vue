@@ -24,7 +24,8 @@ import Configuration from '@/util/configuration'
       };
     },
     mounted() {
-      this.getPocCount()
+      console.log("mounted: #poc-count");
+      this.getPocCount();
     },
     props: {
       count: Number
