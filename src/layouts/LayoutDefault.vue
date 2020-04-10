@@ -66,7 +66,7 @@ export default {
 
   &__main {
     min-height: 500px;
-    padding-top: 1.5em;
+    padding-top: 0.5em;
     padding-bottom: 2em;
   }
 

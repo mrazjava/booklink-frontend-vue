@@ -1,11 +1,14 @@
 <template>
   <div id="poc-count">
-    <div class="count" v-bind:class="{'count-p': isPositive(), 'count-n': !isPositive()}">
-      {{ count }}
-    </div>
-    <div class="footnote">
-      Refresh page to get a new count. Count is fetched from the <a :href="backendHost+'/actuator/info'">backend</a> over
-      <a :href="backendHost+'/swagger-ui.html'">REST</a>.
+    <div class="count-view">
+        <button v-on:click="getPocCount">New Count</button>
+        <span class="count" v-bind:class="{'count-p': isPositive(), 'count-n': !isPositive()}">
+          {{ count }}
+        </span>
+        <div class="footnote">
+          <a href="">Refresh</a> this page or click the button to get a new count. Count is fetched from the <a :href="backendHost+'/actuator/info'">backend</a> over
+          <a :href="backendHost+'/swagger-ui.html'">REST</a>.
+        </div>
     </div>
   </div>
 </template>
@@ -20,27 +23,61 @@ import Configuration from '@/util/configuration'
         backendHost: Configuration.value('BACKEND_HOST'),
       };
     },
+    mounted() {
+      this.getPocCount()
+    },
     props: {
       count: Number
     },
     methods: {
       isPositive() {
         return this.count>0;
+      },
+      async getPocCount() {
+        //console.log(this.xHost)
+        try {
+          const response = await fetch(this.backendHost + '/rest/v1/poc/random-count')
+          const data = await response.json()
+          this.$emit("count-updated", data);
+        } catch (error) {
+          console.error(error)
+        }
       }
     }
   }
 </script>
 
 <style scoped>
+  #poc-count {
+    margin-top: 50px;
+  }
   button {
-    margin: 0 0.5rem 0 0;
+    background-color: lightgrey;
+    color: blue;
+    padding: 10px;
+    border: none;
+  }
+  h3 {
+    margin:0;
+    margin-top:30px;
+    border-top: dotted 0px grey;
+    font-size:1.2em;
+    color: grey;
+  }
+  .count-view {
+    border-radius: 5px;
+    border: solid 1px lightgrey;
+    padding-left: 10px;
+    text-align: left;
   }
   .footnote {
     color: grey;
-    font-size: 1em;
+    text-align:left;
+    font-size: 0.8em;
   }
   .count {
-    font-size: 2.5em;
+    margin-left: 20px;
+    font-size: 1.8em;
   }
   .count-p {
     color: green;
