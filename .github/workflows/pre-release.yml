@@ -19,7 +19,6 @@ env:
 
 jobs:
   build:
-    if: github.event_name == 'push' && contains(toJson(github.event.commits), '[skip-ci]') == false
     name: Build Sources
     runs-on: ubuntu-latest
     steps:
