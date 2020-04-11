@@ -32,6 +32,7 @@ export default {
     return {
       user: null,
       xEnv: Configuration.value('RUNNING_ENV'),
+      xVersion: process.env.VUE_APP_VERSION,
     };
   },
   created() {
