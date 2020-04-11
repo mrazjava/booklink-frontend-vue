@@ -1,7 +1,7 @@
 <template>
   <layout name="Layout">
     <div class="Home">
-      <h1>Home</h1>
+      <h2>Home</h2>
       <p>
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
         eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import Layout from '../layouts/Layout';
+import Layout from '@/layouts/Layout';
 
 export default {
   name: `Home`,

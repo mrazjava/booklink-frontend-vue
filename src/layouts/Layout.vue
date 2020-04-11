@@ -44,6 +44,9 @@ export default {
 </script>
 
 <style lang="scss">
+h1, h2, h3, h4, h5 {
+  margin:0;
+}
 .Layout {
   max-width: 42em;
   margin-right: auto;

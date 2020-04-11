@@ -14,21 +14,21 @@ export default new Router({
     redirect: '/home',
     component: Layout,
     children: [
-    {
-      path: `home`,
-      name: `home`,
-      component: Home,
-    },
-    {
-      path: `proof-of-concept`,
-      name: `poc`,
-      component: POC,
-    },
-    {
-      path: `about`,
-      name: `about`,
-      component: About,
-    }
+      {
+        path: `home`,
+        name: `home`,
+        component: Home,
+      },
+      {
+        path: `proof-of-concept`,
+        name: `poc`,
+        component: POC,
+      },
+      {
+        path: `about`,
+        name: `about`,
+        component: About,
+      }
     ]
   }],
   mode: `history`,
