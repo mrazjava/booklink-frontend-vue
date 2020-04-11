@@ -26,38 +26,38 @@
 <script>
 import Configuration from '@/util/configuration'
 
-  export default {
-    name: 'TechnicalInfo',
-    data() {
-      return {
-        backendHost: Configuration.value('BACKEND_HOST'),
-        techFeEnv: Configuration.value('RUNNING_ENV'),
-        techFeVersion: process.env.VUE_APP_VERSION,
-        techFeCommit: process.env.VUE_APP_GIT_SHORT_COMMIT_HASH,
-        techFeBranch: process.env.VUE_APP_GIT_BRANCH,
-      };
-    },
-    mounted() {
-    },
-    props: {
-    },
-    methods: {
-    }
+export default {
+  name: 'TechnicalInfo',
+  data() {
+    return {
+      backendHost: Configuration.value('BACKEND_HOST'),
+      techFeEnv: Configuration.value('RUNNING_ENV'),
+      techFeVersion: process.env.VUE_APP_VERSION,
+      techFeCommit: process.env.VUE_APP_GIT_SHORT_COMMIT_HASH,
+      techFeBranch: process.env.VUE_APP_GIT_BRANCH,
+    };
+  },
+  mounted() {
+  },
+  props: {
+  },
+  methods: {
   }
+}
 </script>
 
 <style scoped>
-  table, th, td {
-    border: solid 0px black;
-  }
-  table {
-    margin-left: 20px;
-    font-family: "Courier New", Courer;
-  }
-  td {
-    padding: 0;
-  }
-  .techInfo-col1 {
-    width: 220px;
-  }
+table, th, td {
+  border: solid 0px black;
+}
+table {
+  margin-left: 20px;
+  font-family: "Courier New", Courer;
+}
+td {
+  padding: 0;
+}
+.techInfo-col1 {
+  width: 220px;
+}
 </style>

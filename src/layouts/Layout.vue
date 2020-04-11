@@ -13,12 +13,12 @@
       <router-view />
     </main>
     <footer class="Layout__footer">
-    <div class="Layout__footer__left">
-      <img id="imgCopy" src="@/assets/copyleft.png" alt="Copyleft" title="Copyleft"/> <a href="https://github.com/mrazjava/booklink">Booklink</a>
-    </div>
-    <div class="Layout__footer__right">
-       v{{xVersion}}-{{xEnv}}
-    </div>
+      <div class="Layout__footer__left">
+        <img id="imgCopy" src="@/assets/copyleft.png" alt="Copyleft" title="Copyleft"/> <a href="https://github.com/mrazjava/booklink">Booklink</a>
+      </div>
+      <div class="Layout__footer__right">
+        v{{xVersion}}-{{xEnv}}
+      </div>
     </footer>
   </div>
 </template>
@@ -75,11 +75,11 @@ h1, h2, h3, h4, h5 {
     padding-top: 0.5em;
     border-top: 1px solid #c0c0c0;
     &__right {
-    float:right;
-    font-size:0.8em;
-    font-family:courier;
-    position:relative;
-    top:-7px;
+      float:right;
+      font-size:0.8em;
+      font-family:courier;
+      position:relative;
+      top:-7px;
     }
     &__left {
       float:left;
