@@ -9,6 +9,9 @@ import Configuration from '@/util/configuration'
 
 export default {
   name: `App`,
+  components: {
+    Configuration
+  },
   data() {
     return {
       layout: `div`,
