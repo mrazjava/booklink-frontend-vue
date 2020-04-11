@@ -1,5 +1,5 @@
 <template>
-  <layout name="LayoutDefault">
+  <layout name="Layout">
     <div class="Home">
       <h1>Home</h1>
       <p>

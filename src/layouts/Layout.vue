@@ -13,11 +13,11 @@
       <router-view />
     </main>
     <footer class="Layout__footer">
-    <div class="Layout__footer__dev">
-        VERSION: {{xVersion}}, ENV: {{xEnv}}, BRANCH: {{xBranch}}, HEAD: {{xCommit}}
+    <div class="Layout__footer__left">
+      <img id="imgCopy" src="@/assets/copyleft.png" alt="Copyleft" title="Copyleft"/> <a href="https://github.com/mrazjava/booklink">Booklink</a>
     </div>
-    <div class="Layout__footer__info">
-      &copy; <a href="https://github.com/mrazjava/booklink">Booklink</a>
+    <div class="Layout__footer__right">
+       v{{xVersion}}-{{xEnv}}
     </div>
     </footer>
   </div>
@@ -32,16 +32,13 @@ export default {
     return {
       user: null,
       xEnv: Configuration.value('RUNNING_ENV'),
-      xVersion: process.env.VUE_APP_VERSION,
-      xCommit: process.env.VUE_APP_GIT_SHORT_COMMIT_HASH,
-      xBranch: process.env.VUE_APP_GIT_BRANCH,
     };
   },
   created() {
     // Simulate fetching user data.
     setTimeout(() => {
       this.user = { name: `Detective Bookworm` };
-    }, 2000);
+    }, 1000);
   },
 };
 </script>
@@ -73,15 +70,21 @@ export default {
   &__footer {
     padding-top: 0.5em;
     border-top: 1px solid #c0c0c0;
-    &__info {
+    &__right {
     float:right;
+    font-size:0.8em;
+    font-family:courier;
+    position:relative;
+    top:-7px;
     }
-      &__dev {
-        font-family:courier;
-        font-size:0.8em;
-        float:left;
-      }
+    &__left {
+      float:left;
+    }
+  }
+  #imgCopy {
+    width: 16px;
+    position: relative;
+    top: 1px;
   }
 }
 </style>
-
