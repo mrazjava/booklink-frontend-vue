@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import Configuration from '@/util/configuration'
+
 export default {
   name: `App`,
   data() {
