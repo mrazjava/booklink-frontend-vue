@@ -1,20 +1,28 @@
-name: release
+name: snapshot
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - develop
+    paths:
+      - 'src/**'
+      - 'package.json'
+      - '*.js'
+      - 'Dockerfile'
+      - '.github/workflows/snapshot.yml'
 
 env:
   DOCKER_IMAGE: docker.io/mrazjava/booklink-frontend-vue
-  ARTIFACT_DIR: release_build
+  DOCKER_IMG_TAG: develop
+  ARTIFACT_DIR: snapshot_${{ github.sha }}
 
 jobs:
   build:
+    if: github.event_name == 'push' && contains(toJson(github.event.commits), '[skip-ci]') == false
+    name: Build Sources
     runs-on: ubuntu-latest
-    name: Test and Build
     steps:
-      - name: Checkout sources
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       - name: setting up Node build environment
         uses: actions/setup-node@v1
         with:
@@ -45,24 +53,15 @@ jobs:
         with:
           name: ${{ env.ARTIFACT_DIR }}
           path: Dockerfile
-      - name: upload aws deployment artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: ${{ env.ARTIFACT_DIR }}
-          path: .aws/pre-release.json
   publish:
     runs-on: ubuntu-latest
-    name: Package and Release
+    name: Package and Deploy
     needs: build
     steps:
       - name: download build artifacts
         uses: actions/download-artifact@v1
         with:
           name: ${{ env.ARTIFACT_DIR }}
-      - name: extract git-tagged version
-        id: extract-tagged-version
-        run: |
-          echo "::set-env name=DOCKER_IMG_TAG::${GITHUB_REF/refs\/tags\//}"
       - name: assemble docker image
         run: |
           tar -xvf $ARTIFACT_DIR/dist.tar -C .
@@ -74,21 +73,3 @@ jobs:
         run: |
           docker login -u ${{ secrets.DOCKERHUB_LOGIN }} -p ${{ secrets.DOCKERHUB_PASSWORD }} docker.io
           docker push $DOCKER_IMAGE:$DOCKER_IMG_TAG
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1.1.2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-central-1
-      - name: login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1.0.3
-      - name: push image to Amazon ECR
-        id: push-image-to-aws
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: booklink-frontend-vue
-        run: |
-          # Push image to ECR so that it can be deployed to ECS.
-          docker tag $DOCKER_IMAGE:$DOCKER_IMG_TAG $ECR_REGISTRY/$ECR_REPOSITORY:$DOCKER_IMG_TAG
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$DOCKER_IMG_TAG
