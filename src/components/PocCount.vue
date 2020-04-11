@@ -34,15 +34,14 @@ import Configuration from '@/util/configuration'
       isPositive() {
         return this.count>0;
       },
-      async getPocCount() {
-        //console.log(this.xHost)
-        try {
-          const response = await fetch(this.backendHost + '/rest/v1/poc/random-count')
-          const data = await response.json()
-          this.$emit("count-updated", data);
-        } catch (error) {
-          console.error(error)
-        }
+      getPocCount() {
+
+        this.$http.get(this.backendHost + '/rest/v1/poc/random-count')
+          .then(result => {
+            console.log(result);
+            this.$emit("count-updated", result.data);
+          })
+
       }
     }
   }
