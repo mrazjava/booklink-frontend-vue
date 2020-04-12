@@ -38,4 +38,7 @@ p {
     margin-top: 1.25em;
   }
 }
+.active-menu-item {
+  color: maroon;
+}
 </style>

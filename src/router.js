@@ -1,11 +1,12 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-const Layout = () => import(`./layouts/Layout.vue`);
-const Home = () => import(`./views/Home.vue`);
-const About = () => import(`./views/About.vue`);
-const POC = () => import(`./views/ProofOfConcept.vue`)
-const Login = () => import(`./views/Login.vue`)
+const Layout = () => import('./layouts/Layout.vue');
+const Home = () => import('./views/Home.vue');
+const About = () => import('./views/About.vue');
+const POC = () => import('./views/ProofOfConcept.vue')
+const Login = () => import('./views/Login.vue')
+const Foo = () => import('./views/secured/Foo.vue')
 
 Vue.use(Router);
 
@@ -16,25 +17,30 @@ export default new Router({
     component: Layout,
     children: [
       {
-        path: `home`,
-        name: `home`,
+        path: 'home',
+        name: 'home',
         component: Home,
       },
       {
-        path: `proof-of-concept`,
-        name: `poc`,
+        path: 'proof-of-concept',
+        name: 'poc',
         component: POC,
       },
       {
-        path: `about`,
-        name: `about`,
+        path: 'about',
+        name: 'about',
         component: About,
       },
       {
-        path: `login`,
+        path: 'login',
         component: Login,
+      },
+      {
+        path: 'secured/foo',
+        component: Foo,
       }
     ]
   }],
-  mode: `history`,
+  mode: 'history',
+  linkActiveClass: 'active-menu-item'
 });
