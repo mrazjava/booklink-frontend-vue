@@ -6,6 +6,12 @@ import axios from 'axios'
 Vue.config.productionTip = false;
 Vue.prototype.$http = axios
 
+Vue.mixin({
+  created() {
+    console.log('[created] ' + this.$options.name)
+  },
+});
+
 new Vue({
   router,
   render: h => h(App),
