@@ -1,20 +1,16 @@
 <template>
-  <layout name="Layout">
-    <div class="ProofOfConcept">
-      <h2>Proof of Concept</h2>
-      <poc-count :count="pocCount" @count-updated="updateCount" />
-    </div>
-  </layout>
+  <div class="ProofOfConcept">
+    <h2>Proof of Concept</h2>
+    <poc-count :count="pocCount" @count-updated="updateCount" />
+  </div>
 </template>
 
 <script>
-import Layout from '@/layouts/Layout'
 import PocCount from '@/components/PocCount'
 
 export default {
   name: 'ProofOfConcept',
   components: {
-    Layout,
     PocCount,
   },
   data() {
