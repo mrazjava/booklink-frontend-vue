@@ -1,7 +1,6 @@
 <template>
   <div class="SimpleLayout">
-    SIMPLE!
-      <router-view />
+    <router-view />
   </div>
 </template>
 

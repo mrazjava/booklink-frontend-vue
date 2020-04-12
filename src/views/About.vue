@@ -15,16 +15,12 @@
 </template>
 
 <script>
-import SimpleLayout from '../layouts/SimpleLayout'
 import TechnicalInfo from '@/components/TechnicalInfo'
 
 export default {
   name: `About`,
   components: {
     TechnicalInfo
-  },
-  created() {
-    this.$emit("update:layout", SimpleLayout);
   }
 };
 </script>

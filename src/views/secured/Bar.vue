@@ -1,14 +1,14 @@
 <template>
-  <div class="Login">
-    <h2>Login</h2>
-    <router-link to="/home">Home</router-link>
+  <div class="Bar">
+    <h2>Bar</h2>
+    I am secured
   </div>
 </template>
 
 <script>
 
 export default {
-  name: `Login`,
+  name: `Bar`,
   components: {
   },
   mounted() {

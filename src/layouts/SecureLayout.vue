@@ -3,8 +3,7 @@
     <nav class="DefaultLayout__nav">
       <router-link to="/home">Home</router-link> |
       <router-link to="/proof-of-concept">P-O-C</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/foo">Foo</router-link>
+      <router-link to="/about">About</router-link>
 
       <div class="DefaultLayout__login">
         | <router-link to="/login">Login</router-link>
@@ -14,6 +13,10 @@
       </div>
     </nav>
     <main class="DefaultLayout__main">
+      <div class="DefaultLayout__leftNav">
+        <span class="DefaultLayout__leftNav__title">ADMIN:</span>
+        <router-link to="/secured/bar">Bar</router-link>
+      </div>
       <router-view />
     </main>
     <footer class="DefaultLayout__footer">
@@ -63,6 +66,14 @@ h1, h2, h3, h4, h5 {
     padding-top: 1em;
     padding-bottom: 1em;
     border-bottom: 1px solid #c0c0c0;
+  }
+  &__leftNav {
+    border-bottom: dotted 1px lightgrey;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    &__title {
+      margin-right: 10px;
+    }
   }
 
   &__user {

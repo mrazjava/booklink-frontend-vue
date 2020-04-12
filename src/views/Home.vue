@@ -20,17 +20,12 @@
 </template>
 
 <script>
-import DefaultLayout from '../layouts/DefaultLayout'
-
 export default {
   name: `Home`,
   components: {
   },
   mounted() {
     console.log("mounted: #Home");
-  },
-  created() {
-    this.$emit("update:layout", DefaultLayout);
   }
 };
 </script>

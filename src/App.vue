@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <component :is="layout">
-      <router-view :layout.sync="layout"/>
+    <component :is="this.$route.meta.layout || 'div'">
+      <router-view />
     </component>
   </div>
 </template>
