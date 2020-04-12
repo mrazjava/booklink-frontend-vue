@@ -5,6 +5,9 @@
       <router-link to="/proof-of-concept">P-O-C</router-link> |
       <router-link to="/about">About</router-link>
 
+      <div class="Layout__login">
+        | <router-link to="/login">Login</router-link>
+      </div>
       <div class="Layout__user">
         {{ user ? user.name : `Simulating Login...` }}
       </div>
@@ -49,7 +52,7 @@ h1, h2, h3, h4, h5 {
   margin:0;
 }
 .Layout {
-  max-width: 42em;
+  /*width: 50em;*/
   margin-right: auto;
   margin-left: auto;
   padding-right: 1em;
@@ -64,7 +67,10 @@ h1, h2, h3, h4, h5 {
   &__user {
     float: right;
   }
-
+  &__login {
+    float: right;
+    margin-left: 5px;
+  }
   &__main {
     min-height: 500px;
     padding-top: 0.5em;

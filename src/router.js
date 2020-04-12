@@ -5,6 +5,7 @@ const Layout = () => import(`./layouts/Layout.vue`);
 const Home = () => import(`./views/Home.vue`);
 const About = () => import(`./views/About.vue`);
 const POC = () => import(`./views/ProofOfConcept.vue`)
+const Login = () => import(`./views/Login.vue`)
 
 Vue.use(Router);
 
@@ -28,6 +29,10 @@ export default new Router({
         path: `about`,
         name: `about`,
         component: About,
+      },
+      {
+        path: `login`,
+        component: Login,
       }
     ]
   }],
