@@ -1,25 +1,25 @@
 <template>
-  <div class="Layout">
-    <nav class="Layout__nav">
+  <div class="DefaultLayout">
+    <nav class="DefaultLayout__nav">
       <router-link to="/home">Home</router-link> |
       <router-link to="/proof-of-concept">P-O-C</router-link> |
       <router-link to="/about">About</router-link>
 
-      <div class="Layout__login">
+      <div class="DefaultLayout__login">
         | <router-link to="/login">Login</router-link>
       </div>
-      <div class="Layout__user">
+      <div class="DefaultLayout__user">
         {{ user ? user.name : `Simulating Login...` }}
       </div>
     </nav>
-    <main class="Layout__main">
+    <main class="DefaultLayout__main">
       <router-view />
     </main>
-    <footer class="Layout__footer">
-      <div class="Layout__footer__left">
+    <footer class="DefaultLayout__footer">
+      <div class="DefaultLayout__footer__left">
         <img id="imgCopy" src="@/assets/copyleft.png" alt="Copyleft" title="Copyleft"/> <a href="https://github.com/mrazjava/booklink">Booklink</a>
       </div>
-      <div class="Layout__footer__right">
+      <div class="DefaultLayout__footer__right">
         v{{xVersion}}-{{xEnv}}
       </div>
     </footer>
@@ -30,7 +30,7 @@
 import Configuration from '@/util/configuration'
 
 export default {
-  name: `Layout`,
+  name: `DefaultLayout`,
   data() {
     return {
       user: null,
@@ -51,7 +51,7 @@ export default {
 h1, h2, h3, h4, h5 {
   margin:0;
 }
-.Layout {
+.DefaultLayout {
   /*width: 50em;*/
   margin-right: auto;
   margin-left: auto;

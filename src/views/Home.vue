@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import DefaultLayout from '../layouts/DefaultLayout'
 
 export default {
   name: `Home`,
@@ -28,5 +29,8 @@ export default {
   mounted() {
     console.log("mounted: #Home");
   },
+  created() {
+    this.$emit("update:layout", DefaultLayout);
+  }
 };
 </script>
