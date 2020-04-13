@@ -6,6 +6,8 @@ import store from '@/components/Store'
 
 import App from '@/App'
 
+import '@/globals'
+
 Vue.config.productionTip = false
 Vue.prototype.$http = Axios
 Vue.prototype.$BEHOST = process.env.VUE_APP_BACKEND_HOST
@@ -22,5 +24,3 @@ new Vue({
   store,
   render: h => h(App),
 }).$mount(`#app`);
-
-import '@/globals'
