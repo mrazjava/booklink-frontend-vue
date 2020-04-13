@@ -1,7 +1,8 @@
 import dotenv from 'dotenv'
+
 dotenv.config()
 
-export default class Configuration {
+export default class Env {
   static get CONFIG () {
     return {
       RUNNING_ENV: '$VUE_APP_ENV',
@@ -11,14 +12,14 @@ export default class Configuration {
 
   static value (name) {
     if (!(name in this.CONFIG)) {
-      console.log(`Configuration: There is no key named "${name}"`)
+      console.log(`Env: There is no key named "${name}"`)
       return
     }
 
     const value = this.CONFIG[name]
 
     if (!value) {
-      console.log(`Configuration: Value for "${name}" is not defined`)
+      console.log(`Env: Value for "${name}" is not defined`)
       return
     }
 
@@ -30,7 +31,7 @@ export default class Configuration {
       if (envValue) {
         return envValue
       } else {
-        console.log(`Configuration: Environment variable "${envName}" is not defined`)
+        console.log(`Env: Environment variable "${envName}" is not defined`)
       }
     } else {
       // value was already replaced, it seems we are in production.

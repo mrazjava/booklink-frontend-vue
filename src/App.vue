@@ -7,12 +7,9 @@
 </template>
 
 <script>
-import Configuration from '@/util/configuration'
-
 export default {
-  name: `App`,
+  name: 'App',
   components: {
-    Configuration
   },
   data() {
     return {

@@ -6,21 +6,18 @@
         {{ count }}
       </span>
       <div class="footnote">
-        <a href="">Refresh</a> this page or click the button to get a new count. Count is fetched from the <a :href="backendHost+'/actuator/info'">backend</a> over
-        <a :href="backendHost+'/swagger-ui.html'">REST</a>.
+        <a href="">Refresh</a> this page or click the button to get a new count. Count is fetched from the <a :href="this.$BEHOST+'/actuator/info'">backend</a> over
+        <a :href="this.$BEHOST+'/swagger-ui.html'">REST</a>.
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Configuration from '@/util/configuration'
-
 export default {
   name: 'PocCount',
   data() {
     return {
-      backendHost: Configuration.value('BACKEND_HOST'),
     };
   },
   mounted() {
@@ -35,7 +32,7 @@ export default {
       return this.count>0;
     },
     getPocCount() {
-      this.$http.get(this.backendHost + '/rest/v1/poc/random-count')
+      this.$http.get(this.$BEHOST + '/rest/v1/poc/random-count')
       .then(result => {
         console.log(result);
         this.$emit("count-updated", result.data);

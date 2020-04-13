@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Router from 'vue-router';
+import VueRouter from 'vue-router';
 
 const DefaultLayout = () => import('@/layouts/DefaultLayout')
 const SimpleLayout = () => import('@/layouts/SimpleLayout')
@@ -12,7 +12,7 @@ const Login = () => import('@/views/Login')
 const Admin = () => import('@/views/Admin')
 const Reviews = () => import('@/views/secured/Reviews')
 
-Vue.use(Router);
+Vue.use(VueRouter)
 
 const routes = [
   {
@@ -56,9 +56,9 @@ const routes = [
   }
 ]
 
-export default new Router({
+export default new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   linkActiveClass: 'active-menu-item',
   routes
-});
+})

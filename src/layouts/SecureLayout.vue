@@ -23,16 +23,15 @@
 
 <script>
 import MainMenu from '@/components/MainMenu'
-import Configuration from '@/util/configuration'
 
 export default {
-  name: `DefaultLayout`,
+  name: 'DefaultLayout',
   components: {
     MainMenu,
   },
   data() {
     return {
-      xEnv: Configuration.value('RUNNING_ENV'),
+      xEnv: process.env.VUE_APP_ENV,
       xVersion: process.env.VUE_APP_VERSION,
     };
   },
