@@ -42,7 +42,7 @@ const routes = [
     path: '/login',
     name: 'login',
     component: Login,
-    meta: { layout: SimpleLayout }
+    meta: { layout: DefaultLayout }
   },
   {
     path: '/admin',
