@@ -17,29 +17,10 @@ if (authToken) {
   Vue.prototype.$http.defaults.headers.common['Authorization'] = authToken
 }
 
-Vue.mixin({
-  created() {
-    var opts = this.$options;
-    if(opts.parent) {
-      var comp = '[' + opts.name + ']'
-      if(opts.name == 'RouterLink') {
-        comp = comp + ' to=' + opts.propsData.to
-      }
-      console.log(comp)
-    }
-    else {
-      console.log('[main]')
-    }
-    //console.debug(this.$options)
-  },
-});
-
 new Vue({
   router,
   store,
   render: h => h(App),
 }).$mount(`#app`);
 
-export default {
-  name: 'Main'
-}
+import '@/Globals'
