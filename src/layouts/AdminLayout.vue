@@ -10,30 +10,19 @@
       </div>
       <router-view />
     </main>
-    <footer class="AdminLayout__footer">
-      <div class="AdminLayout__footer__left">
-        <img id="imgCopy" src="@/assets/copyleft.png" alt="Copyleft" title="Copyleft"/> <a href="https://github.com/mrazjava/booklink">Booklink</a>
-      </div>
-      <div class="AdminLayout__footer__right">
-        v{{xVersion}}-{{xEnv}}
-      </div>
-    </footer>
+    <main-footer />
   </div>
 </template>
 
 <script>
 import MainMenu from '@/components/MainMenu'
+import MainFooter from '@/components/MainFooter'
 
 export default {
   name: 'AdminLayout',
   components: {
     MainMenu,
-  },
-  data() {
-    return {
-      xEnv: process.env.VUE_APP_ENV,
-      xVersion: process.env.VUE_APP_VERSION,
-    };
+    MainFooter
   },
 };
 </script>
@@ -66,25 +55,6 @@ h1, h2, h3, h4, h5 {
     min-height: 500px;
     padding-top: 0.5em;
     padding-bottom: 2em;
-  }
-  &__footer {
-    padding-top: 0.5em;
-    border-top: 1px solid #c0c0c0;
-    &__right {
-      float:right;
-      font-size:0.8em;
-      font-family:courier;
-      position:relative;
-      top:-7px;
-    }
-    &__left {
-      float:left;
-    }
-  }
-  #imgCopy {
-    width: 16px;
-    position: relative;
-    top: 1px;
   }
 }
 </style>
