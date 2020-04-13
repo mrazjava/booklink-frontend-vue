@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 const DefaultLayout = () => import('@/layouts/DefaultLayout')
-const SimpleLayout = () => import('@/layouts/SimpleLayout')
+//const SimpleLayout = () => import('@/layouts/SimpleLayout')
 const AdminLayout = () => import('@/layouts/AdminLayout')
 
 const Home = () => import('@/views/Home')
