@@ -1,16 +1,7 @@
 <template>
   <div class="DefaultLayout">
     <nav class="DefaultLayout__nav">
-      <router-link to="/home">Home</router-link> |
-      <router-link to="/proof-of-concept">P-O-C</router-link> |
-      <router-link to="/about">About</router-link>
-
-      <div class="DefaultLayout__login">
-        | <router-link to="/login">Login</router-link>
-      </div>
-      <div class="DefaultLayout__user">
-        {{ user ? user.name : `Simulating Login...` }}
-      </div>
+      <main-menu />
     </nav>
     <main class="DefaultLayout__main">
       <div class="DefaultLayout__leftNav">
@@ -31,22 +22,19 @@
 </template>
 
 <script>
+import MainMenu from '@/components/MainMenu'
 import Configuration from '@/util/configuration'
 
 export default {
   name: `DefaultLayout`,
+  components: {
+    MainMenu,
+  },
   data() {
     return {
-      user: null,
       xEnv: Configuration.value('RUNNING_ENV'),
       xVersion: process.env.VUE_APP_VERSION,
     };
-  },
-  created() {
-    // Simulate fetching user data.
-    setTimeout(() => {
-      this.user = { name: `Detective Bookworm` };
-    }, 1000);
   },
 };
 </script>
@@ -75,20 +63,11 @@ h1, h2, h3, h4, h5 {
       margin-right: 10px;
     }
   }
-
-  &__user {
-    float: right;
-  }
-  &__login {
-    float: right;
-    margin-left: 5px;
-  }
   &__main {
     min-height: 500px;
     padding-top: 0.5em;
     padding-bottom: 2em;
   }
-
   &__footer {
     padding-top: 0.5em;
     border-top: 1px solid #c0c0c0;
