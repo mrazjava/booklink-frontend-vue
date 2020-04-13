@@ -21,7 +21,6 @@ export default {
     };
   },
   mounted() {
-    console.log("mounted: #poc-count");
     this.getPocCount();
   },
   props: {
@@ -34,7 +33,6 @@ export default {
     getPocCount() {
       this.$http.get(this.$BEHOST + '/rest/v1/poc/random-count')
       .then(result => {
-        console.log(result);
         this.$emit("count-updated", result.data);
       })
     }
