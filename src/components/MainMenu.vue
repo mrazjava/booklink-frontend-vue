@@ -16,6 +16,7 @@
 
 <script>
 export default {
+  name: 'MainMenu',
   data() {
     return {
       user: null,

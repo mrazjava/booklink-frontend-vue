@@ -57,6 +57,7 @@ const routes = [
 ]
 
 export default new VueRouter({
+  name: 'Router',
   mode: 'history',
   base: process.env.BASE_URL,
   linkActiveClass: 'active-menu-item',
