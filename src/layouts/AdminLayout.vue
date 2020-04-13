@@ -1,13 +1,12 @@
 <template>
   <div class="AdminLayout">
-    <nav class="AdminLayout__nav">
+    <nav class="AdminLayout__mm">
       <main-menu />
     </nav>
+    <nav class="AdminLayout__am">
+      <admin-menu />
+    </nav>
     <main class="AdminLayout__main">
-      <div class="AdminLayout__leftNav">
-        <span class="AdminLayout__leftNav__title">My Account:</span>
-        <router-link to="/secured/reviews">Reviews</router-link>
-      </div>
       <router-view />
     </main>
     <main-footer />
@@ -16,12 +15,14 @@
 
 <script>
 import MainMenu from '@/components/MainMenu'
+import AdminMenu from '@/components/AdminMenu'
 import MainFooter from '@/components/MainFooter'
 
 export default {
   name: 'AdminLayout',
   components: {
     MainMenu,
+    AdminMenu,
     MainFooter
   },
 };
@@ -37,19 +38,12 @@ h1, h2, h3, h4, h5 {
   margin-left: auto;
   padding-right: 1em;
   padding-left: 1em;
-
-  &__nav {
+  &__mm {
     padding-top: 1em;
     padding-bottom: 1em;
     border-bottom: 1px solid #c0c0c0;
   }
-  &__leftNav {
-    border-bottom: dotted 1px lightgrey;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
-    &__title {
-      margin-right: 10px;
-    }
+  &__am {
   }
   &__main {
     min-height: 500px;
