@@ -23,4 +23,4 @@ new Vue({
   render: h => h(App),
 }).$mount(`#app`);
 
-import '@/Globals'
+import '@/globals'
