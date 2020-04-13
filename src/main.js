@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Axios from 'axios'
 
-import Env from '@/components/Env'
 import router from '@/components/Router'
 import store from '@/components/Store'
 

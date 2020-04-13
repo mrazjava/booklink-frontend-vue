@@ -1,20 +1,20 @@
 <template>
-  <div class="DefaultLayout">
-    <nav class="DefaultLayout__nav">
+  <div class="AdminLayout">
+    <nav class="AdminLayout__nav">
       <main-menu />
     </nav>
-    <main class="DefaultLayout__main">
-      <div class="DefaultLayout__leftNav">
-        <span class="DefaultLayout__leftNav__title">My Account:</span>
+    <main class="AdminLayout__main">
+      <div class="AdminLayout__leftNav">
+        <span class="AdminLayout__leftNav__title">My Account:</span>
         <router-link to="/secured/reviews">Reviews</router-link>
       </div>
       <router-view />
     </main>
-    <footer class="DefaultLayout__footer">
-      <div class="DefaultLayout__footer__left">
+    <footer class="AdminLayout__footer">
+      <div class="AdminLayout__footer__left">
         <img id="imgCopy" src="@/assets/copyleft.png" alt="Copyleft" title="Copyleft"/> <a href="https://github.com/mrazjava/booklink">Booklink</a>
       </div>
-      <div class="DefaultLayout__footer__right">
+      <div class="AdminLayout__footer__right">
         v{{xVersion}}-{{xEnv}}
       </div>
     </footer>
@@ -25,7 +25,7 @@
 import MainMenu from '@/components/MainMenu'
 
 export default {
-  name: 'DefaultLayout',
+  name: 'AdminLayout',
   components: {
     MainMenu,
   },
@@ -42,7 +42,7 @@ export default {
 h1, h2, h3, h4, h5 {
   margin:0;
 }
-.DefaultLayout {
+.AdminLayout {
   /*width: 50em;*/
   margin-right: auto;
   margin-left: auto;

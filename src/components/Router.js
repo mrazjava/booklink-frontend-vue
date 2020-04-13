@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 
 const DefaultLayout = () => import('@/layouts/DefaultLayout')
 const SimpleLayout = () => import('@/layouts/SimpleLayout')
-const SecureLayout = () => import('@/layouts/SecureLayout')
+const AdminLayout = () => import('@/layouts/AdminLayout')
 
 const Home = () => import('@/views/Home')
 const About = () => import('@/views/About')
@@ -47,12 +47,12 @@ const routes = [
   {
     path: '/admin',
     component: Admin,
-    meta: { layout: SecureLayout }
+    meta: { layout: AdminLayout }
   },
   {
     path: '/secured/reviews',
     component: Reviews,
-    meta: { layout: SecureLayout }
+    meta: { layout: AdminLayout }
   }
 ]
 
