@@ -5,8 +5,8 @@
     </nav>
     <main class="DefaultLayout__main">
       <div class="DefaultLayout__leftNav">
-        <span class="DefaultLayout__leftNav__title">ADMIN:</span>
-        <router-link to="/secured/bar">Bar</router-link>
+        <span class="DefaultLayout__leftNav__title">My Account:</span>
+        <router-link to="/secured/reviews">Reviews</router-link>
       </div>
       <router-view />
     </main>

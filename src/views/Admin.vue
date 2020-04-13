@@ -1,15 +1,15 @@
 <template>
-  <div class="Foo">
-    <h2>Foo</h2>
+  <div class="Admin">
+    <h2>My Account</h2>
     <p>
-      Was ist das?
+      Control my account setup.
     </p>
   </div>
 </template>
 
 <script>
 export default {
-  name: `Foo`,
+  name: 'Admin',
   components: {
   }
 };

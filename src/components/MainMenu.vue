@@ -3,7 +3,7 @@
     <router-link to="/home">Home</router-link> |
     <router-link to="/proof-of-concept">P-O-C</router-link> |
     <router-link to="/about">About</router-link> |
-    <router-link to="/foo">Foo</router-link>
+    <router-link to="/admin">My Account</router-link>
 
     <div class="MainMenu__login">
       | <router-link to="/login">Login</router-link>
