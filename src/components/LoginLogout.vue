@@ -1,8 +1,8 @@
 <template>
   <div id="login-logout">
-    {{ user ? user.name : `Loading ...` }} |
+    {{ this.$store.state.user }} |
     <span v-if="!isLoggedIn"><router-link to="/login">Login</router-link></span>
-    <span v-if="isLoggedIn"><a @click="logout">Logout</a></span>
+    <span v-if="isLoggedIn"><a class="logout" @click="logout">Logout</a></span>
   </div>
 </template>
 
@@ -11,7 +11,6 @@ export default {
   name: 'LoginLogout',
   data() {
     return {
-      user: null,
     }
   },
   computed: {
@@ -26,13 +25,12 @@ export default {
     }
   },
   created() {
-    // Simulate fetching user data.
-    setTimeout(() => {
-      this.user = { name: `Detective Bookworm` };
-    }, 1000);
   },
 }
 </script>
 
 <style lang="scss">
+.logout {
+  cursor: pointer;
+}
 </style>
