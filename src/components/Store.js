@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 const KEY_TOKEN = 'token'
 const KEY_USER = 'user'
-const DEFAULT_USER = 'Detective Bookworm10'
+const DEFAULT_USER = 'Detective Bookworm'
 
 export default new Vuex.Store({
   name: 'Store',
