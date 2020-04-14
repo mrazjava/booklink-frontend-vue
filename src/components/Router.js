@@ -78,7 +78,12 @@ router.beforeEach((to, from, next) => {
       return
     }
     next('/login?dest=' + to.path)
-  } else {
+  }
+  else if('login'.localeCompare(to.name) == 0) {
+    to.query['dest'] = from.path
+    next()
+  }
+  else {
     next()
   }
 })
