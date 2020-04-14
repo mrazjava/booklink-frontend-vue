@@ -66,7 +66,7 @@ export default new Vuex.Store({
       })
     },
     logout({commit}){
-      return new Promise((resolve) => {
+      return new Promise(() => {
         commit('logout')
         localStorage.removeItem(KEY_TOKEN)
         localStorage.removeItem(KEY_USER)

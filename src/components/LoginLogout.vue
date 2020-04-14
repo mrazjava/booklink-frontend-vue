@@ -20,10 +20,6 @@ export default {
   methods: {
     logout: function () {
       this.$store.dispatch('logout')
-      .then(() => {
-        console.log(this.$route.path)
-        this.$router.push('/login')
-      })
     }
   },
   created() {
