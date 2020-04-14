@@ -26,7 +26,14 @@ export default {
       let email = this.email
       let password = this.password
       this.$store.dispatch('login', { email, password })
-        .then(() => this.$router.push('/'))
+        .then(() => {
+          var dest = '/'
+          if(this.$route.query.dest) {
+            dest = this.$route.query.dest;
+          }
+          console.log('DESTINATION: ' + dest)
+          this.$router.push(dest)
+        })
         .catch(err => console.log(err))
     }
   },

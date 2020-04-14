@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import store from '@/components/Store'
 
 const DefaultLayout = () => import('@/layouts/DefaultLayout')
 //const SimpleLayout = () => import('@/layouts/SimpleLayout')
@@ -10,7 +11,7 @@ const About = () => import('@/views/About')
 const POC = () => import('@/views/ProofOfConcept')
 const Login = () => import('@/views/Login')
 const Admin = () => import('@/views/Admin')
-const Reviews = () => import('@/views/secured/Reviews')
+const Reviews = () => import('@/views/admin/Reviews')
 
 Vue.use(VueRouter)
 
@@ -47,19 +48,40 @@ const routes = [
   {
     path: '/admin',
     component: Admin,
-    meta: { layout: AdminLayout }
+    meta: {
+      layout: AdminLayout,
+      requiresAuth: true
+    }
   },
   {
-    path: '/secured/reviews',
+    path: '/admin/reviews',
     component: Reviews,
-    meta: { layout: AdminLayout }
+    meta: {
+      layout: AdminLayout,
+      requiresAuth: true
+    }
   }
 ]
 
-export default new VueRouter({
+let router = new VueRouter({
   name: 'Router',
   mode: 'history',
   base: process.env.BASE_URL,
   linkActiveClass: 'active-menu-item',
-  routes
+  routes,
 })
+
+router.beforeEach((to, from, next) => {
+  if(to.matched.some(record => record.meta.requiresAuth)) {
+    if (store.getters.isLoggedIn) {
+      next()
+      return
+    }
+    console.log('viiiiiiiiii: ' + to.path)
+    next('/login?dest=' + to.path)
+  } else {
+    next()
+  }
+})
+
+export default router;
