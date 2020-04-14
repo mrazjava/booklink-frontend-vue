@@ -77,7 +77,6 @@ router.beforeEach((to, from, next) => {
       next()
       return
     }
-    console.log('viiiiiiiiii: ' + to.path)
     next('/login?dest=' + to.path)
   } else {
     next()

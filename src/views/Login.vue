@@ -31,7 +31,7 @@ export default {
           if(this.$route.query.dest) {
             dest = this.$route.query.dest;
           }
-          console.log('DESTINATION: ' + dest)
+          console.debug('destination: ' + dest)
           this.$router.push(dest)
         })
         .catch(err => console.log(err))
