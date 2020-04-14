@@ -8,6 +8,7 @@
       <input required v-model="password" type="password" placeholder="Password"/>
       <button type="submit">Login</button>
     </form>
+    <div class="Login__hint">TRY: foo@bar.com + abc</div>
   </div>
 </template>
 
@@ -47,5 +48,8 @@ export default {
   width: 300px;
   margin: 0 auto;
   margin-top: 20px;
+  &__hint {
+    color: grey;
+  }
 }
 </style>
