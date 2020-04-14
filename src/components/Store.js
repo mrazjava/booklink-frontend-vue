@@ -49,8 +49,8 @@ export default new Vuex.Store({
         axios.patch(this._vm.$BEHOST + '/rest/v1/auth/login', payload)
         .then(resp => {
           const result = {}
-          result[KEY_TOKEN] = resp.data
-          result[KEY_USER] = payload.email
+          result[KEY_TOKEN] = resp.data.token
+          result[KEY_USER] = resp.data.firstName + ' ' + resp.data.lastName
           localStorage.setItem(KEY_TOKEN, result[KEY_TOKEN])
           localStorage.setItem(KEY_USER, result[KEY_USER])
           axios.defaults.headers.common['Authorization'] = result[KEY_TOKEN]
@@ -71,7 +71,7 @@ export default new Vuex.Store({
         localStorage.removeItem(KEY_TOKEN)
         localStorage.removeItem(KEY_USER)
         delete axios.defaults.headers.common['Authorization']
-        resolve()
+        window.location.reload()
       })
     }
   },
