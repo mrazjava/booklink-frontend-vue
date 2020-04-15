@@ -17,8 +17,10 @@ if (authToken) {
   Vue.prototype.$http.defaults.headers.common['Authorization'] = authToken
 }
 
-new Vue({
+var vm = new Vue({
   router,
   store,
   render: h => h(App),
 }).$mount(`#app`);
+
+global.VM = vm // VM accessible globally

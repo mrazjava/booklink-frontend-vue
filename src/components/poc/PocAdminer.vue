@@ -29,6 +29,9 @@ export default {
       .then(result => {
         this.$emit("msg-updated", result.data);
       })
+      .catch(err => {
+        console.log(err)
+      })
     }
   }
 }
