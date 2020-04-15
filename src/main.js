@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Axios from 'axios'
+import Notifications from 'vue-notification'
 
 import router from '@/components/Router'
 import store from '@/components/Store'
@@ -11,6 +12,7 @@ import { KEY_TOKEN } from '@/components/Store'
 Vue.config.productionTip = false
 Vue.prototype.$http = Axios
 Vue.prototype.$BEHOST = process.env.VUE_APP_BACKEND_HOST
+Vue.use(Notifications)
 
 const authToken = localStorage.getItem(KEY_TOKEN)
 if (authToken) {

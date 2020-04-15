@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 export default {
   name: 'PocAdminer',
   data() {
@@ -30,7 +31,12 @@ export default {
         this.$emit("msg-updated", result.data);
       })
       .catch(err => {
-        console.log(err)
+        this.$notify({
+          group: 'api',
+          title: '/rest/v1/poc/secured/admin',
+          type: 'error',
+          text: err
+        });
       })
     }
   }
