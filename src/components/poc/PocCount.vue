@@ -1,14 +1,11 @@
 <template>
   <div id="poc-count">
-    <div class="count-view">
-      <button v-on:click="getPocCount">New Count</button>
-      <span class="count" v-bind:class="{'count-p': isPositive(), 'count-n': !isPositive()}">
-        {{ count }}
-      </span>
-      <div class="footnote">
-        <a href="">Refresh</a> this page or click the button to get a new count. Count is fetched from the <a :href="this.$BEHOST+'/actuator/info'">backend</a> over
-        <a :href="this.$BEHOST+'/swagger-ui.html'">REST</a>.
-      </div>
+    <button v-on:click="getPocCount">New Count</button>
+    <span class="count" v-bind:class="{'count-p': isPositive(), 'count-n': !isPositive()}">
+      {{ count }}
+    </span>
+    <div class="footnote">
+      Does not requrie authentication or any roles.
     </div>
   </div>
 </template>
@@ -42,13 +39,17 @@ export default {
 
 <style scoped>
 #poc-count {
-  margin-top: 50px;
+  border-radius: 5px;
+  border: solid 1px lightgrey;
+  padding-left: 10px;
+  text-align: left;
 }
 button {
   background-color: lightgrey;
   color: blue;
   padding: 10px;
   border: none;
+  width: 100px;
 }
 h3 {
   margin:0;
@@ -56,12 +57,6 @@ h3 {
   border-top: dotted 0px grey;
   font-size:1.2em;
   color: grey;
-}
-.count-view {
-  border-radius: 5px;
-  border: solid 1px lightgrey;
-  padding-left: 10px;
-  text-align: left;
 }
 .footnote {
   color: grey;
