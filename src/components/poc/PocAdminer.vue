@@ -1,13 +1,13 @@
 <template>
-  <div id="poc-adminer">
+  <div id="poc-adminer" class="poc-element">
     <div class="poc-title">
-      {{ endpoint }} <span class="poc-title-desc">Random generated words</span>
+      {{ endpoint }} <span class="poc-title-desc">Randomly generated fake words (min 1, max 10), each in length between 3 and 10 characters</span>
     </div>
     <button v-on:click="fetchAdminMessage">Pull Msg</button>
-    <span class="poc-adm-msg">
+    <span class="poc-display">
       {{ msg }}
     </span>
-    <div class="poc-adm-footnote">
+    <div class="poc-footnote">
       Requires LOGIN *and* the ADMIN role.
     </div>
   </div>
@@ -39,33 +39,4 @@ export default {
 </script>
 
 <style scoped>
-#poc-adminer {
-  border-radius: 5px;
-  border: solid 1px lightgrey;
-  padding-left: 10px;
-  text-align: left;
-}
-button {
-  background-color: lightgrey;
-  color: blue;
-  padding: 10px;
-  border: none;
-  width: 100px;
-}
-h3 {
-  margin:0;
-  margin-top:30px;
-  border-top: dotted 0px grey;
-  font-size:1.2em;
-  color: grey;
-}
-.poc-adm-footnote {
-  color: grey;
-  text-align:left;
-  font-size: 0.8em;
-}
-.poc-adm-msg {
-  margin-left: 20px;
-  font-size: 1.6em;
-}
 </style>

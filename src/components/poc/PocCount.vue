@@ -1,13 +1,13 @@
 <template>
-  <div id="poc-count">
+  <div id="poc-count" class="poc-element">
     <div class="poc-title">
       {{ endpoint }} <span class="poc-title-desc">Random value within the range of java.lang.Integer</span>
     </div>
     <button v-on:click="getPocCount">New Count</button>
-    <span class="count" v-bind:class="{'count-p': isPositive(), 'count-n': !isPositive()}">
+    <span class="poc-display" v-bind:class="{'count-p': isPositive(), 'count-n': !isPositive()}">
       {{ count }}
     </span>
-    <div class="footnote">
+    <div class="poc-footnote">
       Does not requrie authentication or any roles.
     </div>
   </div>
@@ -42,35 +42,6 @@ export default {
 </script>
 
 <style scoped>
-#poc-count {
-  border-radius: 5px;
-  border: solid 1px lightgrey;
-  padding-left: 10px;
-  text-align: left;
-}
-button {
-  background-color: lightgrey;
-  color: blue;
-  padding: 10px;
-  border: none;
-  width: 100px;
-}
-h3 {
-  margin:0;
-  margin-top:30px;
-  border-top: dotted 0px grey;
-  font-size:1.2em;
-  color: grey;
-}
-.footnote {
-  color: grey;
-  text-align:left;
-  font-size: 0.8em;
-}
-.count {
-  margin-left: 20px;
-  font-size: 1.8em;
-}
 .count-p {
   color: green;
 }

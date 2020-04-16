@@ -7,46 +7,67 @@
     </div>
     <poc-count class="poc-demo" :count="pocCount" @count-updated="updateCount" />
     <poc-adminer class="poc-demo" :msg="adminerMsg" @msg-updated="updateAdminerMsg" />
+    <poc-foo class="poc-demo" :word="fooWord" @word-updated="updateFooWord" />
+    <poc-bar class="poc-demo" :text="barText" @text-updated="updateBarText" />
+    <poc-hello class="poc-demo" :hello="hello" @hello-updated="updateHello" />
   </div>
 </template>
 
 <script>
 import PocCount from '@/components/poc/PocCount'
 import PocAdminer from '@/components/poc/PocAdminer'
+import PocFoo from '@/components/poc/PocFoo'
+import PocBar from '@/components/poc/PocBar'
+import PocHello from '@/components/poc/PocHello'
 
 export default {
   name: 'ProofOfConcept',
   components: {
     PocCount,
-    PocAdminer
+    PocAdminer,
+    PocFoo,
+    PocBar,
+    PocHello
   },
   data() {
     return {
       pocCount: 0,
-      adminerMsg: '?'
+      adminerMsg: '?',
+      fooWord: '?',
+      barText: '?',
+      hello: '?'
     }
   },
   methods: {
     updateCount(newValue) {
-      console.log("updateCount: " + newValue);
       this.pocCount = newValue;
     },
     updateAdminerMsg(newValue) {
-      console.log("adminerMsg: " + newValue);
       this.adminerMsg = newValue;
+    },
+    updateFooWord(newValue) {
+      this.fooWord = newValue;
+    },
+    updateBarText(newValue) {
+      this.barText = newValue;
+    },
+    updateHello(newValue) {
+      this.hello = newValue;
     }
   }
 }
 </script>
 
 <style>
-button {
-  background: #009435;
-  border: 1px solid #009435;
-}
 .ProofOfConcept {
   margin:0;
   padding:0;
+}
+.poc-element {
+  border-radius: 5px;
+  border: solid 1px lightgrey;
+  padding-left: 10px;
+  text-align: left;
 }
 .poc-title {
 }
@@ -57,8 +78,35 @@ button {
 }
 .poc-header {
   margin-top: 20px;
+  margin-bottom: 15px;
 }
 .poc-demo {
   margin-top: 10px;
+}
+.poc-display {
+  margin-left: 20px;
+  font-size: 1.6em;
+}
+button {
+  background-color: lightgrey;
+  color: blue;
+  padding: 10px;
+  border: none;
+  width: 100px;
+}
+button:hover {
+  border: none;
+}
+h3 {
+  margin:0;
+  margin-top:30px;
+  border-top: dotted 0px grey;
+  font-size:1.2em;
+  color: grey;
+}
+.poc-footnote {
+  color: grey;
+  text-align:left;
+  font-size: 0.8em;
 }
 </style>
