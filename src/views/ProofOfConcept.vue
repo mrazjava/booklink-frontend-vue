@@ -48,6 +48,13 @@ button {
   margin:0;
   padding:0;
 }
+.poc-title {
+}
+.poc-title-desc {
+  float: right;
+  margin-right: 5px;
+  color: grey;
+}
 .poc-header {
   margin-top: 20px;
 }

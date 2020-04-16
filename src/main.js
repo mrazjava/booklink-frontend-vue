@@ -6,11 +6,13 @@ import router from '@/components/Router'
 import store from '@/components/Store'
 import App from '@/App'
 import '@/globals'
+import api from '@/components/Api'
 
 import { KEY_TOKEN } from '@/components/Store'
 
 Vue.config.productionTip = false
 Vue.prototype.$http = Axios
+Vue.prototype.$api = api
 Vue.prototype.$BEHOST = process.env.VUE_APP_BACKEND_HOST
 Vue.use(Notifications)
 
@@ -26,3 +28,4 @@ var vm = new Vue({
 }).$mount(`#app`);
 
 global.VM = vm // VM accessible globally
+global.GBL_BEHOST = process.env.VUE_APP_BACKEND_HOST

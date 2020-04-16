@@ -1,5 +1,8 @@
 <template>
   <div id="poc-count">
+    <div class="poc-title">
+      {{ endpoint }} <span class="poc-title-desc">Random value within the range of java.lang.Integer</span>
+    </div>
     <button v-on:click="getPocCount">New Count</button>
     <span class="count" v-bind:class="{'count-p': isPositive(), 'count-n': !isPositive()}">
       {{ count }}
@@ -15,10 +18,11 @@ export default {
   name: 'PocCount',
   data() {
     return {
+      endpoint: '/poc/random-count'
     };
   },
   mounted() {
-    this.getPocCount();
+    this.getPocCount()
   },
   props: {
     count: Number
@@ -28,10 +32,10 @@ export default {
       return this.count>0;
     },
     getPocCount() {
-      this.$http.get(this.$BEHOST + '/rest/v1/poc/random-count')
-      .then(result => {
-        this.$emit("count-updated", result.data);
-      })
+      this.$api.fetch({ method:'get', path: this.endpoint }, { callback: this.updateCount });
+    },
+    updateCount(result) {
+      this.$emit("count-updated", result.data)
     }
   }
 }

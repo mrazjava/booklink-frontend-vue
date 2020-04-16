@@ -1,12 +1,15 @@
 <template>
   <div id="poc-adminer">
-      <button v-on:click="fetchAdminMessage">Pull Msg</button>
-      <span class="poc-adm-msg">
-        {{ msg }}
-      </span>
-      <div class="poc-adm-footnote">
-        Requires LOGIN *and* the ADMIN role.
-      </div>
+    <div class="poc-title">
+      {{ endpoint }} <span class="poc-title-desc">Random generated words</span>
+    </div>
+    <button v-on:click="fetchAdminMessage">Pull Msg</button>
+    <span class="poc-adm-msg">
+      {{ msg }}
+    </span>
+    <div class="poc-adm-footnote">
+      Requires LOGIN *and* the ADMIN role.
+    </div>
   </div>
 </template>
 
@@ -15,6 +18,7 @@ export default {
   name: 'PocAdminer',
   data() {
     return {
+      endpoint: '/poc/secured/admin'
     };
   },
   mounted() {
@@ -25,18 +29,10 @@ export default {
   },
   methods: {
     fetchAdminMessage() {
-      this.$http.get(this.$BEHOST + '/rest/v1/poc/secured/admin')
-      .then(result => {
-        this.$emit("msg-updated", result.data);
-      })
-      .catch(err => {
-        this.$notify({
-          group: 'api',
-          title: '/rest/v1/poc/secured/admin',
-          type: 'error',
-          text: err
-        });
-      })
+      this.$api.fetch({ method:'get', path: this.endpoint }, { callback: this.updateMessage });
+    },
+    updateMessage(response) {
+      this.$emit("msg-updated", response.data)
     }
   }
 }
@@ -70,6 +66,6 @@ h3 {
 }
 .poc-adm-msg {
   margin-left: 20px;
-  font-size: 1.8em;
+  font-size: 1.6em;
 }
 </style>
