@@ -61,6 +61,12 @@ export default new Vuex.Store({
           commit('auth_error')
           localStorage.removeItem(KEY_TOKEN)
           localStorage.removeItem(KEY_USER)
+          Vue.notify({
+            group: 'api',
+            title: '/rest/v1/auth/login',
+            type: 'error',
+            text: err + "<br/>" + err.response.data.description
+          });
           reject(err)
         })
       })

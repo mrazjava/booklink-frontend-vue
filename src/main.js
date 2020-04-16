@@ -27,5 +27,6 @@ var vm = new Vue({
   render: h => h(App),
 }).$mount(`#app`);
 
-global.VM = vm // VM accessible globally
-global.GBL_BEHOST = process.env.VUE_APP_BACKEND_HOST
+// accessible globally
+global.VM = vm
+global.BEHOST = process.env.VUE_APP_BACKEND_HOST

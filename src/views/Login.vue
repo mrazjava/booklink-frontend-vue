@@ -1,14 +1,17 @@
 <template>
   <div class="Login">
-    <h2>Sign In</h2>
+    <div class="Login__hint">
+      Try any of the following: foo@booklink.test, bar@booklink.test,
+      ant@booklink.test, fox@booklink.test. Password for all is: abc
+    </div>
     <form class="Login__form" @submit.prevent="login">
+      <h2>Sign In</h2>
       <label>Email</label>
       <input required v-model="email" type="email" placeholder="Name"/>
       <label>Password</label>
       <input required v-model="password" type="password" placeholder="Password"/>
       <button type="submit">Login</button>
     </form>
-    <div class="Login__hint">TRY: foo@bar.com + abc</div>
   </div>
 </template>
 
@@ -45,9 +48,11 @@ export default {
 
 <style lang="scss">
 .Login {
-  width: 300px;
-  margin: 0 auto;
-  margin-top: 20px;
+  &__form {
+    margin: 0 auto;
+    width: 300px;
+    margin-top: 20px;
+  }
   &__hint {
     color: grey;
   }

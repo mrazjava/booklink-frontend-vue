@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import Notifications from 'vue-notification';
 import axios from 'axios';
 
 class Api {
@@ -7,9 +6,9 @@ class Api {
   }
 
   fetch(request, options = {}) {
-    console.log(GBL_BEHOST + '/rest/v1' + request.path)
+    console.log(global.BEHOST + '/rest/v1' + request.path)
     axios({
-      url: GBL_BEHOST + '/rest/v1' + request.path,
+      url: global.BEHOST + '/rest/v1' + request.path,
       headers: {
         'Accept': options.contentType || 'application/json',
         'Content-Type': options.contentType || 'application/json',
@@ -22,11 +21,12 @@ class Api {
     })
     .catch(err => {
       console.log(err)
+      var msg = err.response.data.description
       Vue.notify({
         group: 'api',
         title: request.path,
         type: 'error',
-        text: err
+        text: err + (msg ? "<br/>" + msg : '')
       });
     })
     .finally(() => {
