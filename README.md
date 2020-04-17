@@ -1,9 +1,13 @@
-[![release](https://github.com/mrazjava/booklink-frontend-vue/workflows/release/badge.svg?branch=master)](https://github.com/mrazjava/booklink-frontend-vue/actions?query=workflow%3Arelease) 
-[![pre-release](https://github.com/mrazjava/booklink-frontend-vue/workflows/pre-release/badge.svg?branch=master)](https://github.com/mrazjava/booklink-frontend-vue/actions?query=workflow%3Apre-release) 
+[![release](https://github.com/mrazjava/booklink-frontend-vue/workflows/release/badge.svg?branch=master)](https://github.com/mrazjava/booklink-frontend-vue/actions?query=workflow%3Arelease)
+[![pre-release](https://github.com/mrazjava/booklink-frontend-vue/workflows/pre-release/badge.svg?branch=master)](https://github.com/mrazjava/booklink-frontend-vue/actions?query=workflow%3Apre-release)
 [![snapshot](https://github.com/mrazjava/booklink-frontend-vue/workflows/snapshot/badge.svg?branch=develop)](https://github.com/mrazjava/booklink-frontend-vue/actions?query=workflow%3Asnapshot)
 # Web UI for Booklink
 
 Based on Vue.js. If you wish to try booklink locally without messing around with the sources, consider running [sandbox](https://github.com/mrazjava/booklink#sandbox) from the top level project.
+
+## It's Alive
+- production (not setup yet)
+- [pre-release](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com)
 
 ## Quick Start
 Running frontend requires backend.
@@ -39,9 +43,9 @@ yarn cache clean     # similar to mvn clean
 Git info is fetched via `git-revision-webpack-plugin`:
 ```
 yarn add --dev git-revision-webpack-plugin
-``` 
-Configured in `vue.config.js`. To verify last commit hash displayed on the UI, from the project root check out the 
-release branch tag and run: 
+```
+Configured in `vue.config.js`. To verify last commit hash displayed on the UI, from the project root check out the
+release branch tag and run:
 ```
 git rev-parse --short HEAD
 ```
