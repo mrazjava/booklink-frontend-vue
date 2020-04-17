@@ -59,6 +59,7 @@ export default new Vuex.Store({
         })
         .catch(err => {
           commit('auth_error')
+          commit('auth_user', DEFAULT_USER)
           localStorage.removeItem(KEY_TOKEN)
           localStorage.removeItem(KEY_USER)
           Vue.notify({
