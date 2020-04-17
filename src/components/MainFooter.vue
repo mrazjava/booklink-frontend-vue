@@ -23,17 +23,16 @@ export default {
 
 <style lang="scss">
 .MainFooter {
-  padding-top: 0.5em;
-  border-top: 1px solid #c0c0c0;
   &__right {
     float:right;
     font-size:0.8em;
     font-family:courier;
     position:relative;
-    top:-7px;
+    padding-right: 5px;
   }
   &__left {
     float:left;
+    padding-left: 5px;
   }
 }
 #imgCopy {

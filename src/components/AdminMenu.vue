@@ -15,6 +15,7 @@ export default {
 .AdminMenu {
   border-bottom: dotted 1px lightgrey;
   padding-bottom: 5px;
+  padding-left: 5px;
   margin-bottom: 10px;
   text-align: left;
   color: grey;

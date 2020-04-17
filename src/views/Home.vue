@@ -1,5 +1,5 @@
 <template>
-  <div class="Home">
+  <div class="Content Home">
     <h2>Home</h2>
     <p>
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy

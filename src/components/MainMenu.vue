@@ -1,5 +1,5 @@
 <template>
-  <div id="main-menu">
+  <div id="main-menu" class="MainMenu">
     <router-link to="/home">Home</router-link> |
     <router-link to="/proof-of-concept">P-O-C</router-link> |
     <router-link to="/about">About</router-link> |
@@ -24,9 +24,12 @@ export default {
 
 <style lang="scss">
 .MainMenu {
+  padding-left: 5px;
+  padding-top: 7px;
   &__ll {
     float: right;
     margin-left: 5px;
+    padding-right: 5px;
   }
 }
 </style>

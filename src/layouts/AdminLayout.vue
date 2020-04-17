@@ -39,16 +39,49 @@ h1, h2, h3, h4, h5 {
   padding-right: 1em;
   padding-left: 1em;
   &__mm {
-    padding-top: 1em;
-    padding-bottom: 1em;
+    background-color: white;
     border-bottom: 1px solid #c0c0c0;
+    background-image: none;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-position: 0% 0%;
+    position: fixed;
+    height: 40px;
+    width: 100%;
+    top: 0pt;
+    left: 0pt;
   }
   &__am {
+    background-color: white;
+    background-image: none;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-position: 0% 0%;
+    position: fixed;
+    height: 30px;
+    width: 100%;
+    top: 40px;
+    left: 0pt;
   }
   &__main {
-    min-height: 500px;
-    padding-top: 0.5em;
-    padding-bottom: 2em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-bottom: 50px;
+    padding-top: 80px;
   }
+}
+.MainFooter {
+  height: 40px;
+  width: 100%;
+  background-color: white;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  border-top: 1px solid #c0c0c0;
+  padding-top: 5px;
+  position: fixed;
+  bottom: 0pt;
+  left: 0pt;
 }
 </style>

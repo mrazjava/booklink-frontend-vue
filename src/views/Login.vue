@@ -1,9 +1,5 @@
 <template>
   <div class="Login">
-    <div class="Login__hint">
-      Try any of the following: foo@booklink.test, bar@booklink.test,
-      ant@booklink.test, fox@booklink.test. Password for all is: abc
-    </div>
     <form class="Login__form" @submit.prevent="login">
       <h2>Sign In</h2>
       <label>Email</label>
@@ -11,6 +7,61 @@
       <label>Password</label>
       <input required v-model="password" type="password" placeholder="Password"/>
       <button type="submit">Login</button>
+
+        <div class="Login__hint">
+          Try any of the following:
+          <table>
+            <tr>
+              <th>Test User</th>
+              <th>Role Access</th>
+            </tr>
+            <tr>
+              <td>foo@booklink.test</td>
+              <td>FOO</td>
+            </tr>
+            <tr>
+              <td>bar@booklink.test</td>
+              <td>BAR</td>
+            </tr>
+            <tr>
+              <td>ant@booklink.test</td>
+              <td>ADMIN</td>
+            </tr>
+            <tr>
+              <td>fox@booklink.test</td>
+              <td/>
+            </tr>
+          </table>
+          Password for all is: <span class="Login__hint__pwd">abc</span>
+        </div>
+
+        <div class="Login__hint">
+          Try any of the following:
+          <table>
+            <tr>
+              <th>Test User</th>
+              <th>Role Access</th>
+            </tr>
+            <tr>
+              <td>foo@booklink.test</td>
+              <td>FOO</td>
+            </tr>
+            <tr>
+              <td>bar@booklink.test</td>
+              <td>BAR</td>
+            </tr>
+            <tr>
+              <td>ant@booklink.test</td>
+              <td>ADMIN</td>
+            </tr>
+            <tr>
+              <td>fox@booklink.test</td>
+              <td/>
+            </tr>
+          </table>
+          Password for all is: <span class="Login__hint__pwd">abc</span>
+        </div>
+
     </form>
   </div>
 </template>
@@ -47,14 +98,20 @@ export default {
 </script>
 
 <style lang="scss">
+table {
+}
 .Login {
   &__form {
     margin: 0 auto;
-    width: 300px;
+    width: 250px;
     margin-top: 20px;
   }
   &__hint {
     color: grey;
+    float: left;
+    &__pwd {
+      font-weight: bold;
+    }
   }
 }
 </style>
