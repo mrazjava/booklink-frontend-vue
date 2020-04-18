@@ -8,7 +8,7 @@ const Home = () => import('@/views/Home')
 const About = () => import('@/views/About')
 const POC = () => import('@/views/ProofOfConcept')
 const Login = () => import('@/views/Login')
-const MyAccount = () => import('@/views/MyAccount')
+const MyAccount = () => import('@/views/admin/MyAccount')
 const Reviews = () => import('@/views/admin/Reviews')
 
 Vue.use(VueRouter)
