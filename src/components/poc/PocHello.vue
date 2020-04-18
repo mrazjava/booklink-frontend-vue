@@ -1,7 +1,7 @@
 <template>
   <div id="poc-hello" class="poc-element">
     <div class="poc-title">
-      {{ endpoint }} <span class="poc-title-desc">Friendly, but dummy greeting</span>
+      {{ endpoint }} <span class="poc-title-desc">Friendly, but dummy greeting which sometimes scrambles your login :-)</span>
     </div>
     <button v-on:click="getPocHello">Say Hello</button>
     <span class="poc-display">
@@ -40,6 +40,6 @@ export default {
 
 <style scoped>
 .poc-display {
-  
+
 }
 </style>

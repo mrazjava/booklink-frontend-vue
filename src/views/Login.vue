@@ -18,7 +18,7 @@
         <tr>
           <th>Test User</th>
           <th>Role Access</th>
-          <th>Password</th/>
+          <th>Password</th>
         </tr>
       </thead>
         <tbody>
@@ -69,9 +69,6 @@ export default {
             dest = this.$route.query.dest;
           }
           this.$router.push(dest)
-        })
-        .catch(err => { // handled by Store
-          //console.log(err)
         })
     }
   },
