@@ -6,63 +6,45 @@
       <input required v-model="email" type="email" placeholder="Name"/>
       <label>Password</label>
       <input required v-model="password" type="password" placeholder="Password"/>
-      <button type="submit">Login</button>
-
-        <div class="Login__hint">
-          Try any of the following:
-          <table>
-            <tr>
-              <th>Test User</th>
-              <th>Role Access</th>
-            </tr>
-            <tr>
-              <td>foo@booklink.test</td>
-              <td>FOO</td>
-            </tr>
-            <tr>
-              <td>bar@booklink.test</td>
-              <td>BAR</td>
-            </tr>
-            <tr>
-              <td>ant@booklink.test</td>
-              <td>ADMIN</td>
-            </tr>
-            <tr>
-              <td>fox@booklink.test</td>
-              <td/>
-            </tr>
-          </table>
-          Password for all is: <span class="Login__hint__pwd">abc</span>
-        </div>
-
-        <div class="Login__hint">
-          Try any of the following:
-          <table>
-            <tr>
-              <th>Test User</th>
-              <th>Role Access</th>
-            </tr>
-            <tr>
-              <td>foo@booklink.test</td>
-              <td>FOO</td>
-            </tr>
-            <tr>
-              <td>bar@booklink.test</td>
-              <td>BAR</td>
-            </tr>
-            <tr>
-              <td>ant@booklink.test</td>
-              <td>ADMIN</td>
-            </tr>
-            <tr>
-              <td>fox@booklink.test</td>
-              <td/>
-            </tr>
-          </table>
-          Password for all is: <span class="Login__hint__pwd">abc</span>
-        </div>
-
+      <button class="login-btn" type="submit">Login</button>
     </form>
+    <div class="Login__hint">
+      Feel free to try any of the following test users:
+      <table>
+        <col/>
+        <col/>
+        <col/>
+        <thead>
+        <tr>
+          <th>Test User</th>
+          <th>Role Access</th>
+          <th>Password</th/>
+        </tr>
+      </thead>
+        <tbody>
+        <tr>
+          <td>foo@booklink.test</td>
+          <td>FOO</td>
+          <td>abc</td>
+        </tr>
+        <tr>
+          <td>bar@booklink.test</td>
+          <td>BAR</td>
+          <td>abc</td>
+        </tr>
+        <tr>
+          <td>ant@booklink.test</td>
+          <td>ADMIN</td>
+          <td>abc</td>
+        </tr>
+        <tr>
+          <td>fox@booklink.test</td>
+          <td/>
+          <td>abc</td>
+        </tr>
+      </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -99,16 +81,58 @@ export default {
 
 <style lang="scss">
 table {
+  margin: 25px auto;
+  margin-top: 0;
+  border-collapse: collapse;
+  border: 1px solid #eee;
+  border-bottom: 2px solid #00cccc;
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.10),
+     0px 10px 20px rgba(0,0,0,0.05),
+     0px 20px 20px rgba(0,0,0,0.05),
+     0px 30px 20px rgba(0,0,0,0.05);
+  tr {
+     &:hover {
+      background: #f4f4f4;
+
+      td {
+        color: #555;
+      }
+    }
+  }
+  th, td {
+    color: #999;
+    border: 1px solid #eee;
+    padding: 12px 35px;
+    border-collapse: collapse;
+  }
+  th {
+    background: #00cccc;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 12px;
+    &.last {
+      border-right: none;
+    }
+  }
+}
+
+.login-btn {
+  margin-top: 10px;
+}
+
+col:nth-child(3) {
+}
+tbody tr:nth-child(odd) {
 }
 .Login {
   &__form {
     margin: 0 auto;
-    width: 250px;
+    width: 300px;
     margin-top: 20px;
   }
   &__hint {
     color: grey;
-    float: left;
+    margin-top: 30px;
     &__pwd {
       font-weight: bold;
     }
