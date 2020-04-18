@@ -3,7 +3,7 @@
     <component :is="this.$route.meta.layout || 'div'">
       <router-view />
     </component>
-    <notifications  position="bottom left" group="api" />
+    <notifications  position="bottom left" group="api" width="450" />
   </div>
 </template>
 

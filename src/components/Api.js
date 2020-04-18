@@ -20,8 +20,11 @@ class Api {
       options.callback(response);
     })
     .catch(err => {
-      console.log(err)
-      var msg = err.response.data.description
+      var respData = err.response.data
+      var msg = respData.description
+      if(!msg) {
+        msg = respData.error + ': ' + respData.message
+      }
       Vue.notify({
         group: 'api',
         title: request.path,
