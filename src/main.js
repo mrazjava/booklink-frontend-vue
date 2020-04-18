@@ -8,7 +8,7 @@ import App from '@/App'
 import '@/globals'
 import api from '@/components/Api'
 
-import { KEY_TOKEN } from '@/components/Store'
+import { KEY_USER } from '@/components/Store'
 
 Vue.config.productionTip = false
 Vue.prototype.$http = Axios
@@ -16,9 +16,10 @@ Vue.prototype.$api = api
 Vue.prototype.$BEHOST = process.env.VUE_APP_BACKEND_HOST
 Vue.use(Notifications)
 
-const authToken = localStorage.getItem(KEY_TOKEN)
-if (authToken) {
-  Vue.prototype.$http.defaults.headers.common['Authorization'] = authToken
+if (localStorage.getItem(KEY_USER)) { // restore user state from storage
+  var userData = JSON.parse(localStorage.getItem(KEY_USER))
+  Vue.prototype.$http.defaults.headers.common['Authorization'] = userData.token
+  store.commit('auth_user', userData)
 }
 
 var vm = new Vue({

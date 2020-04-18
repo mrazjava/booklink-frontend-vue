@@ -70,7 +70,9 @@ export default {
           }
           this.$router.push(dest)
         })
-        .catch(err => console.log(err))
+        .catch(err => { // handled by Store
+          //console.log(err)
+        })
     }
   },
   mounted() {
