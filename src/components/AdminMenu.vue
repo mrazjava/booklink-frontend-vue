@@ -1,7 +1,7 @@
 <template>
   <div class="AdminMenu">
-    <span class="AdminMenu__title">My Account:</span>
-    <router-link to="/admin/reviews">Reviews</router-link>
+    <router-link to="/my-account">My Account</router-link> ::
+    <router-link to="/my-account/reviews">Reviews</router-link>
   </div>
 </template>
 

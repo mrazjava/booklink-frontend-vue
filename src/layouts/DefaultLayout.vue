@@ -3,7 +3,10 @@
     <nav class="DefaultLayout__nav">
       <main-menu />
     </nav>
-    <main class="DefaultLayout__main">
+    <nav v-if="isLoggedIn()" class="DefaultLayout__admin">
+      <admin-menu />
+    </nav>
+    <main class="DefaultLayout__main" v-bind:class="{'admin-context': isLoggedIn()}">
       <router-view />
     </main>
     <main-footer />
@@ -12,14 +15,20 @@
 
 <script>
 import MainMenu from '@/components/MainMenu'
+import AdminMenu from '@/components/AdminMenu'
 import MainFooter from '@/components/MainFooter'
 
 export default {
   name: 'DefaultLayout',
   components: {
     MainMenu,
+    AdminMenu,
     MainFooter
-  }
+  },
+  methods: {
+    isLoggedIn : function() { return this.$store.getters.isLoggedIn }
+    //isLoggedIn : function(){ return this.$store.getters.isLoggedIn }
+  },
 };
 </script>
 
@@ -48,6 +57,21 @@ h1, h2, h3, h4, h5 {
     padding-bottom: 50px;
     padding-top: 50px;
   }
+  &__admin {
+    background-color: white;
+    background-image: none;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-position: 0% 0%;
+    position: fixed;
+    height: 30px;
+    width: 100%;
+    top: 40px;
+    left: 0pt;
+  }
+}
+.admin-context {
+  padding-top: 75px;
 }
 .Content {
   height: 100%;

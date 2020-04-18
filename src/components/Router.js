@@ -3,7 +3,6 @@ import VueRouter from 'vue-router';
 import store from '@/components/Store'
 
 const DefaultLayout = () => import('@/layouts/DefaultLayout')
-const AdminLayout = () => import('@/layouts/AdminLayout')
 
 const Home = () => import('@/views/Home')
 const About = () => import('@/views/About')
@@ -45,18 +44,18 @@ const routes = [
     meta: { layout: DefaultLayout }
   },
   {
-    path: '/admin',
+    path: '/my-account',
     component: Admin,
     meta: {
-      layout: AdminLayout,
+      layout: DefaultLayout,
       requiresAuth: true
     }
   },
   {
-    path: '/admin/reviews',
+    path: '/my-account/reviews',
     component: Reviews,
     meta: {
-      layout: AdminLayout,
+      layout: DefaultLayout,
       requiresAuth: true
     }
   }
@@ -66,7 +65,7 @@ let router = new VueRouter({
   name: 'Router',
   mode: 'history',
   base: process.env.BASE_URL,
-  linkActiveClass: 'active-menu-item',
+  linkExactActiveClass: 'active-menu-item',
   routes,
 })
 
