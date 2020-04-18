@@ -1,6 +1,6 @@
 {
   "name": "booklink",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Standard Booklink UI",
   "author": "Adam Zimowski (mrazjava)",
   "private": true,
@@ -14,7 +14,9 @@
     "core-js": "^3.1.4",
     "dotenv": "^8.2.0",
     "vue": "^2.6.11",
-    "vue-router": "^3.0.1"
+    "vue-notification": "^1.3.20",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.1.3"
   },
   "devDependencies": {
     "@avalanche/eslint-config": "^4.0.0",

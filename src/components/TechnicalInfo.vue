@@ -40,22 +40,19 @@
 </template>
 
 <script>
-import Configuration from '@/util/configuration'
-
 export default {
   name: 'TechnicalInfo',
   data() {
-    const FETCH = "checking ..."
+    const FETCH_LABEL = "checking ..."
     return {
-      backendHost: Configuration.value('BACKEND_HOST'),
-      techFeEnv: Configuration.value('RUNNING_ENV'),
+      techFeEnv: process.env.VUE_APP_ENV,
       techFeVersion: process.env.VUE_APP_VERSION,
       techFeCommit: process.env.VUE_APP_GIT_SHORT_COMMIT_HASH,
       techFeBranch: process.env.VUE_APP_GIT_BRANCH,
-      techBeEnv: FETCH,
-      techBeVersion: FETCH,
-      techBeBranch: FETCH,
-      techBeLastCommit: FETCH
+      techBeEnv: FETCH_LABEL,
+      techBeVersion: FETCH_LABEL,
+      techBeBranch: FETCH_LABEL,
+      techBeLastCommit: FETCH_LABEL
     };
   },
   mounted() {
@@ -66,7 +63,7 @@ export default {
   methods: {
     async getBackendInfo() {
       const response = await this.$http.get(
-        this.backendHost + '/actuator/info', {
+        this.$BEHOST + '/actuator/info', {
           headers: {
           }
         });
@@ -82,14 +79,15 @@ export default {
   </script>
 
   <style scoped>
-  table, th, td {
-    border: solid 0px black;
-  }
-  table {
+  #technical-info table {
     margin-left: 20px;
     font-family: "Courier New", Courer;
+    width: 650px;
   }
-  td {
+  #technical-info table, th, td {
+    border: solid 0px black;
+  }
+  #technical-info td {
     padding: 0;
   }
   .techInfo-col1 {

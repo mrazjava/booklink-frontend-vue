@@ -1,17 +1,15 @@
 <template>
-  <component :is="layout">
-    <router-view :layout.sync="layout"/>
-  </component>
+  <div id="app">
+    <component :is="this.$route.meta.layout || 'div'">
+      <router-view />
+    </component>
+    <notifications  position="bottom left" group="api" width="450" />
+  </div>
 </template>
 
 <script>
-import Configuration from '@/util/configuration'
-
 export default {
-  name: `App`,
-  components: {
-    Configuration
-  },
+  name: 'App',
   data() {
     return {
       layout: `div`,
@@ -26,6 +24,12 @@ export default {
   padding: 0;
 }
 
+body, html {
+  height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 html {
   line-height: 1.6;
   color: #333;
@@ -33,9 +37,21 @@ html {
   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
+.tbl-shadow {
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.10),
+   0px 10px 20px rgba(0,0,0,0.05),
+   0px 20px 20px rgba(0,0,0,0.05),
+   0px 30px 20px rgba(0,0,0,0.05);
+}
+
+#app {
+}
 p {
   &:not(:first-child) {
     margin-top: 1.25em;
   }
+}
+.active-menu-item {
+  color: maroon;
 }
 </style>
