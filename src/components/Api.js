@@ -8,6 +8,7 @@ class Api {
   fetch(request, options = {}) {
     console.log(global.BEHOST + '/rest/v1' + request.path)
     axios({
+      method: request.method,
       url: global.BEHOST + '/rest/v1' + request.path,
       headers: {
         'Accept': options.contentType || 'application/json',
@@ -17,9 +18,14 @@ class Api {
       ...request,
     })
     .then((response) => {
-      options.callback(response);
+      if(options.callback) {
+        options.callback(response);
+      }
     })
     .catch(err => {
+      if(options.callbackErr) {
+        options.callbackErr(err)
+      }
       var respData = err.response.data
       var msg = respData.description
       if(!msg) {

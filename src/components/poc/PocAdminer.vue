@@ -29,10 +29,13 @@ export default {
   },
   methods: {
     fetchAdminMessage() {
-      this.$api.fetch({ method:'get', path: this.endpoint }, { callback: this.updateMessage });
+      this.$api.fetch({ method:'get', path: this.endpoint }, { callback: this.updateMessage, callbackErr: this.logError });
     },
     updateMessage(response) {
       this.$emit("msg-updated", response.data)
+    },
+    logError(error) {
+      //console.log(error.response)
     }
   }
 }
