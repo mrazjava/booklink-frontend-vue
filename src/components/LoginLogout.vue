@@ -1,6 +1,6 @@
 <template>
   <div id="login-logout">
-    {{ getUser }} |
+    {{ getUserName }} |
     <span v-if="!isLoggedIn"><router-link to="/login">Login</router-link></span>
     <span v-if="isLoggedIn"><a class="logout" @click="logout">Logout</a></span>
   </div>
@@ -15,7 +15,7 @@ export default {
   },
   computed: {
     isLoggedIn : function(){ return this.$store.getters.isLoggedIn },
-    getUser: function() { return this.$store.getters.userName }
+    getUserName: function() { return this.$store.getters.userName }
   },
   methods: {
     logout: function () {

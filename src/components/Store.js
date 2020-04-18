@@ -75,6 +75,7 @@ export default new Vuex.Store({
   getters: {
     isLoggedIn: state => !!state.user?.token,
     authStatus: state => state.status,
-    userName: state => 'loading'.localeCompare(state.status) ? state.user.firstName + ' ' + state.user.lastName : 'signing in ...'
+    userName: state => 'loading'.localeCompare(state.status) ? state.user.firstName + ' ' + state.user.lastName : 'signing in ...',
+    userRoles: state => state.user?.roles
   }
 })

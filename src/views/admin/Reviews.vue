@@ -1,7 +1,7 @@
 <template>
   <div class="admin-reviews">
     <h2>Reviews</h2>
-    I am secured
+    Manage book reviews.
   </div>
 </template>
 
