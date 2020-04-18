@@ -36,6 +36,14 @@ html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
+
+.tbl-shadow {
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.10),
+   0px 10px 20px rgba(0,0,0,0.05),
+   0px 20px 20px rgba(0,0,0,0.05),
+   0px 30px 20px rgba(0,0,0,0.05);
+}
+
 #app {
 }
 p {

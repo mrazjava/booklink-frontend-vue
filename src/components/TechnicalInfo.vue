@@ -79,14 +79,15 @@ export default {
   </script>
 
   <style scoped>
-  table, th, td {
-    border: solid 0px black;
-  }
-  table {
+  #technical-info table {
     margin-left: 20px;
     font-family: "Courier New", Courer;
+    width: 650px;
   }
-  td {
+  #technical-info table, th, td {
+    border: solid 0px black;
+  }
+  #technical-info td {
     padding: 0;
   }
   .techInfo-col1 {

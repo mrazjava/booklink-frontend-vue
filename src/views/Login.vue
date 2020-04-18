@@ -10,7 +10,7 @@
     </form>
     <div class="Login__hint">
       Feel free to try any of the following test users:
-      <table>
+      <table class="tbl-shadow">
         <col/>
         <col/>
         <col/>
@@ -80,16 +80,12 @@ export default {
 </script>
 
 <style lang="scss">
-table {
-  margin: 25px auto;
+
+.Login__hint table {
   margin-top: 0;
   border-collapse: collapse;
   border: 1px solid #eee;
   border-bottom: 2px solid #00cccc;
-  box-shadow: 0px 0px 20px rgba(0,0,0,0.10),
-     0px 10px 20px rgba(0,0,0,0.05),
-     0px 20px 20px rgba(0,0,0,0.05),
-     0px 30px 20px rgba(0,0,0,0.05);
   tr {
      &:hover {
       background: #f4f4f4;
