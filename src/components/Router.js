@@ -8,7 +8,7 @@ const Home = () => import('@/views/Home')
 const About = () => import('@/views/About')
 const POC = () => import('@/views/ProofOfConcept')
 const Login = () => import('@/views/Login')
-const Admin = () => import('@/views/Admin')
+const MyAccount = () => import('@/views/MyAccount')
 const Reviews = () => import('@/views/admin/Reviews')
 
 Vue.use(VueRouter)
@@ -45,7 +45,7 @@ const routes = [
   },
   {
     path: '/my-account',
-    component: Admin,
+    component: MyAccount,
     meta: {
       layout: DefaultLayout,
       requiresAuth: true

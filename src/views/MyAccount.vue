@@ -1,5 +1,5 @@
 <template>
-  <div class="Admin">
+  <div class="MyAccount">
     <h2>My Account</h2>
     <p>
       Control my account setup.
@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'Admin',
+  name: 'MyAccount',
 };
 </script>
 

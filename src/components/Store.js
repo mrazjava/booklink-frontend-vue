@@ -42,7 +42,6 @@ export default new Vuex.Store({
         commit('auth_request')
         axios.patch(this._vm.$BEHOST + '/rest/v1/auth/login', payload)
         .then(resp => {
-          console.log(resp.data)
           var userData = resp.data
           localStorage.setItem(KEY_USER, JSON.stringify(userData))
           axios.defaults.headers.common['Authorization'] = userData.token
