@@ -3,7 +3,6 @@ import VueRouter from 'vue-router';
 import store from '@/components/Store'
 
 const DefaultLayout = () => import('@/layouts/DefaultLayout')
-//const SimpleLayout = () => import('@/layouts/SimpleLayout')
 const AdminLayout = () => import('@/layouts/AdminLayout')
 
 const Home = () => import('@/views/Home')
@@ -80,7 +79,12 @@ router.beforeEach((to, from, next) => {
     next('/login?dest=' + to.path)
   }
   else if('login'.localeCompare(to.name) == 0) {
-    to.query['dest'] = '/admin'
+    console.log(from)
+    console.log(to)
+    if(!to.query['dest']) {
+      to.query['dest'] = from.path
+    }
+    //to.query['dest'] = 'login'.localeCompare(from.name) == 0 ? '/admin' : from.path
     next()
   }
   else {
