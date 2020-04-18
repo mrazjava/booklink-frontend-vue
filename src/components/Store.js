@@ -55,8 +55,6 @@ export default new Vuex.Store({
           localStorage.setItem(KEY_USER, result[KEY_USER])
           axios.defaults.headers.common['Authorization'] = result[KEY_TOKEN]
           commit('auth_success', result)
-          console.log(resp)
-
           resolve(resp)
         })
         .catch(err => {
