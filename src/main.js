@@ -13,7 +13,6 @@ import { KEY_USER } from '@/components/Store'
 Vue.config.productionTip = false
 Vue.prototype.$http = Axios
 Vue.prototype.$api = api
-Vue.prototype.$BEHOST = process.env.VUE_APP_BACKEND_HOST
 Vue.use(Notifications)
 
 if (localStorage.getItem(KEY_USER)) { // restore user state from storage
@@ -27,7 +26,3 @@ var vm = new Vue({
   store,
   render: h => h(App),
 }).$mount(`#app`);
-
-// accessible globally
-global.VM = vm
-global.BEHOST = process.env.VUE_APP_BACKEND_HOST

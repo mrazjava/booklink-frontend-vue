@@ -1,15 +1,19 @@
 import Vue from 'vue';
 import axios from 'axios';
+import Deployment from '@/deployment'
+
+const BACKEND_HOST = Deployment.value('FE_DEPLOY_BE_HOST')
 
 class Api {
+
   constructor () {
   }
 
   fetch(request, options = {}) {
-    console.log(global.BEHOST + '/rest/v1' + request.path)
+    console.log(BACKEND_HOST + '/rest/v1' + request.path)
     axios({
       method: request.method,
-      url: global.BEHOST + '/rest/v1' + request.path,
+      url: BACKEND_HOST + '/rest/v1' + request.path,
       headers: {
         'Accept': options.contentType || 'application/json',
         'Content-Type': options.contentType || 'application/json',

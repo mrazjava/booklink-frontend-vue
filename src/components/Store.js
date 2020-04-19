@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import Deployment from '@/deployment'
 
 Vue.use(Vuex)
 
@@ -9,6 +10,7 @@ const DEFAULT_USER = {
   firstName: 'Detective',
   lastName: 'Bookworm'
 }
+const BACKEND_HOST = Deployment.value('FE_DEPLOY_BE_HOST')
 
 export default new Vuex.Store({
   name: 'Store',
@@ -40,7 +42,7 @@ export default new Vuex.Store({
     login({commit}, payload){
       return new Promise((resolve, reject) => {
         commit('auth_request')
-        axios.patch(this._vm.$BEHOST + '/rest/v1/auth/login', payload)
+        axios.patch(BACKEND_HOST + '/rest/v1/auth/login', payload)
         .then(resp => {
           var userData = resp.data
           localStorage.setItem(KEY_USER, JSON.stringify(userData))

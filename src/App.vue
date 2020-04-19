@@ -8,13 +8,8 @@
 </template>
 
 <script>
-import EnvironmentTokens from '@/envtokens'
-
 export default {
   name: 'App',
-  components: {
-    EnvironmentTokens // DO NOT REMOVE; needed by docker entrypoint.sh!
-  },
   data() {
     return {
       layout: `div`,

@@ -3,11 +3,11 @@ dotenv.config()
 
 // support for resultion of environment variables by /entrypoint.sh
 
-export default class EnvironmentTokens {
+export default class Deployment {
   static get CONFIG () {
     return {
-      RUNNING_ENV: '$VUE_APP_ENV',
-      BACKEND_HOST: '$VUE_APP_BACKEND_HOST'
+      FE_DEPLOY_ENV: '$FE_DEPLOY_ENV',
+      FE_DEPLOY_BE_HOST: '$FE_DEPLOY_BE_HOST'
     }
   }
 
@@ -24,7 +24,7 @@ export default class EnvironmentTokens {
       return
     }
 
-    if (value.startsWith('$VUE_APP_')) {
+    if (value.startsWith('$FE_DEPLOY_')) {
       // value was not replaced, it seems we are in development.
       // Remove $ and get current value from process.env
       const envName = value.substr(1)
@@ -36,7 +36,7 @@ export default class EnvironmentTokens {
       }
     } else {
       // value was already replaced, it seems we are in production.
-      console.log('TOKEN [' + name + '] resolved to [' + value + ']')
+      //console.debug('TOKEN [' + name + '] resolved to [' + value + ']')
       return value
     }
   }

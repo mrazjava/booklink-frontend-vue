@@ -44,16 +44,18 @@
 </template>
 
 <script>
+import Deployment from '@/deployment'
+
 export default {
   name: 'TechnicalInfo',
   data() {
     const FETCH_LABEL = "checking ..."
     return {
-      techFeEnv: process.env.VUE_APP_ENV,
+      techFeEnv: Deployment.value('FE_DEPLOY_ENV'),
       techFeVersion: process.env.VUE_APP_VERSION,
       techFeCommit: process.env.VUE_APP_GIT_SHORT_COMMIT_HASH,
       techFeBranch: process.env.VUE_APP_GIT_BRANCH,
-      techFeBeHost: process.env.VUE_APP_BACKEND_HOST,
+      techFeBeHost: Deployment.value('FE_DEPLOY_BE_HOST'),
       techBeEnv: FETCH_LABEL,
       techBeVersion: FETCH_LABEL,
       techBeBranch: FETCH_LABEL,
@@ -68,7 +70,7 @@ export default {
   methods: {
     async getBackendInfo() {
       const response = await this.$http.get(
-        this.$BEHOST + '/actuator/info', {
+        Deployment.value('FE_DEPLOY_BE_HOST') + '/actuator/info', {
           headers: {
           }
         });
