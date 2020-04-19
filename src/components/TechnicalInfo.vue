@@ -20,6 +20,10 @@
         <td>{{techFeCommit}}</td>
       </tr>
       <tr>
+        <td>FE (BE host):</td>
+        <td>{{techFeBeHost}}</td>
+      </tr>
+      <tr>
         <td>BE Environment:</td>
         <td>{{techBeEnv}}</td>
       </tr>
@@ -49,6 +53,7 @@ export default {
       techFeVersion: process.env.VUE_APP_VERSION,
       techFeCommit: process.env.VUE_APP_GIT_SHORT_COMMIT_HASH,
       techFeBranch: process.env.VUE_APP_GIT_BRANCH,
+      techFeBeHost: process.env.VUE_APP_BACKEND_HOST,
       techBeEnv: FETCH_LABEL,
       techBeVersion: FETCH_LABEL,
       techBeBranch: FETCH_LABEL,
