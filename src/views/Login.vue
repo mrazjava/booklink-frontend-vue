@@ -10,7 +10,7 @@
     </form>
     <div class="Login__hint">
       Feel free to try any of the following test users:
-      <table class="tbl-shadow">
+      <table :style="cssVars" class="tbl-shadow">
         <col/>
         <col/>
         <col/>
@@ -58,6 +58,14 @@ export default {
       password : ""
     }
   },
+  computed: {
+    cssVars() {
+      return {
+        '--bg-header': global.CLR_BG_TH,
+        '--fg-header': global.CLR_FG_TH
+      }
+    }
+  },
   methods: {
     login: function () {
       let email = this.email
@@ -83,7 +91,7 @@ export default {
   margin-top: 0;
   border-collapse: collapse;
   border: 1px solid #eee;
-  border-bottom: 2px solid #00cccc;
+  border-bottom: 2px solid var(--bg-header);
   tr {
      &:hover {
       background: #f4f4f4;
@@ -100,8 +108,8 @@ export default {
     border-collapse: collapse;
   }
   th {
-    background: #00cccc;
-    color: #fff;
+    background: var(--bg-header);
+    color: var(--fg-header);
     text-transform: uppercase;
     font-size: 12px;
     &.last {
