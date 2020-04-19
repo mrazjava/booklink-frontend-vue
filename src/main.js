@@ -21,7 +21,7 @@ if (localStorage.getItem(KEY_USER)) { // restore user state from storage
   store.commit('auth_user', userData)
 }
 
-var vm = new Vue({
+new Vue({
   router,
   store,
   render: h => h(App),
