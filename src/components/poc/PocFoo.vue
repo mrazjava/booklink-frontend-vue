@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     getPocWord() {
-      this.$api.fetch({ method:'get', path: this.endpoint }, { callback: this.updateWord });
+      this.$api.fetchV1({ method:'get', path: this.endpoint }, { callback: this.updateWord });
     },
     updateWord(result) {
       this.$emit("word-updated", result.data)

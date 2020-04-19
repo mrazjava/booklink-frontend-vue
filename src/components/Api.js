@@ -1,15 +1,24 @@
 import Vue from 'vue';
 import axios from 'axios';
+import Deployment from '@/deployment'
+
+const BACKEND_HOST = Deployment.value('FE_DEPLOY_BE_HOST')
 
 class Api {
+
   constructor () {
   }
 
+  fetchV1(request, options = {}) {
+    request.path = '/rest/v1' + request.path
+    this.fetch(request, options)
+  }
+
   fetch(request, options = {}) {
-    console.log(global.BEHOST + '/rest/v1' + request.path)
+    console.log(BACKEND_HOST + request.path)
     axios({
       method: request.method,
-      url: global.BEHOST + '/rest/v1' + request.path,
+      url: BACKEND_HOST + request.path,
       headers: {
         'Accept': options.contentType || 'application/json',
         'Content-Type': options.contentType || 'application/json',
@@ -26,9 +35,11 @@ class Api {
       if(options.callbackErr) {
         options.callbackErr(err)
       }
-      var respData = err.response.data
-      var msg = respData.description
-      if(!msg) {
+      if(err.response) {
+        var respData = err.response.data
+        var msg = respData.description
+      }
+      if(!msg && respData) {
         msg = respData.error + ': ' + respData.message
       }
       Vue.notify({

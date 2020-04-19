@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     fetchAdminMessage() {
-      this.$api.fetch({ method:'get', path: this.endpoint }, { callback: this.updateMessage });
+      this.$api.fetchV1({ method:'get', path: this.endpoint }, { callback: this.updateMessage });
     },
     updateMessage(response) {
       this.$emit("msg-updated", response.data)

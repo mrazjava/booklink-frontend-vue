@@ -10,11 +10,13 @@
 </template>
 
 <script>
+import Deployment from '@/deployment'
+
 export default {
   name: 'MainFooter',
   data() {
     return {
-      xEnv: process.env.VUE_APP_ENV,
+      xEnv: Deployment.value('FE_DEPLOY_ENV'),
       xVersion: process.env.VUE_APP_VERSION,
     };
   },
