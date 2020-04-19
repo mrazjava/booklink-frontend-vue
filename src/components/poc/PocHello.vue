@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     getPocHello() {
-      this.$api.fetch({ method:'get', path: this.endpoint }, { callback: this.updateHello });
+      this.$api.fetchV1({ method:'get', path: this.endpoint }, { callback: this.updateHello });
     },
     updateHello(result) {
       this.$emit("hello-updated", result.data)

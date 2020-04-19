@@ -63,41 +63,39 @@ export default {
     };
   },
   mounted() {
-    this.getBackendInfo();
+    this.fetchBackendInfo();
   },
   props: {
   },
   methods: {
-    async getBackendInfo() {
-      const response = await this.$http.get(
-        Deployment.value('FE_DEPLOY_BE_HOST') + '/actuator/info', {
-          headers: {
-          }
-        });
-        //console.log(response);
-        const result = response.data;
-        this.techBeEnv = result.build.environment;
-        this.techBeVersion = result.build.maven.version;
-        this.techBeBranch = result.git.branch;
-        this.techBeLastCommit = result.git.commit.id;
-      }
+    fetchBackendInfo() {
+      this.$api.fetch({ method:'get', path: '/actuator/info' }, { callback: this.fetchBeCallback });
+    },
+    fetchBeCallback(response) {
+      //console.log(response);
+      const result = response.data;
+      this.techBeEnv = result.build.environment;
+      this.techBeVersion = result.build.maven.version;
+      this.techBeBranch = result.git.branch;
+      this.techBeLastCommit = result.git.commit.id;
     }
   }
-  </script>
+}
+</script>
 
-  <style scoped>
-  #technical-info table {
-    margin-left: 20px;
-    font-family: "Courier New", Courer;
-    width: 650px;
-  }
-  #technical-info table, th, td {
-    border: solid 0px black;
-  }
-  #technical-info td {
-    padding: 0;
-  }
-  .techInfo-col1 {
-    width: 220px;
-  }
-  </style>
+<style scoped>
+#technical-info table {
+  margin-left: 20px;
+  font-family: "Courier New", Courer;
+  width: 650px;
+}
+#technical-info table, th, td {
+  border: solid 0px black;
+}
+#technical-info td {
+  padding: 0;
+}
+.techInfo-col1 {
+  width: 220px;
+}
+</style>

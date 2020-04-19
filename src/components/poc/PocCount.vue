@@ -32,7 +32,7 @@ export default {
       return this.count>0;
     },
     getPocCount() {
-      this.$api.fetch({ method:'get', path: this.endpoint }, { callback: this.updateCount });
+      this.$api.fetchV1({ method:'get', path: this.endpoint }, { callback: this.updateCount });
     },
     updateCount(result) {
       this.$emit("count-updated", result.data)
