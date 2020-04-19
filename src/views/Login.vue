@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import { required, email, minLength, between } from 'vuelidate/lib/validators'
+import { required, email, minLength } from 'vuelidate/lib/validators'
 
 export default {
   name: `Login`,
@@ -104,7 +104,7 @@ export default {
           }
           this.$router.push(dest)
         })
-        .catch(err => {
+        .catch(() => {
           this.submitStatus = 'ERROR_BACKEND'
         })
       }
