@@ -6,7 +6,7 @@
       <a :href="this.beHost+'/swagger-ui.html'">REST</a>.
     </div>
     <poc-count class="poc-demo" :count="pocCount" @count-updated="updateCount" />
-    <poc-adminer class="poc-demo" :msg="adminerMsg" @msg-updated="updateAdminerMsg" />
+    <poc-investigator class="poc-demo" :msg="investigatorMsg" @msg-updated="updateInvestigatorMsg" />
     <poc-foo class="poc-demo" :word="fooWord" @word-updated="updateFooWord" />
     <poc-bar class="poc-demo" :text="barText" @text-updated="updateBarText" />
     <poc-hello class="poc-demo" :hello="hello" @hello-updated="updateHello" />
@@ -16,7 +16,7 @@
 <script>
 import Deployment from '@/deployment'
 import PocCount from '@/components/poc/PocCount'
-import PocAdminer from '@/components/poc/PocAdminer'
+import PocInvestigator from '@/components/poc/PocInvestigator'
 import PocFoo from '@/components/poc/PocFoo'
 import PocBar from '@/components/poc/PocBar'
 import PocHello from '@/components/poc/PocHello'
@@ -25,7 +25,7 @@ export default {
   name: 'ProofOfConcept',
   components: {
     PocCount,
-    PocAdminer,
+    PocInvestigator,
     PocFoo,
     PocBar,
     PocHello
@@ -34,7 +34,7 @@ export default {
     return {
       beHost: Deployment.value('FE_DEPLOY_BE_HOST'),
       pocCount: 0,
-      adminerMsg: '?',
+      investigatorMsg: '?',
       fooWord: '?',
       barText: '?',
       hello: '?'
@@ -44,8 +44,8 @@ export default {
     updateCount(newValue) {
       this.pocCount = newValue;
     },
-    updateAdminerMsg(newValue) {
-      this.adminerMsg = newValue;
+    updateInvestigatorMsg(newValue) {
+      this.investigatorMsg = newValue;
     },
     updateFooWord(newValue) {
       this.fooWord = newValue;

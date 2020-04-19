@@ -8,7 +8,7 @@
       {{ word }}
     </span>
     <div class="poc-footnote">
-      Requires LOGIN *and* one of the roles: FOO, ADMIN
+      Requires LOGIN *and* one of the roles: FOO, DETECTIVE
     </div>
   </div>
 </template>

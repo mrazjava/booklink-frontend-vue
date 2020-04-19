@@ -1,42 +1,48 @@
 <template>
   <div id="technical-info">
-    <table>
-      <col class="techInfo-col1" />
-      <col class="techInfo-col2" />
+    <table :style="cssVars" class="TechInfo, tbl-shadow">
+      <col class="TechInfo__col1" />
+      <col class="TechInfo__col2" />
       <tr>
-        <td>FE Environment:</td>
+        <th class="TechInfo__th" colspan="2">Frontend</th>
+      </tr>
+      <tr>
+        <td>Environment:</td>
         <td>{{techFeEnv}}</td>
       </tr>
       <tr>
-        <td>FE version:</td>
+        <td>version:</td>
         <td>{{techFeVersion}}</td>
       </tr>
       <tr>
-        <td>FE branch:</td>
+        <td>branch:</td>
         <td>{{techFeBranch}}</td>
       </tr>
       <tr>
-        <td>FE last commit:</td>
+        <td>last commit:</td>
         <td>{{techFeCommit}}</td>
       </tr>
       <tr>
-        <td>FE (BE host):</td>
-        <td>{{techFeBeHost}}</td>
+        <th class="TechInfo__th" colspan="2">Backend</th>
       </tr>
       <tr>
-        <td>BE Environment:</td>
+        <td>Environment:</td>
         <td>{{techBeEnv}}</td>
       </tr>
       <tr>
-        <td>BE version:</td>
+        <td>URL:</td>
+        <td>{{techBeHost}}</td>
+      </tr>
+      <tr>
+        <td>version:</td>
         <td>{{techBeVersion}}</td>
       </tr>
       <tr>
-        <td>BE branch:</td>
+        <td>branch:</td>
         <td>{{techBeBranch}}</td>
       </tr>
       <tr>
-        <td>BE last commit:</td>
+        <td>last commit:</td>
         <td>{{techBeLastCommit}}</td>
       </tr>
     </table>
@@ -55,7 +61,7 @@ export default {
       techFeVersion: process.env.VUE_APP_VERSION,
       techFeCommit: process.env.VUE_APP_GIT_SHORT_COMMIT_HASH,
       techFeBranch: process.env.VUE_APP_GIT_BRANCH,
-      techFeBeHost: Deployment.value('FE_DEPLOY_BE_HOST'),
+      techBeHost: Deployment.value('FE_DEPLOY_BE_HOST'),
       techBeEnv: FETCH_LABEL,
       techBeVersion: FETCH_LABEL,
       techBeBranch: FETCH_LABEL,
@@ -66,6 +72,14 @@ export default {
     this.fetchBackendInfo();
   },
   props: {
+  },
+  computed: {
+    cssVars() {
+      return {
+        '--bg-header': global.CLR_BG_TH,
+        '--fg-header': global.CLR_FG_TH
+      }
+    }
   },
   methods: {
     fetchBackendInfo() {
@@ -83,19 +97,24 @@ export default {
 }
 </script>
 
-<style scoped>
-#technical-info table {
+<style lang="scss" scoped>
+#technical-info {
   margin-left: 20px;
+  margin-right: 20px;
+}
+.TechInfo {
   font-family: "Courier New", Courer;
-  width: 650px;
-}
-#technical-info table, th, td {
-  border: solid 0px black;
-}
-#technical-info td {
-  padding: 0;
-}
-.techInfo-col1 {
-  width: 220px;
+  width: 100%;
+  th, td {
+    color: #999;
+    border: 1px solid #eee;
+  }
+  &__col1 {
+    width: 175px;
+  }
+  &__th {
+    color: var(--fg-header);
+    background-color: var(--bg-header);
+  }
 }
 </style>

@@ -14,3 +14,6 @@ Vue.mixin({
     //console.debug(this.$options)
   },
 });
+
+global.CLR_BG_TH = '#F7BE81'
+global.CLR_FG_TH = 'black'
