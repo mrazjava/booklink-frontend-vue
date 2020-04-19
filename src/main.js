@@ -4,9 +4,9 @@ import Notifications from 'vue-notification'
 
 import router from '@/components/Router'
 import store from '@/components/Store'
+import api from '@/components/Api'
 import App from '@/App'
 import '@/globals'
-import api from '@/components/Api'
 
 import { KEY_USER } from '@/components/Store'
 
