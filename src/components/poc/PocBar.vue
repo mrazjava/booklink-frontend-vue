@@ -8,7 +8,7 @@
       {{ text.toUpperCase() }}
     </span>
     <div class="poc-footnote">
-      Requires LOGIN *and* one of the roles: BAR, ADMIN
+      Requires LOGIN *and* one of the roles: BAR, DETECTIVE
     </div>
   </div>
 </template>

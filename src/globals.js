@@ -15,5 +15,5 @@ Vue.mixin({
   },
 });
 
-global.CLR_BG_TH = '#EFFBFB'
-global.CLR_FG_TH = 'grey'
+global.CLR_BG_TH = '#F7BE81'
+global.CLR_FG_TH = 'black'

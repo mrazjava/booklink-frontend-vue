@@ -1,6 +1,6 @@
 <template>
   <div id="technical-info">
-    <table :style="cssVars" class="TechInfo">
+    <table :style="cssVars" class="TechInfo, tbl-shadow">
       <col class="TechInfo__col1" />
       <col class="TechInfo__col2" />
       <tr>
@@ -105,6 +105,10 @@ export default {
 .TechInfo {
   font-family: "Courier New", Courer;
   width: 100%;
+  th, td {
+    color: #999;
+    border: 1px solid #eee;
+  }
   &__col1 {
     width: 175px;
   }
@@ -112,9 +116,5 @@ export default {
     color: var(--fg-header);
     background-color: var(--bg-header);
   }
-}
-.TechInfo th, td {
-  padding: 3px;
-  border: solid 0px black;
 }
 </style>

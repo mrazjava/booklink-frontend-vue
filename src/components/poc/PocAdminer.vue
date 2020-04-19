@@ -8,7 +8,7 @@
       {{ msg }}
     </span>
     <div class="poc-footnote">
-      Requires LOGIN *and* the ADMIN role.
+      Requires LOGIN *and* the DETECTIVE role.
     </div>
   </div>
 </template>
