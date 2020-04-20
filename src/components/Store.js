@@ -16,7 +16,7 @@ export default new Vuex.Store({
     status: '',
     user: DEFAULT_USER
   },
-  mutations: {    
+  mutations: {
     auth_request(state){
       state.status = 'loading'
     },
@@ -37,7 +37,7 @@ export default new Vuex.Store({
   getters: {
     isLoggedIn: state => !!state.user?.token,
     authStatus: state => state.status,
-    userName: state => 'loading'.localeCompare(state.status) ? state.user.firstName + ' ' + state.user.lastName : 'signing in ...',
+    userName: state => 'loading'.localeCompare(state.status) ? state.user.firstName + ' ' + state.user.lastName : undefined,
     userRoles: state => state.user?.roles
   }
 })

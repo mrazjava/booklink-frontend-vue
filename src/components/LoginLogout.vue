@@ -18,7 +18,13 @@ export default {
   },
   computed: {
     isLoggedIn : function(){ return this.$store.getters.isLoggedIn },
-    getUserName: function() { return this.$store.getters.userName }
+    getUserName: function(signinLabel) {
+      var username = this.$store.getters.userName
+      if(!username) {
+        username = 'signing in...'
+      }
+      return username
+    }
   },
   methods: {
     logout: function () {
