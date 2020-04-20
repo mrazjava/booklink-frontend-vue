@@ -18,7 +18,7 @@ export default {
   },
   computed: {
     isLoggedIn : function(){ return this.$store.getters.isLoggedIn },
-    getUserName: function(signinLabel) {
+    getUserName: function() {
       var username = this.$store.getters.userName
       if(!username) {
         username = 'signing in...'
