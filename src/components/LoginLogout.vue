@@ -7,6 +7,9 @@
 </template>
 
 <script>
+import { KEY_USER } from '@/components/Store'
+import axios from 'axios'
+
 export default {
   name: 'LoginLogout',
   data() {
@@ -19,7 +22,10 @@ export default {
   },
   methods: {
     logout: function () {
-      this.$store.dispatch('logout')
+      this.$store.commit('auth_logout')
+      localStorage.removeItem(KEY_USER)
+      delete axios.defaults.headers.common['Authorization']
+      window.location.reload()
     }
   },
   created() {

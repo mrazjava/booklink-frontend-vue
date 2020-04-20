@@ -58,6 +58,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+import { KEY_USER } from '@/components/Store'
 import { required, email, minLength } from 'vuelidate/lib/validators'
 
 export default {
@@ -96,18 +98,32 @@ export default {
         this.submitStatus = 'PENDING'
         let email = this.email
         let password = this.password
-        this.$store.dispatch('login', { email, password })
-        .then(() => {
-          var dest = '/'
-          if(this.$route.query.dest) {
-            dest = this.$route.query.dest;
-          }
-          this.$router.push(dest)
-        })
-        .catch(() => {
-          this.submitStatus = 'ERROR_BACKEND'
-        })
+        this.authenticate({ email, password })
       }
+    },
+    authenticate: function(payload) {
+      this.$store.commit('auth_request')
+      this.$api.fetchV1({ method:'patch', path: '/auth/login', data: payload}, {
+        callback: this.loginSuccess,
+        callbackErr: this.loginFailure
+      })
+    },
+    loginSuccess: function(resp) {
+      var userData = resp.data
+      localStorage.setItem(KEY_USER, JSON.stringify(userData))
+      axios.defaults.headers.common['Authorization'] = userData.token
+      this.$store.commit('auth_status', 'success')
+      this.$store.commit('auth_user', userData)
+      var dest = '/'
+      if(this.$route.query.dest) {
+        dest = this.$route.query.dest;
+      }
+      this.$router.push(dest)
+    },
+    loginFailure: function() {
+      this.$store.commit('auth_status', 'error')
+      localStorage.removeItem(KEY_USER)
+      this.submitStatus = 'ERROR_BACKEND'
     }
   },
   mounted() {
