@@ -1,7 +1,7 @@
 const GitRevisionPlugin = require('git-revision-webpack-plugin')
 
 module.exports = {
-  lintOnSave: false,
+  lintOnSave: true,
   'chainWebpack': config => {
     config.plugin('define').tap(args => {
       const gitRevisionPlugin = new GitRevisionPlugin()

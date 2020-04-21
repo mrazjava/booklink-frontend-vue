@@ -7,6 +7,9 @@
 </template>
 
 <script>
+import { KEY_USER } from '@/components/Store'
+import axios from 'axios'
+
 export default {
   name: 'LoginLogout',
   data() {
@@ -15,11 +18,20 @@ export default {
   },
   computed: {
     isLoggedIn : function(){ return this.$store.getters.isLoggedIn },
-    getUserName: function() { return this.$store.getters.userName }
+    getUserName: function() {
+      var username = this.$store.getters.userName
+      if(!username) {
+        username = 'signing in...'
+      }
+      return username
+    }
   },
   methods: {
     logout: function () {
-      this.$store.dispatch('logout')
+      this.$store.commit('auth_logout')
+      localStorage.removeItem(KEY_USER)
+      delete axios.defaults.headers.common['Authorization']
+      window.location.reload()
     }
   },
   created() {
