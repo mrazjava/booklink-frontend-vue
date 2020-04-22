@@ -10,12 +10,11 @@ Based on Vue.js. If you wish to try booklink locally without messing around with
 - [pre-release](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com)
 
 ## Quick Start
-Running frontend requires backend.
-<big>
-<pre>
-[./sandbox.sh](https://github.com/mrazjava/booklink) local --backend develop
-</pre>
-</big>
+Running frontend requires backend. For the purposes of developing the frontent we
+usually start backend (staging) from [sandbox](https://github.com/mrazjava/booklink#sandbox):
+```
+./sandbox.sh local --backend develop
+```
 Backend will run on port `8080`. Then:
 ```
 yarn install
