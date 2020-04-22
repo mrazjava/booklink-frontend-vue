@@ -12,10 +12,14 @@ Based on Vue.js. If you wish to try booklink locally without messing around with
 ## Quick Start
 Running frontend requires backend.
 ```
-docker-compose up # start backend and all the required dependencies
+[./sandbox.sh](https://github.com/mrazjava/booklink) local --backend develop
+```
+Backend will run on port `8080`. Then:
+```
+yarn install
 yarn serve
 ```
-Backend will run on port `8080`. Frontend will run on port `8090`.
+Frontend will run on port `8090`.
 
 ## Building Docker Image
 ```
@@ -27,7 +31,7 @@ docker build -t mrazjava/booklink-frontend-vue:local .
 ## Sandbox
 You can run local docker image with [sandbox](https://github.com/mrazjava/booklink#sandbox):
 ```
-./sandbox.sh local
+./sandbox.sh local --frontend
 ```
 
 ## Notes
