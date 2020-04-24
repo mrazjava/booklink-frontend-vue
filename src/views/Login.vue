@@ -1,7 +1,7 @@
 <template>
   <div class="Login">
     <form class="Login__form" @submit.prevent="login">
-      <h2>Sign In</h2>
+      <h4>Sign In</h4>
       <div class="form-group" :class="{ 'form-group--error': $v.email.$error }">
         <input class="form__input" v-model.trim="email" @focusout="$v.email.$touch()" placeholder="E-mail"/>
       </div>
@@ -16,6 +16,20 @@
       <p class="typo__p" v-if="submitStatus === 'ERROR'">Please fill the form correctly.</p>
       <p class="typo__p" v-if="submitStatus === 'ERROR_BACKEND'">Authentication failed. Try again.</p>
       <p class="typo__p" v-if="submitStatus === 'PENDING'">Sending...</p>
+      <hr/>
+      <h5>or</h5>
+      <v-facebook-login
+        @login="fbLogin"
+        @click="fbLogout"
+        v-model="facebook.model"
+        :app-id="facebook.appId"
+        @sdk-init="fbSdkInit"
+        :useAltLogo="facebook.useAltLogo"
+        class="docs-v-facebook-login mx-auto"
+        logo-class="docs-v-facebook-login-logo"
+        loader-class="docs-v-facebook-login-loader"
+      />
+
     </form>
     <div class="Login__hint">
       Feel free to try any of the following test users:
@@ -59,25 +73,43 @@
 
 <script>
 import axios from 'axios';
-import { KEY_USER } from '@/components/Store'
 import { required, email, minLength } from 'vuelidate/lib/validators'
+import VFacebookLogin from 'vue-facebook-login-component'
 
 export default {
   name: `Login`,
-  data(){
-    return {
-      email : "",
-      password : "",
-      submitStatus: null
-    }
+  components: {
+    VFacebookLogin
   },
+  data: () => ({
+    email : "",
+    password : "",
+    submitStatus: null,
+    facebook: {
+      FB: {},
+      model: {},
+      scope: {},
+      user: {},
+      appId: '350322622590724',
+      useAltLogo: false
+    },
+  }),
   computed: {
     cssVars() {
       return {
         '--bg-header': global.CLR_BG_TH,
         '--fg-header': global.CLR_FG_TH
       }
-    }
+    },
+    idle() {
+      return this.facebook.model.idle
+    },
+    connected() {
+      return this.facebook.model.connected
+    },
+    disconnected() {
+      return !this.connected
+    },
   },
   validations: {
     email: {
@@ -110,7 +142,6 @@ export default {
     },
     loginSuccess: function(resp) {
       var userData = resp.data
-      localStorage.setItem(KEY_USER, JSON.stringify(userData))
       axios.defaults.headers.common['Authorization'] = userData.token
       this.$store.commit('auth_status', 'success')
       this.$store.commit('auth_user', userData)
@@ -122,16 +153,46 @@ export default {
     },
     loginFailure: function() {
       this.$store.commit('auth_status', 'error')
-      localStorage.removeItem(KEY_USER)
+      this.$store.commit('auth_logout')
       this.submitStatus = 'ERROR_BACKEND'
-    }
-  },
-  mounted() {
+    },
+    // FACEBOOK
+    getUserData() {
+      this.facebook.FB.api(
+        '/me',
+        { fields: 'id, name, first_name, middle_name, last_name, email, picture' }, fbUser => {
+          console.log('foo')
+          console.log(fbUser)
+          var payload = {
+            fbFirstName: fbUser.first_name,
+            fbLastName: fbUser.last_name,
+            email: fbUser.email,
+            fbId: fbUser.id
+          }
+          console.log(payload)
+          this.authenticate(payload)
+        }
+      )
+    },
+    fbSdkInit({ FB, scope }) {
+      this.facebook.scope = scope
+      this.facebook.FB = FB
+    },
+    fbLogin() {
+      this.getUserData()
+    },
+    fbLogout() {
+      // eslint-disable-next-line no-console
+      if(this.connected) {
+        this.$store.commit('auth_logout')
+        this.facebook.scope.logout()
+      }
+    },
   },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .Login__hint table {
   margin-top: 0;
   border-collapse: collapse;
@@ -163,7 +224,7 @@ export default {
 }
 
 .login-btn {
-  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 col:nth-child(3) {
@@ -172,8 +233,8 @@ tbody tr:nth-child(odd) {
 }
 .Login {
   &__form {
-    h2 {
-      margin-bottom: 30px;
+    h4 {
+      margin-bottom: 20px;
     }
     margin: 0 auto;
     width: 300px;
@@ -186,5 +247,14 @@ tbody tr:nth-child(odd) {
       font-weight: bold;
     }
   }
+}
+.docs-v-facebook-login {
+  width: 100%;
+  margin-top: 10px;
+}
+h5 {
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 </style>

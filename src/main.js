@@ -9,8 +9,7 @@ import api from '@/components/Api'
 import App from '@/App'
 import '@/globals'
 
-import { KEY_USER } from '@/components/Store'
-import '@/assets/styles/booklink.css'
+import '@/styles/booklink.css'
 
 Vue.config.productionTip = false
 Vue.prototype.$api = api
@@ -18,13 +17,13 @@ Vue.prototype.$api = api
 Vue.use(Notifications)
 Vue.use(Vuelidate)
 
-if (localStorage.getItem(KEY_USER)) { // restore user state from storage
-  var userData = JSON.parse(localStorage.getItem(KEY_USER))
-  Axios.defaults.headers.common['Authorization'] = userData.token
-  store.commit('auth_user', userData)
+if(store.getters.isLoggedIn) {
+  Axios.defaults.headers.common['Authorization'] = store.getters.userToken
 }
 
-new Vue({
+export const bus = new Vue()
+
+window.vm = new Vue({
   router,
   store,
   validations: {},
