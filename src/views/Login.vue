@@ -1,7 +1,7 @@
 <template>
   <div class="Login">
     <div class="Login__area">
-      <h2>Booklink Login</h2>
+      <h2>Enter Booklink</h2>
       <form class="Login__area__form" @submit.prevent="login">
         <div class="form-group" :class="{ 'form-group--error': $v.email.$error }">
           <input class="form__input glowing-border" v-model.trim="email" @focusout="$v.email.$touch()" placeholder="E-mail"/>
@@ -24,7 +24,7 @@
       @login="fbLogin"
       @click="fbLogout"
       v-model="facebook.model"
-      :app-id="facebook.appId"
+      :app-id="fbAppId"
       @sdk-init="fbSdkInit"
       :useAltLogo="facebook.useAltLogo"
       class="docs-v-facebook-login mx-auto"
@@ -96,7 +96,6 @@ export default {
       model: {},
       scope: {},
       user: {},
-      appId: '350322622590724',
       useAltLogo: false
     },
   }),
@@ -118,6 +117,9 @@ export default {
     },
     liveEnv() {
       return ('live'.localeCompare(Deployment.value('FE_DEPLOY_ENV')) == 0)
+    },
+    fbAppId() {
+      return Deployment.value('FE_FB_APPID')
     }
   },
   validations: {
