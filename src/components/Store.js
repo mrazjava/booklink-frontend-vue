@@ -42,6 +42,7 @@ export default new Vuex.Store({
     authStatus: state => state.status,
     userName: state => 'loading'.localeCompare(state.status) ? state.user.firstName + ' ' + state.user.lastName : undefined,
     userRoles: state => state.user?.roles,
-    userToken: state => state.user.token
+    userLastLogin: state => state.user?.lastLoginOn,
+    userToken: state => state.user?.token
   }
 })

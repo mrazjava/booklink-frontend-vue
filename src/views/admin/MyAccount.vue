@@ -2,6 +2,7 @@
   <div class="MyAccount">
     <h2>My Account</h2>
     <p>
+      Last Login Date: [{{ getLastLogin }}]
       Roles: {{ getUserRoles }}
     </p>
   </div>
@@ -15,7 +16,8 @@ export default {
     }
   },
   computed: {
-    getUserRoles: function() { return this.$store.getters.userRoles }
+    getUserRoles: function() { return this.$store.getters.userRoles },
+    getLastLogin: function() { return this.$store.getters.userLastLogin }
   },
 };
 </script>
