@@ -4,7 +4,6 @@ import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex)
 
-//const KEY_USER = 'booklink-user'
 export const DEFAULT_USER = {
   firstName: 'Detective',
   lastName: 'Bookworm',
