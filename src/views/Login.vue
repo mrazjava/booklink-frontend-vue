@@ -22,7 +22,6 @@
       <h5>or *</h5>
       <v-facebook-login
       @login="fbLogin"
-      @click="fbLogout"
       v-model="facebook.model"
       :app-id="fbAppId"
       @sdk-init="fbSdkInit"
@@ -106,15 +105,6 @@ export default {
         '--fg-header': global.CLR_FG_TH
       }
     },
-    idle() {
-      return this.facebook.model.idle
-    },
-    connected() {
-      return this.facebook.model.connected
-    },
-    disconnected() {
-      return !this.connected
-    },
     liveEnv() {
       return ('live'.localeCompare(Deployment.value('FE_DEPLOY_ENV')) == 0)
     },
@@ -156,7 +146,7 @@ export default {
       axios.defaults.headers.common['Authorization'] = userData.token
       this.$store.commit('auth_status', 'success')
       this.$store.commit('auth_user', userData)
-      var dest = '/'
+      var dest = '/my-account'
       if(this.$route.query.dest) {
         dest = this.$route.query.dest;
       }
@@ -191,14 +181,7 @@ export default {
     },
     fbLogin() {
       this.getUserData()
-    },
-    fbLogout() {
-      // eslint-disable-next-line no-console
-      if(this.connected) {
-        this.$store.commit('auth_logout')
-        this.facebook.scope.logout()
-      }
-    },
+    }
   },
 };
 </script>
@@ -235,11 +218,9 @@ export default {
     }
   }
 }
-
 .login-btn {
   margin-bottom: 20px;
 }
-
 col:nth-child(3) {
 }
 tbody tr:nth-child(odd) {
