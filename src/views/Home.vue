@@ -21,10 +21,14 @@
 
 <script>
 export default {
-  name: `Home`,
-  components: {
-  },
-  mounted() {
-  }
+  name: `Home`
 };
 </script>
+
+<style lang="scss" scoped>
+.Home {
+  h2:first-child {
+    margin-bottom: 25px;
+  }
+}
+</style>
