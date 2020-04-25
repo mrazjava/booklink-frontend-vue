@@ -86,7 +86,11 @@ router.beforeEach((to, from, next) => {
     next('/login?dest=' + to.path)
   }
   else if('login'.localeCompare(to.name) == 0) {
-    if(!to.query['dest']) {
+    if(store.getters.isLoggedIn) {
+      next('/my-account')
+      return
+    }
+    else if(!to.query['dest']) {
       to.query['dest'] = from.path
     }
     next()
