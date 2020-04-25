@@ -1,6 +1,7 @@
 <template>
   <div class="Login">
     <div class="Login__area">
+      <h2>Booklink Login</h2>
       <form class="Login__area__form" @submit.prevent="login">
         <div class="form-group" :class="{ 'form-group--error': $v.email.$error }">
           <input class="form__input glowing-border" v-model.trim="email" @focusout="$v.email.$touch()" placeholder="E-mail"/>
@@ -30,9 +31,6 @@
       logo-class="docs-v-facebook-login-logo"
       loader-class="docs-v-facebook-login-loader"
       />
-      <div class="soc-login-footer">
-
-      </div>
     </div>
     <div class="Login__hint">
       Feel free to try any of the following test users:
@@ -71,13 +69,17 @@
         </tbody>
       </table>
     </div>
-    * Authentication though a social netowrk is restricted in development environment to protected test users. It is open for login only in LIVE environment.
+    <div class="login-footnote">
+      * <span v-if="!liveEnv">Authentication though a social netowrk is restricted in development environment to protected test users only. It is available for general audience exclusively in LIVE environment.</span>
+      We only collect minimum required social network information (email, name) to conveniently register you into our system with a single click login. For details feel free to check our <router-link to="/about/privacy-policy">privacy policy</router-link>.
+    </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 import { required, email, minLength } from 'vuelidate/lib/validators'
+import Deployment from '@/deployment'
 import VFacebookLogin from 'vue-facebook-login-component'
 
 export default {
@@ -114,6 +116,9 @@ export default {
     disconnected() {
       return !this.connected
     },
+    liveEnv() {
+      return ('live'.localeCompare(Deployment.value('FE_DEPLOY_ENV')) == 0)
+    }
   },
   validations: {
     email: {
@@ -265,8 +270,7 @@ h5 {
   margin-top: 5px;
   margin-bottom: 10px;
 }
-.soc-login-footer {
+.login-footnote {
   font-size: 0.5em;
-  text-align: justify;
 }
 </style>
