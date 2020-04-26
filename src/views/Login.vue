@@ -247,6 +247,7 @@ tbody tr:nth-child(odd) {
 .docs-v-facebook-login {
   width: 100%;
   margin-top: 10px;
+  cursor: pointer;
 }
 h5 {
   text-align: center;
