@@ -83,7 +83,7 @@ export default {
   },
   methods: {
     fetchBackendInfo() {
-      this.$api.fetch({ method:'get', path: '/actuator/info' }, { callback: this.fetchBeCallback });
+      this.$api.fetch({ method:'get', path: '/actuator/info' }, { noLoader: true, callback: this.fetchBeCallback });
     },
     fetchBeCallback(response) {
       //console.log(response);
