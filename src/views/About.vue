@@ -1,5 +1,5 @@
 <template>
-  <div class="About">
+  <div id="About" class="About">
     <h2>About</h2>
     <p>
       Eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
@@ -7,10 +7,11 @@
       clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
       amet.
     </p>
-
-    <h2 id="headerTech">Technical Info</h2>
+    <ul>
+    <li>Our <router-link to="/about/privacy-policy">Privacy Policy</router-link></li>
+    </ul>
+    <h2 class="About__techinf-header">Technical Info</h2>
     <technical-info />
-
   </div>
 </template>
 
@@ -25,5 +26,10 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.About {
+  &__techinf-header:not(:first-child) {
+    margin-top:15px;
+  }
+}
 </style>

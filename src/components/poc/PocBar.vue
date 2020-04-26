@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     getPocText() {
-      this.$api.fetchV1({ method:'get', path: this.endpoint }, { callback: this.updateText });
+      this.$api.fetchV1({ method:'get', path: this.endpoint }, { noLoader: true, callback: this.updateText });
     },
     updateText(result) {
       this.$emit("text-updated", result.data)

@@ -14,8 +14,17 @@ class Api {
     this.fetch(request, options)
   }
 
+  getLoader(options) {
+    var loader = null
+    if(!options.noLoader) {
+      loader = Vue.$loading.show({ canCancel: false, color: '#007BFF', width: 128, height: 128 })
+    }
+    return loader
+  }
+
   fetch(request, options = {}) {
     console.log(BACKEND_HOST + request.path)
+    var loader = this.getLoader(options)
     axios({
       method: request.method,
       url: BACKEND_HOST + request.path,
@@ -30,6 +39,9 @@ class Api {
       if(options.callback) {
         options.callback(response);
       }
+      if(loader) {
+        loader.hide()
+      }
     })
     .catch(err => {
       if(options.callbackErr) {
@@ -41,6 +53,9 @@ class Api {
       }
       if(!msg && respData) {
         msg = respData.error + ': ' + respData.message
+      }
+      if(loader) {
+        loader.hide()
       }
       Vue.notify({
         group: 'api',

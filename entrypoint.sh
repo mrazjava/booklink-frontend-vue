@@ -6,6 +6,7 @@
 # Adding new vars requires updates in few different places:
 #  /entrypoint.sh (this file)
 #  /src/deployment.js
+#  /.env
 #  /.aws/pre-release.json
 #  [booklink sandbox project] docker-compose/*.yml
 # For usage example of deploy var, see /components/MainFooter.vue
@@ -20,7 +21,7 @@ do
     cp $file $file.tmpl.js
   fi
 
-  envsubst '$FE_DEPLOY_ENV,$FE_DEPLOY_BE_HOST' < $file.tmpl.js > $file
+  envsubst '$FE_DEPLOY_ENV,$FE_DEPLOY_BE_HOST,$FE_FB_APPID' < $file.tmpl.js > $file
 done
 
 echo "Starting Nginx"

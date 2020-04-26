@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     fetchInvestigatorMessage() {
-      this.$api.fetchV1({ method:'get', path: this.endpoint }, { callback: this.updateMessage });
+      this.$api.fetchV1({ method:'get', path: this.endpoint }, { noLoader: true, callback: this.updateMessage });
     },
     updateMessage(response) {
       this.$emit("msg-updated", response.data)

@@ -7,7 +7,8 @@ export default class Deployment {
   static get CONFIG () {
     return {
       FE_DEPLOY_ENV: '$FE_DEPLOY_ENV',
-      FE_DEPLOY_BE_HOST: '$FE_DEPLOY_BE_HOST'
+      FE_DEPLOY_BE_HOST: '$FE_DEPLOY_BE_HOST',
+      FE_FB_APPID: '$FE_FB_APPID'
     }
   }
 
@@ -24,7 +25,7 @@ export default class Deployment {
       return
     }
 
-    if (value.startsWith('$FE_DEPLOY_')) {
+    if (value.startsWith('$FE_')) {
       // value was not replaced, it seems we are in development.
       // Remove $ and get current value from process.env
       const envName = value.substr(1)

@@ -1,19 +1,22 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex)
 
-export const KEY_USER = 'booklink-user'
-const DEFAULT_USER = {
+export const DEFAULT_USER = {
   firstName: 'Detective',
-  lastName: 'Bookworm'
+  lastName: 'Bookworm',
+  token: null,
+  fb: false
 }
 
 export default new Vuex.Store({
   name: 'Store',
+  plugins: [createPersistedState()],
   state: {
     status: '',
-    user: DEFAULT_USER
+    user: DEFAULT_USER,
   },
   mutations: {
     auth_request(state){
@@ -37,6 +40,8 @@ export default new Vuex.Store({
     isLoggedIn: state => !!state.user?.token,
     authStatus: state => state.status,
     userName: state => 'loading'.localeCompare(state.status) ? state.user.firstName + ' ' + state.user.lastName : undefined,
-    userRoles: state => state.user?.roles
+    userRoles: state => state.user?.roles,
+    userLastLogin: state => state.user?.lastLoginOn,
+    userToken: state => state.user?.token
   }
 })

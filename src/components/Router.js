@@ -2,10 +2,12 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from '@/components/Store'
 
+const SimpleLayout = () => import('@/layouts/SimpleLayout')
 const DefaultLayout = () => import('@/layouts/DefaultLayout')
 
 const Home = () => import('@/views/Home')
 const About = () => import('@/views/About')
+const PrivacyPolicy = () => import('@/views/PrivacyPolicy')
 const POC = () => import('@/views/ProofOfConcept')
 const Login = () => import('@/views/Login')
 const MyAccount = () => import('@/views/admin/MyAccount')
@@ -36,6 +38,12 @@ const routes = [
     name: 'about',
     component: About,
     meta: { layout: DefaultLayout }
+  },
+  {
+    path: '/about/privacy-policy',
+    name: 'privacy-policy',
+    component: PrivacyPolicy,
+    meta: { layout: SimpleLayout }
   },
   {
     path: '/login',
@@ -78,7 +86,11 @@ router.beforeEach((to, from, next) => {
     next('/login?dest=' + to.path)
   }
   else if('login'.localeCompare(to.name) == 0) {
-    if(!to.query['dest']) {
+    if(store.getters.isLoggedIn) {
+      next('/my-account')
+      return
+    }
+    else if(!to.query['dest']) {
       to.query['dest'] = from.path
     }
     next()

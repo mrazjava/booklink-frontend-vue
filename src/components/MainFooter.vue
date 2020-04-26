@@ -4,7 +4,7 @@
       <img id="imgCopy" src="@/assets/copyleft.png" alt="Copyleft" title="Copyleft"/> <a href="https://github.com/mrazjava/booklink">Booklink</a>
     </div>
     <div class="MainFooter__right">
-      v{{xVersion}}-{{xEnv}}
+      v{{xVersion}}-{{xEnv}}{{indicateSandbox}}
     </div>
   </footer>
 </template>
@@ -20,6 +20,11 @@ export default {
       xVersion: process.env.VUE_APP_VERSION,
     };
   },
+  computed: {
+    indicateSandbox() {
+      return ('production'.localeCompare(process.env.NODE_ENV)==0 && 'live'.localeCompare(this.xEnv)!=0 ? ' (sandbox)' : '')
+    }
+  }
 };
 </script>
 
