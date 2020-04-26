@@ -21,7 +21,7 @@ do
     cp $file $file.tmpl.js
   fi
 
-  envsubst '$FE_DEPLOY_ENV,$FE_DEPLOY_BE_HOST,$FE_FB_APPID' < $file.tmpl.js > $file
+  envsubst '$FE_DEPLOY_ENV,$FE_DEPLOY_BE_HOST,$FE_FB_APPID,$FE_SANDBOX' < $file.tmpl.js > $file
 done
 
 echo "Starting Nginx"

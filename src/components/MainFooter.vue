@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     indicateSandbox() {
-      return ('production'.localeCompare(process.env.NODE_ENV)==0 && 'live'.localeCompare(this.xEnv)!=0 ? ' (sandbox)' : '')
+      return (Deployment.value('FE_SANDBOX')==1 ? ' (sandbox)' : '')
     }
   }
 };
