@@ -254,5 +254,6 @@ h5 {
   margin-bottom: 10px;
 }
 .login-footnote {
+  font-size: 0.8em;
 }
 </style>
