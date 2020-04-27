@@ -7,7 +7,7 @@ Based on Vue.js. If you wish to try booklink locally without messing around with
 
 ## It's Alive
 - production (not setup yet)
-- [pre-release](http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com)
+- [pre-release](https://pre.booklinktrove.com)
 
 ## Quick Start
 Running frontend requires backend. For the purposes of developing the frontent we
