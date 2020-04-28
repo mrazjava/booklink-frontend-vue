@@ -163,15 +163,13 @@ export default {
       this.facebook.FB.api(
         '/me',
         { fields: 'id, name, first_name, middle_name, last_name, email, picture' }, fbUser => {
-          console.log('foo')
-          console.log(fbUser)
           var payload = {
             fbFirstName: fbUser.first_name,
             fbLastName: fbUser.last_name,
             email: fbUser.email,
             fbId: fbUser.id
           }
-          console.log(payload)
+          //console.debug(payload)
           this.authenticate(payload)
         }
       )
@@ -181,6 +179,7 @@ export default {
       this.facebook.FB = FB
     },
     fbLogin() {
+      console.log('Welcome to Booklink!  Fetching your information.... ');
       this.getUserData()
     }
   },
