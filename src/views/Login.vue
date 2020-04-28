@@ -192,10 +192,9 @@ export default {
       )
     },
     fbSdkInit({ FB, scope }) {
-      if(!this.$store.getters.isLoggedIn) {
+      FB.logout(function() {
         console.log('youre outta here')
-        FB.logout()
-      }
+      })
       this.facebook.scope = scope
       this.facebook.FB = FB
     },
