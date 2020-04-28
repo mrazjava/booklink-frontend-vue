@@ -192,6 +192,9 @@ export default {
       )
     },
     fbSdkInit({ FB, scope }) {
+      FB.logout(function() {
+        console.log('youre outta here')
+      })
       this.facebook.scope = scope
       this.facebook.FB = FB
     },
