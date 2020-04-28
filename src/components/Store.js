@@ -16,7 +16,7 @@ export default new Vuex.Store({
   state: {
     status: '',
     user: DEFAULT_USER,
-    fbLogoutHook: null
+    fbScope: null
   },
   mutations: {
     auth_request(state){
@@ -33,8 +33,8 @@ export default new Vuex.Store({
       state.status = ''
       state.user = DEFAULT_USER
     },
-    auth_fb(state, fbLogout) {
-      state.fbLogoutHook = fbLogout
+    auth_fb(state, scope) {
+      state.fbScope = scope
     }
   },
   actions: {
@@ -46,6 +46,6 @@ export default new Vuex.Store({
     userRoles: state => state.user?.roles,
     userLastLogin: state => state.user?.lastLoginOn,
     userToken: state => state.user?.token,
-    fbLogoutHook: state => state.fbLogoutHook
+    fbScope: state => state.fbScope
   }
 })
