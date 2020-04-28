@@ -26,6 +26,7 @@
       :app-id="fbAppId"
       @sdk-init="fbSdkInit"
       :useAltLogo="facebook.useAltLogo"
+      style="cursor: pointer;"
       class="docs-v-facebook-login mx-auto"
       logo-class="docs-v-facebook-login-logo"
       loader-class="docs-v-facebook-login-loader"
@@ -247,7 +248,6 @@ tbody tr:nth-child(odd) {
 .docs-v-facebook-login {
   width: 100%;
   margin-top: 10px;
-  cursor: pointer;
 }
 h5 {
   text-align: center;

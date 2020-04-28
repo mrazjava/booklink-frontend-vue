@@ -7,8 +7,7 @@ Vue.use(Vuex)
 export const DEFAULT_USER = {
   firstName: 'Detective',
   lastName: 'Bookworm',
-  token: null,
-  fb: false
+  token: null
 }
 
 export default new Vuex.Store({
