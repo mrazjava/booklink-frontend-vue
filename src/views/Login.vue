@@ -99,6 +99,17 @@ export default {
       useAltLogo: false
     },
   }),
+//  mounted() {
+//    global.bus.$on(global.EVT_FB_LOGOUT, function() {
+//      console.log('raz-1')
+//      this.facebook.FB.logout(function() {
+//        console.log("FB session with Booklink terminated")
+//      })
+//      console.log('dwa-2')
+//      window.location.reload()
+//      console.log('trzy-3')
+//    })
+//  },
   computed: {
     cssVars() {
       return {
@@ -144,6 +155,12 @@ export default {
     },
     loginSuccess: function(resp) {
       var userData = resp.data
+      console.log(userData)
+      if(userData.origin === 2) {
+        console.log('its facetime')
+        console.log(this.facebook.FB.logout)
+        this.$store.commit('auth_fb', this.facebook.FB.logout)
+      }
       axios.defaults.headers.common['Authorization'] = userData.token
       this.$store.commit('auth_status', 'success')
       this.$store.commit('auth_user', userData)
