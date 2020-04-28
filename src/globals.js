@@ -15,5 +15,7 @@ Vue.mixin({
   },
 });
 
+global.bus = new Vue()
 global.CLR_BG_TH = '#F7BE81'
 global.CLR_FG_TH = 'black'
+global.EVT_FB_LOGOUT = 'fb-logout'

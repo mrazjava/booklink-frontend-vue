@@ -7,8 +7,7 @@ Vue.use(Vuex)
 export const DEFAULT_USER = {
   firstName: 'Detective',
   lastName: 'Bookworm',
-  token: null,
-  fb: false
+  token: null
 }
 
 export default new Vuex.Store({
@@ -17,6 +16,7 @@ export default new Vuex.Store({
   state: {
     status: '',
     user: DEFAULT_USER,
+    fbLogoutHook: null
   },
   mutations: {
     auth_request(state){
@@ -32,6 +32,9 @@ export default new Vuex.Store({
     auth_logout(state) {
       state.status = ''
       state.user = DEFAULT_USER
+    },
+    auth_fb(state, fbLogout) {
+      state.fbLogoutHook = fbLogout
     }
   },
   actions: {
@@ -42,6 +45,7 @@ export default new Vuex.Store({
     userName: state => 'loading'.localeCompare(state.status) ? state.user.firstName + ' ' + state.user.lastName : undefined,
     userRoles: state => state.user?.roles,
     userLastLogin: state => state.user?.lastLoginOn,
-    userToken: state => state.user?.token
+    userToken: state => state.user?.token,
+    fbLogoutHook: state => state.fbLogoutHook
   }
 })

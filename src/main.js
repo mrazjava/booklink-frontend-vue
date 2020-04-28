@@ -24,8 +24,6 @@ if(store.getters.isLoggedIn) {
   Axios.defaults.headers.common['Authorization'] = store.getters.userToken
 }
 
-export const bus = new Vue()
-
 window.vm = new Vue({
   router,
   store,

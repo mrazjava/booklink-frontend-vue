@@ -26,6 +26,7 @@
       :app-id="fbAppId"
       @sdk-init="fbSdkInit"
       :useAltLogo="facebook.useAltLogo"
+      style="cursor: pointer;"
       class="docs-v-facebook-login mx-auto"
       logo-class="docs-v-facebook-login-logo"
       loader-class="docs-v-facebook-login-loader"
@@ -98,6 +99,17 @@ export default {
       useAltLogo: false
     },
   }),
+//  mounted() {
+//    global.bus.$on(global.EVT_FB_LOGOUT, function() {
+//      console.log('raz-1')
+//      this.facebook.FB.logout(function() {
+//        console.log("FB session with Booklink terminated")
+//      })
+//      console.log('dwa-2')
+//      window.location.reload()
+//      console.log('trzy-3')
+//    })
+//  },
   computed: {
     cssVars() {
       return {
@@ -143,6 +155,12 @@ export default {
     },
     loginSuccess: function(resp) {
       var userData = resp.data
+      console.log(userData)
+      if(userData.origin === 2) {
+        console.log('its facetime')
+        console.log(this.facebook.FB.logout)
+        this.$store.commit('auth_fb', this.facebook.FB.logout)
+      }
       axios.defaults.headers.common['Authorization'] = userData.token
       this.$store.commit('auth_status', 'success')
       this.$store.commit('auth_user', userData)
@@ -162,15 +180,13 @@ export default {
       this.facebook.FB.api(
         '/me',
         { fields: 'id, name, first_name, middle_name, last_name, email, picture' }, fbUser => {
-          console.log('foo')
-          console.log(fbUser)
           var payload = {
             fbFirstName: fbUser.first_name,
             fbLastName: fbUser.last_name,
             email: fbUser.email,
             fbId: fbUser.id
           }
-          console.log(payload)
+          //console.debug(payload)
           this.authenticate(payload)
         }
       )
@@ -180,6 +196,7 @@ export default {
       this.facebook.FB = FB
     },
     fbLogin() {
+      console.log('Welcome to Booklink!  Fetching your information.... ');
       this.getUserData()
     }
   },
@@ -247,7 +264,6 @@ tbody tr:nth-child(odd) {
 .docs-v-facebook-login {
   width: 100%;
   margin-top: 10px;
-  cursor: pointer;
 }
 h5 {
   text-align: center;
