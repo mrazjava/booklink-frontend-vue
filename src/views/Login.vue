@@ -158,8 +158,8 @@ export default {
       console.log(userData)
       if(userData.origin === 2) {
         console.log('its facetime')
-        console.log(this.facebook.FB.logout)
-        this.$store.commit('auth_fb', this.facebook.FB.logout)
+        console.log(this.facebook.scope)
+        this.$store.commit('auth_fb', this.facebook.scope)
       }
       axios.defaults.headers.common['Authorization'] = userData.token
       this.$store.commit('auth_status', 'success')
@@ -192,9 +192,6 @@ export default {
       )
     },
     fbSdkInit({ FB, scope }) {
-      FB.logout(function() {
-        console.log('youre outta here')
-      })
       this.facebook.scope = scope
       this.facebook.FB = FB
     },
