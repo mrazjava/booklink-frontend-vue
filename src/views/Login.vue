@@ -146,7 +146,6 @@ export default {
       var userData = resp.data
       console.log(userData)
       if(userData.origin === 2) {
-        console.log('its facetime')
         this.facebook.scope.logout()
       }
       axios.defaults.headers.common['Authorization'] = userData.token
