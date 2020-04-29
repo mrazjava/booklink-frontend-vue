@@ -15,8 +15,7 @@ export default new Vuex.Store({
   plugins: [createPersistedState()],
   state: {
     status: '',
-    user: DEFAULT_USER,
-    fbScope: null
+    user: DEFAULT_USER
   },
   mutations: {
     auth_request(state){
@@ -32,9 +31,6 @@ export default new Vuex.Store({
     auth_logout(state) {
       state.status = ''
       state.user = DEFAULT_USER
-    },
-    auth_fb(state, scope) {
-      state.fbScope = scope
     }
   },
   actions: {
@@ -45,7 +41,6 @@ export default new Vuex.Store({
     userName: state => 'loading'.localeCompare(state.status) ? state.user.firstName + ' ' + state.user.lastName : undefined,
     userRoles: state => state.user?.roles,
     userLastLogin: state => state.user?.lastLoginOn,
-    userToken: state => state.user?.token,
-    fbScope: state => state.fbScope
+    userToken: state => state.user?.token
   }
 })

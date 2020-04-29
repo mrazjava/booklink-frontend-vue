@@ -31,16 +31,6 @@ export default {
     logout: function () {
       this.$store.commit('auth_logout')
       delete axios.defaults.headers.common['Authorization']
-      //global.bus.$emit(global.EVT_FB_LOGOUT)
-//      console.log('hola')
-//      console.log(this.$store.getters.fbScope)
-//      if(this.$store.getters.fbScope) {
-//        console.log('ending your facebook session')
-//        this.$store.getters.fbScope.logout()
-//        this.$store.commit('auth_fb', null)
-//        console.log('fb gone')
-//        console.log(this.$store.getters.fbScope)
-//      }
       window.location.reload()
     }
   },
@@ -49,7 +39,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .logout {
   cursor: pointer;
 }
