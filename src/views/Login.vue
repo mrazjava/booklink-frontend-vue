@@ -144,7 +144,7 @@ export default {
     },
     loginSuccess: function(resp) {
       var userData = resp.data
-      console.log(userData)
+      //console.log(userData)
       if(userData.origin === 2) {
         this.facebook.scope.logout()
       }
