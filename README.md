@@ -32,7 +32,7 @@ docker build -t mrazjava/booklink-frontend-vue:local .
 ## Sandbox
 You can run local docker image with [sandbox](https://github.com/mrazjava/booklink#sandbox):
 ```
-./sandbox.sh local --frontend
+./sandbox.sh local -f -b develop
 ```
 
 ## Notes
