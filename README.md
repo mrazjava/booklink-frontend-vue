@@ -56,10 +56,14 @@ git rev-parse --short HEAD
 ```
 The values should match.
 
-## Other
+##
+We recommend to run docker image from sandbox, however it can be run directly:
 ```
-docker run -it -p 8090:80 booklink-web
-docker build --build-arg VUE_APP_BACKEND_URL=http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com -t booklink .
+docker run -it -p 8090:80 booklink-frontend-vue:local
+```
+In rare cases it may be handy to run a local image against AWS API:
+```
+docker build --build-arg VUE_APP_BACKEND_URL=http://ec2-3-124-3-167.eu-central-1.compute.amazonaws.com -t mrazjava/booklink-frontend-vue:local .
 ```
 
 ## Useful Resources

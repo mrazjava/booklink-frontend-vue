@@ -12,6 +12,7 @@ const POC = () => import('@/views/ProofOfConcept')
 const Login = () => import('@/views/Login')
 const MyAccount = () => import('@/views/admin/MyAccount')
 const Reviews = () => import('@/views/admin/Reviews')
+const Health = () => import('@/views/Health')
 
 Vue.use(VueRouter)
 
@@ -66,6 +67,12 @@ const routes = [
       layout: DefaultLayout,
       requiresAuth: true
     }
+  },
+  {
+    path: '/health',
+    name: 'health',
+    component: Health,
+    meta: { layout: SimpleLayout }
   }
 ]
 
