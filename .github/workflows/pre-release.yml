@@ -108,6 +108,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1.0.3
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: booklink-web-pre-svc
+          service: booklink-frontend-pre-svc
           cluster: booklink-ec2lx-pre-cluster
           wait-for-service-stability: false
