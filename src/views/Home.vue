@@ -8,9 +8,6 @@
       clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
       amet.
     </p>
-
-    <GoogleLogin :params="params" :onSuccess="onSuccess" :onFailure="onFailure">Login</GoogleLogin>
-
     <h2 class="Home__construction">Under Construction</h2>
     <p>
       We are actively working on <strong>booklinktrove</strong> but it is not ready for general release yet. While
@@ -31,38 +28,8 @@
 </template>
 
 <script>
-import GoogleLogin from 'vue-google-login';
-
 export default {
-  name: `Home`,
-  components: {
-    GoogleLogin
-  },
-  data() {
-    return {
-      // client_id is the only required property but you can add several more params, full list down bellow on the Auth api section
-      params: {
-        client_id: "658815266502-6dlgh8lle50hhhltlgholjqrn3a27osl.apps.googleusercontent.com"
-      },
-      // only needed if you want to render the button with the google ui
-      renderParams: {
-        width: 250,
-        height: 50,
-        longtitle: true
-      }
-    }
-  },
-  methods: {
-    onSuccess(googleUser) {
-      console.log(googleUser);
-      // This only gets the user information: id, name, imageUrl and email
-      console.log(googleUser.getBasicProfile());
-      googleUser.disconnect();
-    },
-    onFailure() {
-      console.log('too bad');
-    }
-  }
+  name: `Home`
 };
 </script>
 

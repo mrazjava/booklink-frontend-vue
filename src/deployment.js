@@ -9,6 +9,7 @@ export default class Deployment {
       FE_DEPLOY_ENV: '$FE_DEPLOY_ENV',
       FE_DEPLOY_BE_HOST: '$FE_DEPLOY_BE_HOST',
       FE_FB_APPID: '$FE_FB_APPID',
+      FE_GL_APPID: '$FE_GL_APPID',
       FE_SANDBOX: '$FE_SANDBOX'
     }
   }
