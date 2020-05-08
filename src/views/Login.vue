@@ -14,7 +14,7 @@
         <input type="hidden" v-model="origin" />
         <div class="error-bl" v-if="!$v.password.required">Password is required</div>
         <div class="error-bl" v-if="!$v.password.minLength">Password must be at least {{$v.password.$params.minLength.min}} characters long.</div>
-        <button class="login-btn" type="submit">Login as Booklink user</button>
+        <button class="login-btn" type="submit">Login</button>
         <p class="typo__p" v-if="submitStatus === 'ERROR'">Please fill the form correctly.</p>
         <p class="typo__p" v-if="submitStatus === 'ERROR_BACKEND'">Authentication failed. Try again.</p>
         <p class="typo__p" v-if="submitStatus === 'PENDING'">Sending...</p>
@@ -73,7 +73,7 @@
     </div>
     <div class="login-footnote">
       * <span v-if="!liveEnv">Authentication though a social netowrk is restricted in development environment to protected test users only. It is available for general audience exclusively in LIVE environment.</span>
-      We only collect minimum required social network information (email, name) to conveniently register you into our system with a single click login. For details feel free to check our <router-link to="/about/privacy-policy">privacy policy</router-link>.
+      We only collect minimum required social network information (email, name) to conveniently register you into our system with minimum effort on your part. For details feel free to check our <router-link to="/about/privacy-policy">privacy policy</router-link>.
     </div>
   </div>
 </template>
@@ -223,11 +223,11 @@ export default {
 
 <style lang="scss" scoped>
 .Login__hint {
-  margin-top: 30px;
+  margin-top: 75px;
   table {
     border-collapse: collapse;
     border: 1px solid #eee;
-    border-bottom: 2px solid var(--bg-header);
+    border-bottom: 2px solid #D5F5E1;
     tr {
       &:hover {
         background: #f4f4f4;
@@ -243,7 +243,7 @@ export default {
       border-collapse: collapse;
     }
     th {
-      background: var(--bg-header);
+      background: #D5F5E1;
       color: var(--fg-header);
       text-transform: uppercase;
       font-size: 12px;
@@ -256,6 +256,8 @@ export default {
 .login-btn {
   margin-bottom: 20px;
   width: 100%;
+  background-color: #52A572;
+  border-color: #36D071;
 }
 col:nth-child(3) {
 }
@@ -265,6 +267,10 @@ tbody tr:nth-child(odd) {
   &__area {
     width: 350px;
     margin: 0 auto;
+    h2 {
+      color: #52A572;
+      text-align: center;
+    }
     &__form {
       h4 {
         margin-bottom: 20px;
