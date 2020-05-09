@@ -1,7 +1,7 @@
 <template>
   <div class="Login">
     <div class="Login__area">
-      <h2>Enter Booklink</h2>
+      <h2>Welcome</h2>
       <form class="Login__area__form" @submit.prevent="login">
         <div class="form-group" :class="{ 'form-group--error': $v.email.$error }">
           <input class="form__input glowing-border" v-model.trim="email" @focusout="$v.email.$touch()" placeholder="E-mail"/>
@@ -11,6 +11,7 @@
         <div class="form-group" :class="{ 'form-group--error': $v.password.$error }">
           <input class="form__input glowing-border" v-model.trim="password" @focusout="$v.password.$touch()" placeholder="Password"/>
         </div>
+        <input type="hidden" v-model="origin" />
         <div class="error-bl" v-if="!$v.password.required">Password is required</div>
         <div class="error-bl" v-if="!$v.password.minLength">Password must be at least {{$v.password.$params.minLength.min}} characters long.</div>
         <button class="login-btn" type="submit">Login</button>
@@ -31,6 +32,7 @@
       logo-class="docs-v-facebook-login-logo"
       loader-class="docs-v-facebook-login-loader"
       />
+      <GoogleLogin :params="glAppId" :renderParams="googleButtonRenderParams" :onSuccess="glLoginSuccess" :onFailure="glLoginFailure">Login with Google</GoogleLogin>
     </div>
     <div class="Login__hint">
       Feel free to try any of the following test users:
@@ -71,7 +73,7 @@
     </div>
     <div class="login-footnote">
       * <span v-if="!liveEnv">Authentication though a social netowrk is restricted in development environment to protected test users only. It is available for general audience exclusively in LIVE environment.</span>
-      We only collect minimum required social network information (email, name) to conveniently register you into our system with a single click login. For details feel free to check our <router-link to="/about/privacy-policy">privacy policy</router-link>.
+      We only collect minimum required social network information (email, name) to conveniently register you into our system with minimum effort on your part. For details feel free to check our <router-link to="/about/privacy-policy">privacy policy</router-link>.
     </div>
   </div>
 </template>
@@ -81,15 +83,18 @@ import axios from 'axios';
 import { required, email, minLength } from 'vuelidate/lib/validators'
 import Deployment from '@/deployment'
 import VFacebookLogin from 'vue-facebook-login-component'
+import GoogleLogin from 'vue-google-login';
 
 export default {
   name: `Login`,
   components: {
-    VFacebookLogin
+    VFacebookLogin,
+    GoogleLogin
   },
   data: () => ({
     email : "",
     password : "",
+    origin : "BOOKLINK",
     submitStatus: null,
     facebook: {
       FB: {},
@@ -98,6 +103,11 @@ export default {
       user: {},
       useAltLogo: false
     },
+    googleButtonRenderParams: {
+      width: 350,
+      theme: 'dark',
+      longtitle: true
+    }
   }),
   computed: {
     cssVars() {
@@ -106,11 +116,16 @@ export default {
         '--fg-header': global.CLR_FG_TH
       }
     },
-    liveEnv() {
+    liveEnv() { // temporary; used to manage construction until go-live
       return ('live'.localeCompare(Deployment.value('FE_DEPLOY_ENV')) == 0)
     },
     fbAppId() {
       return Deployment.value('FE_FB_APPID')
+    },
+    glAppId() {
+      return {
+        client_id: Deployment.value('FE_GL_APPID')
+      }
     }
   },
   validations: {
@@ -132,7 +147,8 @@ export default {
         this.submitStatus = 'PENDING'
         let email = this.email
         let password = this.password
-        this.authenticate({ email, password })
+        let origin = this.origin
+        this.authenticate({ email, password, origin })
       }
     },
     authenticate: function(payload) {
@@ -162,29 +178,44 @@ export default {
       this.$store.commit('auth_logout')
       this.submitStatus = 'ERROR_BACKEND'
     },
-    // FACEBOOK
-    getUserData() {
+    fbSdkInit({ FB, scope }) {
+      this.facebook.scope = scope
+      this.facebook.FB = FB
+    },
+    fbLogin() {
+      console.log('Welcome to Booklinktrove, dear Facebook user!')
       this.facebook.FB.api(
         '/me',
         { fields: 'id, name, first_name, middle_name, last_name, email, picture' }, fbUser => {
           var payload = {
-            fbFirstName: fbUser.first_name,
-            fbLastName: fbUser.last_name,
+            origin: 'FACEBOOK',
+            smFirstName: fbUser.first_name,
+            smLastName: fbUser.last_name,
             email: fbUser.email,
-            fbId: fbUser.id
+            smId: fbUser.id
           }
           //console.debug(payload)
           this.authenticate(payload)
         }
       )
     },
-    fbSdkInit({ FB, scope }) {
-      this.facebook.scope = scope
-      this.facebook.FB = FB
+    glLoginSuccess(googleUser) {
+      console.log('Welcome to Booklinktrove, dear Google user!')
+      // we only get basic user info: id, name, imageUrl and email
+      var glProfile = googleUser.getBasicProfile()
+      console.log(glProfile);
+      var payload = {
+        origin: 'GOOGLE',
+        smFirstName: glProfile.pW,
+        smLastName: glProfile.qU,
+        email: glProfile.yu,
+        smId: glProfile.MU
+      }
+      this.authenticate(payload)
+      googleUser.disconnect()
     },
-    fbLogin() {
-      console.log('Welcome to Booklink!  Fetching your information.... ');
-      this.getUserData()
+    glLoginFailure() {
+      console.log('google login failed');
     }
   },
 };
@@ -192,11 +223,11 @@ export default {
 
 <style lang="scss" scoped>
 .Login__hint {
-  margin-top: 30px;
+  margin-top: 75px;
   table {
     border-collapse: collapse;
     border: 1px solid #eee;
-    border-bottom: 2px solid var(--bg-header);
+    border-bottom: 2px solid #D5F5E1;
     tr {
       &:hover {
         background: #f4f4f4;
@@ -212,7 +243,7 @@ export default {
       border-collapse: collapse;
     }
     th {
-      background: var(--bg-header);
+      background: #D5F5E1;
       color: var(--fg-header);
       text-transform: uppercase;
       font-size: 12px;
@@ -224,6 +255,9 @@ export default {
 }
 .login-btn {
   margin-bottom: 20px;
+  width: 100%;
+  background-color: #52A572;
+  border-color: #36D071;
 }
 col:nth-child(3) {
 }
@@ -233,6 +267,10 @@ tbody tr:nth-child(odd) {
   &__area {
     width: 350px;
     margin: 0 auto;
+    h2 {
+      color: #52A572;
+      text-align: center;
+    }
     &__form {
       h4 {
         margin-bottom: 20px;

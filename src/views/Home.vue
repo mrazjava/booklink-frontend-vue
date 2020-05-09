@@ -8,7 +8,6 @@
       clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
       amet.
     </p>
-
     <h2 class="Home__construction">Under Construction</h2>
     <p>
       We are actively working on <strong>booklinktrove</strong> but it is not ready for general release yet. While
