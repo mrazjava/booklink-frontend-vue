@@ -11,9 +11,9 @@
         <div class="form-group" :class="{ 'form-group--error': $v.password.$error }">
           <input class="form__input glowing-border" v-model.trim="password" @focusout="$v.password.$touch()" placeholder="Password"/>
         </div>
-        <input type="hidden" v-model="origin" />
         <div class="error-bl" v-if="!$v.password.required">Password is required</div>
         <div class="error-bl" v-if="!$v.password.minLength">Password must be at least {{$v.password.$params.minLength.min}} characters long.</div>
+        <input type="hidden" v-model="origin" />
         <button class="login-btn" type="submit">Login</button>
         <p class="typo__p" v-if="submitStatus === 'ERROR'">Please fill the form correctly.</p>
         <p class="typo__p" v-if="submitStatus === 'ERROR_BACKEND'">Authentication failed. Try again.</p>
