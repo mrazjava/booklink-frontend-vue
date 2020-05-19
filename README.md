@@ -3,7 +3,7 @@
 [![snapshot](https://github.com/mrazjava/booklink-frontend-vue/workflows/snapshot/badge.svg?branch=develop)](https://github.com/mrazjava/booklink-frontend-vue/actions?query=workflow%3Asnapshot)
 # Web UI for Booklink
 
-Based on Vue.js. If you wish to try booklink locally without messing around with the sources, consider running [sandbox](https://github.com/mrazjava/booklink#sandbox) from the top level project.
+Based on Vue.js. If you wish to try booklink locally without messing around with the sources, consider running [sandbox](https://github.com/mrazjava/booklink/tree/master/sandbox) from the top level project.
 
 ## It's Alive
 Booklink is deployed in AWS, and branded as booklinktrove.com. Because we are self funded for the time being, we spin production
