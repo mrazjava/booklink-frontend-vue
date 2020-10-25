@@ -43,8 +43,12 @@ Info worthy enough to stick around here.
 ### yarn
 Helpful yarn commands
 ```
-yarn install         # creates yarn.lock by evaluating dependency specification off package.json
-yarn cache clean     # similar to mvn clean
+# creates yarn.lock by evaluating dependency specification off package.json
+yarn install
+# similar to mvn clean
+yarn cache clean
+# evaluate and interactively upgrade selected dependencies
+yarn upgrade-interactive
 ```
 
 ### Reporting GIT on vue
