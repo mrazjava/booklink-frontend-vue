@@ -49,6 +49,8 @@ yarn install
 yarn cache clean
 # evaluate and interactively upgrade selected dependencies
 yarn upgrade-interactive
+# evaluate dependency of a project
+yarn why yargs-parser
 ```
 
 ### Reporting GIT on vue
