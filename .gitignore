@@ -19,3 +19,11 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+# STS
+.mvn/
+target/
+*.iml
+.classpath
+.project
+.settings
