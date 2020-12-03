@@ -55,7 +55,7 @@ h1, h2, h3, h4, h5 {
     padding-left: 0.5em;
     padding-right: 0.5em;
     padding-bottom: 50px;
-    padding-top: 50px;
+    padding-top: 5px;
   }
   &__admin {
     background-color: white;

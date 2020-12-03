@@ -1,21 +1,11 @@
 <template>
   <div class="Content Home">
-    <h2>Home</h2>
-    <p>
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-      eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-      voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-      clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-      amet.
-    </p>
-    <h2 class="Home__construction">Under Construction</h2>
+    <random-work :wkTitle="workTitle" :wkCover="workCover" :wkAuthor="workAuthor" @depot-work-updated="updateDepotWork" />
+    <h1 class="Home__construction">Under Construction</h1>
     <p>
       We are actively working on <strong>booklinktrove</strong> but it is not ready for general release yet. While
-      we do not have a specific timeframe, announcements will follow as we get closer
-      to the finish line. Furthermore, version (which appears in the footer) will contain a suffix <strong>-RC</strong>
-      indicating a general <strong>release candidate</strong>. In the meantime, the <a href="https://pre.booklinktrove.com">pre-release</a>
-      environment is where all the action is. It runs the latest updates and is meant for the
-      general preview.
+      we do not have a specific timeframe, announcements will follow as we get closer to the finish line. 
+      The <a href="https://pre.booklinktrove.com">pre-release</a> environment is where host the live preview.
     </p>
     <p>
       Release dates, and notes on the new features which we constantly add can be viewed on <a href="https://github.com/mrazjava/booklink-frontend-vue/releases">github</a>.
@@ -28,18 +18,45 @@
 </template>
 
 <script>
+import RandomWork from '@/components/RandomWork'
+
 export default {
-  name: `Home`
+  name: 'Home',
+  components: {
+    RandomWork
+  },
+  data() {
+    return {
+      workTitle: 'title',
+      workCover: 'cover',
+      workAuthor: 'author'
+    }
+  },
+  methods: {
+    updateDepotWork(work, author) {
+      this.workTitle = work.title;
+      this.workAuthor = author.name;
+      this.workCover = work.imageMedium.graphics;
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-.Home {
-  h2:first-child {
-    margin-bottom: 25px;
+  .Home {
+    &__construction {
+      color: #DE4A2B;
+    }
   }
-  &__construction {
-    color: red;
+</style>
+<style type="text/css">
+  .depot-work {
+    float: right;
+    padding: 10px;
+    margin-left: 10px;
+    max-width: 300px;
   }
-}
+  .wk-title {
+    color: grey;
+  }
 </style>
