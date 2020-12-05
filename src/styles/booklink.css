@@ -34,7 +34,6 @@ ul {
 }
 .form__input,
 .form__textarea {
-  /*position: relative;*/
   margin-bottom: 2rem; }
 
 .form__input,
@@ -45,7 +44,6 @@ ul {
   color: #374853;
   line-height: 2.375rem;
   min-height: 2.375rem;
-  /*position: relative;*/
   border: 1px solid #E8E8E8;
   border-radius: 5px;
   background: #fff;
@@ -178,9 +176,11 @@ ul {
 .form-group--alert,
 .form-group--error {
   animation-name: shakeError;
-  animation-fill-mode: forwards;
+  /* if enabled, fields in error will display over floating header */ 
+  /*animation-fill-mode: forwards;*/
   animation-duration: .6s;
-  animation-timing-function: ease-in-out; }
+  animation-timing-function: ease-in-out;
+}
 
 .form-group--loading .form__input {
   border-image-slice: 1;

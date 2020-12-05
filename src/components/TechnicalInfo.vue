@@ -14,11 +14,11 @@
         <td>version:</td>
         <td>{{techFeVersion}}</td>
       </tr>
-      <tr>
+      <tr v-if="!isLive()">
         <td>branch:</td>
         <td>{{techFeBranch}}</td>
       </tr>
-      <tr>
+      <tr v-if="!isLive()">
         <td>last commit:</td>
         <td>{{techFeCommit}}</td>
       </tr>
@@ -37,11 +37,11 @@
         <td>version:</td>
         <td>{{techBeVersion}}</td>
       </tr>
-      <tr>
+      <tr v-if="!isLive()">
         <td>branch:</td>
         <td>{{techBeBranch}}</td>
       </tr>
-      <tr>
+      <tr v-if="!isLive()">
         <td>last commit:</td>
         <td>{{techBeLastCommit}}</td>
       </tr>
@@ -51,9 +51,11 @@
 
 <script>
 import Deployment from '@/deployment'
+import EnvMixin from '@/mixins/env'
 
 export default {
   name: 'TechnicalInfo',
+  mixins: [EnvMixin],
   data() {
     const FETCH_LABEL = "checking ..."
     return {

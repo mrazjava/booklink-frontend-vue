@@ -3,14 +3,13 @@
 [![snapshot](https://github.com/mrazjava/booklink-frontend-vue/workflows/snapshot/badge.svg?branch=develop)](https://github.com/mrazjava/booklink-frontend-vue/actions?query=workflow%3Asnapshot)
 # Web UI for Booklink
 
-Based on Vue.js. If you wish to try booklink locally without messing around with the sources, consider running [sandbox](https://github.com/mrazjava/booklink#sandbox) from the top level project.
+Based on Vue.js. If you wish to try booklink locally without messing around with the sources, consider running [sandbox](https://github.com/mrazjava/booklink/tree/master/sandbox) from the top level project.
 
 ## It's Alive
-Booklink is deployed in AWS, and branded as booklinktrove.com. Because we are self funded for the time being, we spin production
-environment only periodically to test releases. Keeping production environment down until we are ready with the go-live helps us save on our AWS bill. However, our pre-release environment is available 24/7, though it is an environment hosted in European zone with fairly small resources.
+Booklink is branded as booklinktrove.com. Because we are self funded for the time being, we spin production environment only periodically to test releases. Keeping production environment down until we are ready with the go-live helps us save on our hosting bill. However, our pre-release environment is available 24/7, though it is an environment hosted in European zone with fairly small resources.
 
 - [production](https://www.booklinktrove.com)
-- [pre-release](https://pre.booklinktrove.com)
+- [pre-release](http://ec2-35-159-52-93.eu-central-1.compute.amazonaws.com)
 
 ## Quick Start
 Running frontend requires backend. For the purposes of developing the frontent we
@@ -43,8 +42,14 @@ Info worthy enough to stick around here.
 ### yarn
 Helpful yarn commands
 ```
-yarn install         # creates yarn.lock by evaluating dependency specification off package.json
-yarn cache clean     # similar to mvn clean
+# creates yarn.lock by evaluating dependency specification off package.json
+yarn install
+# similar to mvn clean
+yarn cache clean
+# evaluate and interactively upgrade selected dependencies
+yarn upgrade-interactive
+# evaluate dependency of a project
+yarn why yargs-parser
 ```
 
 ### Reporting GIT on vue

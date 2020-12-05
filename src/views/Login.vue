@@ -11,9 +11,9 @@
         <div class="form-group" :class="{ 'form-group--error': $v.password.$error }">
           <input class="form__input glowing-border" v-model.trim="password" @focusout="$v.password.$touch()" placeholder="Password"/>
         </div>
-        <input type="hidden" v-model="origin" />
         <div class="error-bl" v-if="!$v.password.required">Password is required</div>
         <div class="error-bl" v-if="!$v.password.minLength">Password must be at least {{$v.password.$params.minLength.min}} characters long.</div>
+        <input type="hidden" v-model="origin" />
         <button class="login-btn" type="submit">Login</button>
         <p class="typo__p" v-if="submitStatus === 'ERROR'">Please fill the form correctly.</p>
         <p class="typo__p" v-if="submitStatus === 'ERROR_BACKEND'">Authentication failed. Try again.</p>
@@ -72,7 +72,7 @@
       </table>
     </div>
     <div class="login-footnote">
-      * <span v-if="!liveEnv">Authentication though a social netowrk is restricted in development environment to protected test users only. It is available for general audience exclusively in LIVE environment.</span>
+      * <span v-if="!isLive()">Authentication though a social netowrk is restricted in development environment to protected test users only. It is available for general audience exclusively in LIVE environment.</span>
       We only collect minimum required social network information (email, name) to conveniently register you into our system with minimum effort on your part. For details feel free to check our <router-link to="/about/privacy-policy">privacy policy</router-link>.
     </div>
   </div>
@@ -81,6 +81,7 @@
 <script>
 import axios from 'axios';
 import { required, email, minLength } from 'vuelidate/lib/validators'
+import EnvMixin from '@/mixins/env'
 import Deployment from '@/deployment'
 import VFacebookLogin from 'vue-facebook-login-component'
 import GoogleLogin from 'vue-google-login';
@@ -91,6 +92,7 @@ export default {
     VFacebookLogin,
     GoogleLogin
   },
+  mixins: [EnvMixin],
   data: () => ({
     email : "",
     password : "",
@@ -115,9 +117,6 @@ export default {
         '--bg-header': global.CLR_BG_TH,
         '--fg-header': global.CLR_FG_TH
       }
-    },
-    liveEnv() { // temporary; used to manage construction until go-live
-      return ('live'.localeCompare(Deployment.value('FE_DEPLOY_ENV')) == 0)
     },
     fbAppId() {
       return Deployment.value('FE_FB_APPID')

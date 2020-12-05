@@ -5,8 +5,7 @@ module.exports = {
   'chainWebpack': config => {
     config.plugin('define').tap(args => {
       const gitRevisionPlugin = new GitRevisionPlugin({
-        branch: true,
-        lightweightTags: true
+        branch: true
       })
       args[0]['process.env']['VUE_APP_VERSION'] = JSON.stringify(require('./package.json').version)
       args[0]['process.env']['VUE_APP_GIT_SHORT_COMMIT_HASH'] = JSON.stringify(gitRevisionPlugin.version())
