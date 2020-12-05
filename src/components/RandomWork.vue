@@ -3,7 +3,7 @@
     <div class="wk-header"><h5>Featured Work</h5></div>
     <div class="wk-title">{{ wkTitle }}</div>
     <div class="wk-author">by: {{ wkAuthor }}</div>
-    <img v-bind:src="`data:image/jpeg;charset=utf-8;base64,${wkCover}`" class="depot-cover" alt="WORK" />  
+    <img v-bind:src="`data:image/jpeg;charset=utf-8;base64,${wkCover}`" class="depot-cover" alt="[WORK IMG]" />  
   </div>
 </template>
 
