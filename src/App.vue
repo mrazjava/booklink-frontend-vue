@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import '@kouts/vue-modal/dist/vue-modal.css';
 export default {
   name: 'App',
   data() {

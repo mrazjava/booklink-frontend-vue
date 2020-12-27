@@ -38,8 +38,8 @@ export default {
   methods: {
     updateDepotWork(work, author) {
       this.workTitle = work.title;
-      this.workAuthor = author.name;
-      this.workCover = work.imageMedium.graphics;
+      this.workAuthor = author;
+      this.workCover = work.imageMedium;
     }
   }
 };

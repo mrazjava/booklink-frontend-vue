@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import VueModal from '@kouts/vue-modal';
 
 Vue.mixin({
   created() {
@@ -14,6 +15,7 @@ Vue.mixin({
     //console.debug(this.$options)
   },
 });
+Vue.component('Modal', VueModal);
 
 global.bus = new Vue()
 global.CLR_BG_TH = '#F7BE81'
