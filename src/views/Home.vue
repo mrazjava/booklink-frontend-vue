@@ -1,6 +1,6 @@
 <template>
   <div class="Content Home">
-    <random-work :wkTitle="workTitle" :wkCover="workCover" :wkAuthor="workAuthor" @depot-work-updated="updateDepotWork" />
+    <random-work :fWork="featuredWork" :fAuthor="featuredAuthor" @depot-work-updated="updateDepotWork" />
     <div class="Home__intro">
         Blog on books with browsable cross reference.
     </div>
@@ -30,16 +30,14 @@ export default {
   },
   data() {
     return {
-      workTitle: 'title',
-      workCover: 'cover',
-      workAuthor: 'author'
+      featuredWork: undefined,
+      featuredAuthor: undefined
     }
   },
   methods: {
     updateDepotWork(work, author) {
-      this.workTitle = work.title;
-      this.workAuthor = author;
-      this.workCover = work.imageMedium;
+      this.featuredWork = work;
+      this.featuredAuthor = author;
     }
   }
 };

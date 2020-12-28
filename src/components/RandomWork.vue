@@ -1,11 +1,11 @@
 <template>
-  <div id="depot-rand-work" class="depot-work">
+  <div v-if="fWork" id="depot-rand-work" class="depot-work">
     <div class="wk-header"><h5>Featured Work</h5></div>
-    <div class="wk-title">{{ wkTitle }}</div>
-    <div class="wk-author" v-bind:title="`${wkAuthor.id}`">by: <a href="#" @click="showModal=true">{{ wkAuthor.name }}</a></div>
-    <img v-bind:src="`${getWorkCoverImg(wkCover.graphics)}`" class="depot-cover" v-bind:title="`${wkCover.id}`" alt="[TITLE COVER]" />
-    <Modal v-model="showModal" v-bind:title="`${authorDlgTitle}`" @before-open="`${fetchAuthorById(wkAuthor.id)}`">
-      TODO: display author
+    <div class="wk-title">{{ fWork.title }}</div>
+    <div class="wk-author" v-bind:title="`${fAuthor.id}`">by: <a href="#" @click="showModal=true">{{ fAuthor.name }}</a></div>
+    <img v-bind:src="`${buildCoverImgSrc(fWork.imageMedium.graphics)}`" class="depot-cover" v-bind:title="`${fWork.imageMedium.id}`" alt="[FEATURED WORK COVER]" />
+    <Modal v-model="showModal" v-bind:title="`${fAuthor.name}`" @before-open="`${fetchAuthorById(fAuthor.id)}`">
+		<img v-if="dlgAuthorImg" v-bind:src="`${buildCoverImgSrc(dlgAuthorImg.graphics)}`" class="depot-cover" v-bind:title="`${dlgAuthorImg.id}`" alt="[AUTHOR IMG]" />
     </Modal>
   </div>
 </template>
@@ -16,7 +16,7 @@ export default {
   data() {
     return {
       showModal: false,
-      fullAuthor: undefined,
+      dlgAuthorImg: undefined,
       eptFeaturedWork: '/depot/work/featured',
       eptAuthorById: '/depot/author/'
     };
@@ -25,15 +25,13 @@ export default {
     this.fetchDepotWork()
   },
   props: {
-    wkTitle: String,
-    wkCover: Array[Object],
-    wkAuthor: Array[Object]
+    fWork: Array[Object],
+    fAuthor: Array[Object]
   },
   computed: {
-    authorDlgTitle : function() { return this.fullAuthor ? this.fullAuthor.name : '[AUTHOR NAME]'; }
   },
   methods: {
-    getWorkCoverImg(data) {
+    buildCoverImgSrc(data) {
       return 'data:image/webp;base64,' + data;
     },
     fetchAuthorById(authorId) {
@@ -44,7 +42,7 @@ export default {
     },
     updateAuthorDisplay(result) {
       //console.info(result.data);
-      this.fullAuthor = result.data;
+      this.dlgAuthorImg = result.data.imageMedium;
     },
     updateWorkDisplay(result) {
       var author = result.data[0].author;
