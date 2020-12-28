@@ -75,5 +75,5 @@ docker build --build-arg VUE_APP_BACKEND_URL=http://ec2-3-124-3-167.eu-central-1
 ```
 
 ## Useful Resources
-[Dynamic Layouts](https://markus.oberlehner.net/blog/dynamic-vue-layout-components/)
-[vue-modal](https://vuejsexamples.com/a-modal-window-component-for-vue/) | [tutorial](https://www.learmoreseekmore.com/2020/10/kouts-vue-modal-plugin.html)
+- [Dynamic Layouts](https://markus.oberlehner.net/blog/dynamic-vue-layout-components/)
+- [vue-modal](https://vuejsexamples.com/a-modal-window-component-for-vue/) | [tutorial](https://www.learmoreseekmore.com/2020/10/kouts-vue-modal-plugin.html)
