@@ -77,10 +77,6 @@ export default {
  }
  .vm-btn-close {
  }
- .vm-titlebar {
-  background-color: #FEF9E7;
-  padding-bottom: 5px;
- }
 </style>
 <style scoped>
  .dlg-author {
