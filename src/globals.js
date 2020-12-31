@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueModal from '@kouts/vue-modal';
+import Tooltip from 'vue-directive-tooltip';
+import 'vue-directive-tooltip/dist/vueDirectiveTooltip.css';
 
 Vue.mixin({
   created() {
@@ -15,7 +17,9 @@ Vue.mixin({
     //console.debug(this.$options)
   },
 });
+
 Vue.component('Modal', VueModal);
+Vue.use(Tooltip);
 
 global.bus = new Vue()
 global.CLR_BG_TH = '#F7BE81'
