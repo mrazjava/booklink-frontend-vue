@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import '@kouts/vue-modal/dist/vue-modal.css';
 export default {
   name: 'App',
   data() {
@@ -17,3 +18,15 @@ export default {
   },
 };
 </script>
+<style>
+  .vm-titlebar {
+    background-color: #FEF9E7;
+    padding-bottom: 5px;
+  }
+  .vm-title {
+      color: black;
+  }
+  .vm-btn-close {
+    display: none;
+  }
+</style>
