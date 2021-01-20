@@ -13,6 +13,7 @@ const Login = () => import('@/views/Login')
 const MyAccount = () => import('@/views/admin/MyAccount')
 const Reviews = () => import('@/views/admin/Reviews')
 const Health = () => import('@/views/Health')
+const Depot = () => import('@/views/Depot')
 
 Vue.use(VueRouter)
 
@@ -73,6 +74,12 @@ const routes = [
     name: 'health',
     component: Health,
     meta: { layout: SimpleLayout }
+  },
+  {
+    path: '/depot',
+    name: 'depot',
+    component: Depot,
+    meta: { layout: DefaultLayout }
   }
 ]
 

@@ -2,6 +2,7 @@
   <div id="main-menu" class="MainMenu">
     <router-link to="/home">Home</router-link> |
     <router-link to="/proof-of-concept">P-O-C</router-link> |
+    <router-link to="/depot">Depot</router-link> | 
     <router-link to="/about">About</router-link>
 
     <div class="MainMenu__ll">
