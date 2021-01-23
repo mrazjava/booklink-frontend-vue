@@ -15,6 +15,7 @@
     "core-js": "^3.1.4",
     "dotenv": "^8.2.0",
     "vue": "^2.6.11",
+    "vue-advanced-search": "^0.1.43",
     "vue-directive-tooltip": "^1.6.3",
     "vue-facebook-login-component": "^2.2.1",
     "vue-google-login": "^2.0.3",
