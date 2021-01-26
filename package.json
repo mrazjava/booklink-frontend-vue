@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@kouts/vue-modal": "^2.0.1",
+    "@trevoreyre/autocomplete-vue": "^2.2.0",
     "axios": "^0.21.1",
     "core-js": "^3.1.4",
     "dotenv": "^8.2.0",
