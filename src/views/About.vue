@@ -2,9 +2,9 @@
   <div id="About" class="About">
     <h2>About</h2>
     <p>
-      Booklink allows to cross reference books by common content. System allows users to keeps track of books read. 
-      Each book can have "links" to other books which define common theme, idea or period in time. Links can be 
-      browsed interactively and voted on. 
+      Booklink encourages tracking the content consumed by reading a book. It allows to cross reference books by common
+      themes such as subject or period of time. A book can have "links" to other books, and a link describes
+      the commonality. Links can be browsed interactively, searched and be voted on.
     </p>
     <ul>
     <li>Our <router-link to="/about/privacy-policy">Privacy Policy</router-link></li>
