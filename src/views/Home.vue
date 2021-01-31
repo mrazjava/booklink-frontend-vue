@@ -34,26 +34,29 @@ export default {
       this.featuredAuthor = author;
     },
     searchWorks(input) {
-
-          return new Promise((resolve) => {
-            if (input.length < 3) {
-              return resolve([])
-            }
-
-            resolve(["abc", "def", "ghi"])
-
-            //fetch(url)
-            //  .then((response) => response.json())
-            //  .then((data) => {
-            //    resolve(data.query.search)
-        //})
+        return new Promise((resolve) => {
+          if (input.length < 3) {
+            return resolve([]);
+          }
+          console.debug('searching for: ' + input);
+          this.$api.fetchV1({
+              method: 'get',
+              path: `/depot/work/search?search=${encodeURIComponent(input)}`
+          }, { noLoader: true, callback: (resp) => {
+            console.debug('callback');
+            console.debug(resp);
+            return resolve(resp.data);
+          }
+        });
       })
     },
-    getResultValue(result) {
-      return "abrakadabra";
+    getResultValue(data) {
+      return data.title;
     },
     onSubmit(result) {
-      alert('boo');
+      if(result) {
+        alert('work id: ' + result.id);
+      }
     }
   }
 };
