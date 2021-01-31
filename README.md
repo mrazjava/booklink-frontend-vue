@@ -77,6 +77,7 @@ docker build --build-arg VUE_APP_BACKEND_URL=http://ec2-3-124-3-167.eu-central-1
 ## Useful Resources
 - [Dynamic Layouts](https://markus.oberlehner.net/blog/dynamic-vue-layout-components/)
 - [vue-modal](https://vuejsexamples.com/a-modal-window-component-for-vue/) | [tutorial](https://www.learmoreseekmore.com/2020/10/kouts-vue-modal-plugin.html)
+- [Converting Callbacks to Promises](https://zellwk.com/blog/converting-callbacks-to-promises/)
 - [vue-directive-tooltip](https://vuejsexamples.com/easy-to-use-and-flexible-tooltip-directive-with-vue-js/) | [usage](https://hekigan.github.io/vue-directive-tooltip/#/)
 - [vue-advanced-search](https://github.com/antonispat10/vue-advanced-search) | [usage](https://vuejsexamples.com/single-multiple-select-autocomplete-search-with-vue/)
 - [autocomplete-vue](https://github.com/trevoreyre/autocomplete/tree/master/packages/autocomplete-vue) ([parent](https://github.com/trevoreyre/autocomplete)) | [examples](https://codepen.io/collection/DrwmoR/)
