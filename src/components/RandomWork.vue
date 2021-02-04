@@ -53,7 +53,7 @@ export default {
       this.dlgAuthorImg = result.data.imageMedium;
     },
     updateWorkDisplay(result) {
-      var author = result.data[0].author;
+      var author = result.data[0].authors[0];
       //console.log(author);
       var work = result.data[0].work;
       //console.log(work);
