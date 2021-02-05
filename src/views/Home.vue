@@ -2,11 +2,12 @@
   <div class="Content Home">
     <random-work :fWork="featuredWork" :fAuthor="featuredAuthor" @depot-work-updated="updateDepotWork" />
     <div class="Home__intro">
-        Blog on books with browsable cross reference.
+        <h4>Blog on books with browsable cross reference</h4>
         <p/>
+        <div>Depot Work Search (prototype):</div>
         <autocomplete
           :search="searchWorks"
-          placeholder="Search Works"
+          placeholder="enter keyword(s) | eg: religion, life, home, america, animals"
           aria-label="Search Works"
           :get-result-value="getResultValue"
           @submit="onSubmit"></autocomplete>
@@ -41,17 +42,19 @@ export default {
           console.debug('searching for: ' + input);
           this.$api.fetchV1({
               method: 'get',
-              path: `/depot/work/search?search=${encodeURIComponent(input)}`
+              path: `/depot/work/search?term=${encodeURIComponent(input)}`
           }, { noLoader: true, callback: (resp) => {
             console.debug('callback');
-            console.debug(resp);
+            if(resp.data.length > 0) {
+              console.debug(resp.data[0].work);
+            }
             return resolve(resp.data);
           }
         });
       })
     },
     getResultValue(data) {
-      return data.title;
+      return data.authors[0].name + ' - ' + data.work.title;
     },
     onSubmit(result) {
       if(result) {
