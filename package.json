@@ -1,6 +1,6 @@
 {
   "name": "booklink",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Standard Booklink UI",
   "author": "Adam Zimowski (mrazjava)",
   "private": true,
@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "@kouts/vue-modal": "^2.0.1",
-    "axios": "^0.19.2",
+    "@trevoreyre/autocomplete-vue": "^2.2.0",
+    "axios": "^0.21.1",
     "core-js": "^3.1.4",
     "dotenv": "^8.2.0",
     "vue": "^2.6.11",

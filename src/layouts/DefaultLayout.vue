@@ -27,7 +27,6 @@ export default {
   },
   methods: {
     isLoggedIn : function() { return this.$store.getters.isLoggedIn }
-    //isLoggedIn : function(){ return this.$store.getters.isLoggedIn }
   },
 };
 </script>

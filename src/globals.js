@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import VueModal from '@kouts/vue-modal';
 import Tooltip from 'vue-directive-tooltip';
+import Autocomplete from '@trevoreyre/autocomplete-vue';
+
 import 'vue-directive-tooltip/dist/vueDirectiveTooltip.css';
+import '@trevoreyre/autocomplete-vue/dist/style.css';
 
 Vue.mixin({
   created() {
@@ -20,6 +23,7 @@ Vue.mixin({
 
 Vue.component('Modal', VueModal);
 Vue.use(Tooltip);
+Vue.use(Autocomplete);
 
 global.bus = new Vue()
 global.CLR_BG_TH = '#F7BE81'

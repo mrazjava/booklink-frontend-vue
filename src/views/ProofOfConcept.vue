@@ -2,6 +2,7 @@
   <div class="ProofOfConcept">
     <h2>Proof of Concept</h2>
     <div class="poc-header">
+      A set of experiments derived during initial development to test various backend communication concepts. Will be removed from the final version. 
       <a href="">Refresh</a> this page or click a button to get fresh data. Data for each demo is fetched from the <a :href="this.beHost+'/actuator/info'">backend</a> over
       <a :href="this.beHost+'/swagger-ui.html'">REST</a>.
     </div>
@@ -79,7 +80,7 @@ export default {
   color: grey;
 }
 .poc-header {
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 15px;
 }
 .poc-demo {
@@ -99,12 +100,11 @@ button {
 button:hover {
   border: none;
 }
-h3 {
+h2 {
   margin:0;
-  margin-top:30px;
+  margin-top: 40px;
   border-top: dotted 0px grey;
   font-size:1.2em;
-  color: grey;
 }
 .poc-footnote {
   color: grey;
